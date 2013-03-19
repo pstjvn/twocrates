@@ -1,0 +1,16 @@
+/* Make the styles use the border as part of the container */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Make the boxy and html fill in the entiere screen */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: black;
+}

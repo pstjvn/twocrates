@@ -1,0 +1,13 @@
+* Use computed top offset for the top menu, it should be on different stack layer to avoid repaints on it. It should also be on top.
+
+* Use hidden scroll bars to utilize the native scrolling ability (maybe smoother than using top/left on IE?)
+
+* Use size ratios: normalized 1:100 (1cm = 1px, thus 1:100 default ratio)
+
+* Use absolut stacking for all items. To ease the calculation use leveling (bottom / top)
+
+* Figure out scroll action in mouse driven devices (i.e. if we do not want to show scroll bars how do we do the scrolling).
+
+* Use 100% w/h for the body and place the 3dview in size-able container that is always 100% + the size of the scrolls
+
+* when first loaded make sure that the size of the walls fir in the view by manipulation / pre-calculating the aspect ratio.
