@@ -2,7 +2,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 35px;
+  height: 45px;
   background-color: #E8E7D9;
 }
 
@@ -11,9 +11,13 @@
   height: 0;
   background-color: red;
   overflow: hidden;
+  /* Provide some effects when scaling? */
+  -webkit-transition: width 0.2s linear, height 0.2s linear;
+  /* @alternate */
+  transition: width 0.2s, height 0.2s;
 }
 
 .child {
-  background-color: blue;
+  background-color: yellow;
   overflow: scroll;
 }
