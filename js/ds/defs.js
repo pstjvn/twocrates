@@ -10,4 +10,4 @@ goog.provide('k3d.ds.definitions');
  * The heoght of the header in pixels.
  * @type {number}
  */
-k3d.ds.definitions.headerHeight = 35;
+k3d.ds.definitions.headerHeight = 45;

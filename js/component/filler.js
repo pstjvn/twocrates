@@ -1,7 +1,7 @@
 goog.provide('k3d.ui.Filler');
 
 goog.require('k3d.ds.definitions');
-goog.require('pstj.ui.Filler');
+goog.require('pstj.ui.SheetFrame');
 
 /**
  * @fileoverview MOdified filler that can account for header on top of it.
@@ -12,16 +12,16 @@ goog.require('pstj.ui.Filler');
 /**
  * Provides filler that handles the header more gracefully.
  * @constructor
- * @extends {pstj.ui.Filler}
+ * @extends {pstj.ui.SheetFrame}
  */
 k3d.ui.Filler = function() {
   goog.base(this);
 };
-goog.inherits(k3d.ui.Filler, pstj.ui.Filler);
+goog.inherits(k3d.ui.Filler, pstj.ui.SheetFrame);
 
 /** @inheritDoc */
-k3d.ui.Filler.prototype.calculateUpdatedSize = function() {
-  var size = goog.base(this, 'calculateUpdatedSize');
+k3d.ui.Filler.prototype.getUpdatedSize = function() {
+  var size = goog.base(this, 'getUpdatedSize');
   size.height = size.height - k3d.ds.definitions.headerHeight;
   return size;
 };
