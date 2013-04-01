@@ -217,15 +217,14 @@ compile: cssbuild tpl deps
 	--root=$(LIBRARY_PATH) \
 	-f --flagfile=options/compile.ini \
 	-f --js=build/deps.js \
+	-f --js=build/cssmap-build.js \
 	-o compiled \
 	-f --define='goog.LOCALE="$(LOCALE)"' \
 	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS).build.js
 	rm $(BUILDDIR)/cssmap-build.js
 
-######################### Debugging and work flow set ups ######################
-
-debug: css
+size:
 	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
 	-n $(NS) \
 	--root=js/ \
@@ -233,11 +232,32 @@ debug: css
 	--root=$(PSTJ) \
 	--root=$(TEMPLATES_PATH) \
 	--root=$(LIBRARY_PATH) \
-	-o compiled \
-	-c $(COMPILER_JAR) \
-	-f --define="goog.LOCALE $(LOCALE)" \
-	-f --debug \
 	-f --flagfile=options/compile.ini \
+	-f --js=build/deps.js \
+	-f --js=build/cssmap-build.js \
+	-o script \
+	-f --define='goog.LOCALE="$(LOCALE)"' \
+	-c $(COMPILER_JAR) \
+	--output_file=$(BUILDDIR)/$(NS).build.js
+
+
+######################### Debugging and work flow set ups ######################
+
+debug: cssbuild tpl
+	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
+	-n $(NS) \
+	--root=js/ \
+	--root=$(TEMPLATE_TMP_DIR)/$(LOCALE)/ \
+	--root=$(PSTJ) \
+	--root=$(TEMPLATES_PATH) \
+	--root=$(LIBRARY_PATH) \
+	-f --flagfile=options/compile.ini \
+	-f --js=build/deps.js \
+	-f --js=build/cssmap-build.js \
+	-o compiled \
+	-f --define='goog.LOCALE="$(LOCALE)"' \
+	-f --debug \
+	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS).build.js
 	rm $(BUILDDIR)/cssmap-build.js
 
