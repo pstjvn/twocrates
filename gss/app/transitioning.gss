@@ -1,0 +1,11 @@
+/** This should cover ie10 as well (tested on win7) */
+.transitioning {
+  -webkit-transition: -webkit-transform 90ms linear, width 90ms linear, height 90ms linear;
+  /* @alternate */
+  -moz-transition: -moz-transform 90ms linear, width 90ms linear, height 90ms linear;
+  /* @alternate */
+  -ms-transition: -ms-transform 90ms linear, width 90ms linear, height 90ms linear;
+  /* @alternate */
+  transition: transform 90ms linear, width 90ms linear, height 90ms linear;
+}
+
