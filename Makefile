@@ -223,6 +223,7 @@ compile: cssbuild tpl deps
 	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS).build.js
 	rm $(BUILDDIR)/cssmap-build.js
+	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS).build.js`
 
 size:
 	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
@@ -239,6 +240,10 @@ size:
 	-f --define='goog.LOCALE="$(LOCALE)"' \
 	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS).build.js
+	echo 'Full ' `ls -al $(BUILDDIR)/$(NS).build.js`
+	gzip -9 $(BUILDDIR)/$(NS).build.js
+	echo 'GZip ' `ls -al $(BUILDDIR)/$(NS).build.js.gz`
+	rm $(BUILDDIR)/$(NS).build.js.gz
 
 
 ######################### Debugging and work flow set ups ######################
