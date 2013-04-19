@@ -14,3 +14,19 @@ html, body {
   margin: 0;
   background-color: black;
 }
+
+.float-left {
+  float: left;
+}
+
+.d-table {
+  display: table;
+}
+
+.d-table-cell {
+  display: table-cell;
+}
+
+.margin-auto {
+  margin: auto;
+}

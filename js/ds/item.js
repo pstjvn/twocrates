@@ -19,6 +19,11 @@ goog.inherits(k3d.ds.Item, pstj.ds.ListItem);
  */
 k3d.ds.Item.Property = {
   ID: 'id',
-  WIDTH: 'w',
-  HEIGHT: 'h'
+  WIDTH: 'width',
+  HEIGHT: 'height',
+  PRICE: 'price',
+  DRAWING_IMAGE: 'front_picture',
+  SIDE_IMAGE: 'angle_picture',
+  DESCRIPTION: 'description',
+  CATEGORY: 'category_id'
 };

@@ -1,0 +1,27 @@
+
+/*
+ * Default rule; only Safari, Webkit, and Opera handle it without hacks.
+ */
+.goog-inline-block {
+  position: relative;
+  display: -moz-inline-box; /* Ignored by FF3 and later. */
+  display: inline-block;
+}
+
+/*
+ * Pre-IE7 IE hack.  On IE, "display: inline-block" only gives the element
+ * layout, but doesn't give it inline behavior.  Subsequently setting display
+ * to inline does the trick.
+ */
+* html .goog-inline-block {
+  display: inline;
+}
+
+/*
+ * IE7-only hack.  On IE, "display: inline-block" only gives the element
+ * layout, but doesn't give it inline behavior.  Subsequently setting display
+ * to inline does the trick.
+ */
+*:first-child+html .goog-inline-block {
+  display: inline;
+}

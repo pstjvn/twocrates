@@ -1,0 +1,11 @@
+.sheet-item-active {
+
+}
+
+.sheet-item-moving {
+  z-index: 9999;
+  opacity: 0.7;
+  -webkit-transform: scale(1.1);
+  /* @alternate */
+  transform: scale(1.1);
+}
