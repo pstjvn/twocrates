@@ -11,6 +11,7 @@
     <div class="{css child}">
     </div>
   </div>
+  {call .viewcontrols /}
 {/template}
 
 /**
@@ -28,4 +29,82 @@
     <div class="{css child}"></div>
   </div>
   <div id="logger"></div>
+{/template}
+
+/**
+ * Provides the pop over blocker and frame for dialogs.
+ */
+{template .popover}
+  <div class="{css popover-event-blocker}">
+    <div class="{css popover-frame}">
+    </div>
+  </div>
+{/template}
+
+/**
+ * Item details view
+ */
+{template .itemview}
+  <div class="{css item-view-wrapper}">
+    <div class="{css item-view-image-container} {css goog-inline-block}">
+      <div class="{css item-view-image-centerer}">
+        <img class="{css item-view-image}" src="" data-model="angle_picture" />
+      </div>
+    </div>
+    <div class="{css item-view-details-coniainer} {css goog-inline-block}">
+      <div class="{css item-view-details}">
+        <span class="{css item-view-details-value} {css item-view-details-description}" data-model="description"></span>
+      </div>
+      <div class="{css item-view-details}">
+        <span class="{css item-view-details-label}">{msg desc="Width"}Width{/msg}:{sp}</span>
+        <span class="{css item-view-details-value}" data-model="width" data-filter="append( mm)"></span>
+      </div>
+      <div class="{css item-view-details}">
+          <span class="{css item-view-details-label}">{msg desc="Height"}Height{/msg}:{sp}</span>
+          <span class="{css item-view-details-value}" data-model="height" data-filter="append( mm)"></span>
+      </div>
+      <div class="{css item-view-details}">
+          <span class="{css item-view-details-label}">{msg desc="Price"}Price{/msg}:{sp}</span>
+          <span class="{css item-view-details-value}" data-model="price" data-filter='price(2)|append({sp}{msg desc="Currency sign"}AU{/msg})'></span>
+      </div>
+    </div>
+    <div class="{css item-view-controls}">
+      <div class="{css pstj-button}" data-action="change-size">{msg desc="Button label: change size"}Change size{/msg}</div>
+      <div class="{css pstj-button}" data-action="change-model">{msg desc="Button label: change model"}Change model{/msg}</div>
+      <div class="{css pstj-button}" data-action="close">{msg desc="Button label: ok/close/dismiss"}Ok{/msg}</div>
+    </div>
+  </div>
+{/template}
+
+/**
+ * The control buttons layer.
+ */
+{template .viewcontrols}
+  <div class="{css design-tool-controls} {css d-table}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="prev">
+      <div class="{css d-table} {css margin-auto}">
+        <img src="assets/left-arrow.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+      </div>
+    </div>
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-finish">
+      <div class="{css d-table} {css margin-auto}">
+        <img src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+      </div>
+    </div>
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-handles">
+      <div class="{css d-table} {css margin-auto}">
+        <img src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+      </div>
+    </div>
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="save">
+      <div class="{css d-table} {css margin-auto}">
+        <img src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+      </div>
+    </div>
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="next">
+      <div class="{css d-table} {css margin-auto}">
+        <img src="assets/right-arrow.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+      </div>
+    </div>
+  </div>
 {/template}

@@ -2,27 +2,87 @@ goog.provide('k3d.control.Editor');
 
 goog.require('goog.asserts');
 goog.require('goog.dom');
+goog.require('goog.events.EventHandler');
 goog.require('goog.math.Size');
+goog.require('goog.ui.Component.EventType');
 goog.require('k3d.component.DrawingBoard');
+goog.require('k3d.component.ItemView');
+goog.require('k3d.component.PopOver');
 goog.require('k3d.ui.Filler');
+goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
 goog.require('pstj.math.utils');
 
+
 /**
+ * Provides the design tool's editor controls.
  * @constructor
+ * @extends {pstj.control.Base}
  */
 k3d.control.Editor = function() {
+  goog.base(this);
   this.width = 0;
   this.height = 0;
   this.frame = new k3d.ui.Filler();
   this.drawsheet = new k3d.component.DrawingBoard();
   this.bottomRow = new pstj.ds.List();
   this.upRow = new pstj.ds.List();
+
+  this.attachEvents();
 };
+goog.inherits(k3d.control.Editor, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Editor);
+
+/**
+ * Provides symbol names for the actions.
+ * @enum {string}
+ */
+k3d.control.Editor.Actions = {
+  CLOSE: 'close'
+};
+
+// TODO: when loading a wall make sure to load all relevant images by items!
+// This way we have a guarantee that when the user presses edit the images will
+// be ready
 
 goog.scope(function() {
   var _ = k3d.control.Editor.prototype;
+  var Actions = k3d.control.Editor.Actions;
+
+  /**
+   * Serves to attach the events on one place.
+   * @protected
+   */
+  _.attachEvents = function() {
+    this.getHandler().listen(this.drawsheet,
+      goog.ui.Component.EventType.ACTIVATE, this.handleActionEvent);
+    this.getHandler().listen(k3d.component.ItemView.getInstance(),
+      goog.ui.Component.EventType.ACTION, this.handleItemViewAction);
+  };
+
+  _.handleItemViewAction = function(e) {
+    var target = /** @type {!pstj.ui.Button} */ (e.target);
+    if (target.getActionName() == Actions.CLOSE) {
+      k3d.component.PopOver.getInstance().hide();
+    }
+  };
+
+  /**
+   * Handles the action event from a component (this or a child one).
+   * @param {goog.events.Event} e The ACTIVATE event.
+   * @protected
+   */
+  _.handleActionEvent = function(e) {
+    if (e.target == this.drawsheet) return;
+    // assume one of the items was activated
+    var target = /** @type {k3d.component.Item} */ (e.target);
+    var model = target.getModel();
+    // open dialog for change.
+    k3d.component.ItemView.getInstance().setModel(model);
+    k3d.component.PopOver.getInstance().embed(
+      k3d.component.ItemView.getInstance());
+    k3d.component.PopOver.getInstance().show();
+  };
 
   /**
    * @protected
