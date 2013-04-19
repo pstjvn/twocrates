@@ -1,0 +1,23 @@
+.design-tool-controls {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.design-tool-control-button {
+  background-color: #342D82;
+}
+
+.design-tool-controls .pstj-button-active {
+  top: 0;
+}
+
+.design-tool-controls .pstj-button {
+  display: table-cell;
+  border: none;
+  padding: 0;
+  background-image: -webkit-linear-gradient(top, MAIN_BLUE 0%, adjustBrightness(MAIN_BLUE, 10) 49%, MAIN_BLUE 100%);
+  /* @alternate */
+  background-image: linear-gradient(to bottom, MAIN_BLUE 0%, adjustBrightness(MAIN_BLUE, 10) 49%, MAIN_BLUE 100%);
+}
