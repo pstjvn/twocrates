@@ -2,6 +2,56 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="en">
     <body>
+      <trans-unit id="568532921346510459" datatype="html">
+        <source>Change size</source>
+        <target/>
+        <note priority="1" from="description">Button label: change size</note>
+      </trans-unit>
+      <trans-unit id="1158221682656461231" datatype="html">
+        <source>AU</source>
+        <target/>
+        <note priority="1" from="description">Currency sign</note>
+      </trans-unit>
+      <trans-unit id="2018922024247045709" datatype="html">
+        <source>Width</source>
+        <target/>
+        <note priority="1" from="description">Width</note>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html">
+        <source>Cancel</source>
+        <target/>
+        <note priority="1" from="description">Cancel</note>
+      </trans-unit>
+      <trans-unit id="3033623772164647792" datatype="html">
+        <source>Height</source>
+        <target/>
+        <note priority="1" from="description">Height</note>
+      </trans-unit>
+      <trans-unit id="3417781606255954910" datatype="html">
+        <source>Change model</source>
+        <target/>
+        <note priority="1" from="description">Button label: change model</note>
+      </trans-unit>
+      <trans-unit id="3797570084942068182" datatype="html">
+        <source>Select</source>
+        <target/>
+        <note priority="1" from="description">Select</note>
+      </trans-unit>
+      <trans-unit id="7558413604919060916" datatype="html">
+        <source>Select item</source>
+        <target/>
+        <note priority="1" from="description">Select item</note>
+      </trans-unit>
+      <trans-unit id="8720977247725652816" datatype="html">
+        <source>Ok</source>
+        <target/>
+        <note priority="1" from="description">Button label: ok/close/dismiss</note>
+      </trans-unit>
+      <trans-unit id="8894377483833272091" datatype="html">
+        <source>Price</source>
+        <target/>
+        <note priority="1" from="description">Price</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
