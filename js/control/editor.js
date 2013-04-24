@@ -25,8 +25,8 @@ k3d.control.Editor = function() {
   this.height = 0;
   this.frame = new k3d.ui.Filler();
   this.drawsheet = new k3d.component.DrawingBoard();
-  this.bottomRow = new pstj.ds.List();
-  this.upRow = new pstj.ds.List();
+  // the kitchen project reference.
+  this.data = null;
 
   this.attachEvents();
 };
@@ -50,6 +50,13 @@ goog.scope(function() {
   var Actions = k3d.control.Editor.Actions;
 
   /**
+   * Loads the kitcen project data record.
+   */
+  _.loadData = function(kitchen) {
+    this.data = kitchen;
+  };
+
+  /**
    * Serves to attach the events on one place.
    * @protected
    */
@@ -65,6 +72,9 @@ goog.scope(function() {
     if (target.getActionName() == Actions.CLOSE) {
       k3d.component.PopOver.getInstance().hide();
     }
+  };
+
+  _.loadWall = function(index) {
   };
 
   /**
@@ -103,46 +113,46 @@ goog.scope(function() {
     }
   };
 
-  /**
-   * Adds an item to the drawing board, initially we will only add to two rows
-   *   and in sequence.
-   * @param {k3d.component.Item} item The new component to add.
-   * @param {boolean=} upper_row If the item should be added to the top row.
-   *   Defaults to false.
-   */
-  _.addItem = function(item, upper_row) {
-    // get the item's size and and setup its styling parameters to match the
-    // size of the wall.
-    var model = item.getModel();
-    var w = model.getProp(k3d.ds.Item.Property.WIDTH);
-    var h = model.getProp(k3d.ds.Item.Property.HEIGHT);
-    goog.asserts.assertNumber(w, 'Width of the cabinet should be a number');
-    goog.asserts.assertNumber(h, 'Height of the cabinet should be a number');
-    //calculate percentage based on the wall's sizes.
-    var width = pstj.math.utils.getPercentFromValue(w, this.width);
-    var height = pstj.math.utils.getPercentFromValue(h, this.height);
-    // now determine where it should stand.
-    //var initialoffsetx = pstj.math.utils.getPercentFromValue(200, this.width);
-    var yoffset;
-    if (!!upper_row) {
-      yoffset = pstj.math.utils.getPercentFromValue(
-        this.height - 200 - this.heightOfUpperRow, this.height);
+  // /**
+  //  * Adds an item to the drawing board, initially we will only add to two rows
+  //  *   and in sequence.
+  //  * @param {k3d.component.Item} item The new component to add.
+  //  * @param {boolean=} upper_row If the item should be added to the top row.
+  //  *   Defaults to false.
+  //  */
+  // _.addItem = function(item, upper_row) {
+  //   // get the item's size and and setup its styling parameters to match the
+  //   // size of the wall.
+  //   var model = item.getModel();
+  //   var w = model.getProp(k3d.ds.Item.Property.WIDTH);
+  //   var h = model.getProp(k3d.ds.Item.Property.HEIGHT);
+  //   goog.asserts.assertNumber(w, 'Width of the cabinet should be a number');
+  //   goog.asserts.assertNumber(h, 'Height of the cabinet should be a number');
+  //   //calculate percentage based on the wall's sizes.
+  //   var width = pstj.math.utils.getPercentFromValue(w, this.width);
+  //   var height = pstj.math.utils.getPercentFromValue(h, this.height);
+  //   // now determine where it should stand.
+  //   //var initialoffsetx = pstj.math.utils.getPercentFromValue(200, this.width);
+  //   var yoffset;
+  //   if (!!upper_row) {
+  //     yoffset = pstj.math.utils.getPercentFromValue(
+  //       this.height - 200 - this.heightOfUpperRow, this.height);
 
-    } else {
-      yoffset = pstj.math.utils.getPercentFromValue(
-        this.height - 200 - h, this.height);
-    }
-    // based on the row add all width of other items....
-    var xoffset = this.calculateNextXOffset((!!(upper_row)) ?
-      this.upRow : this.bottomRow);
-    item.applyStyle(width, height, xoffset, yoffset);
-    if (!!upper_row) {
-      this.upRow.add(model);
-    } else {
-      this.bottomRow.add(model);
-    }
-    this.drawsheet.addChild(item, true);
-  };
+  //   } else {
+  //     yoffset = pstj.math.utils.getPercentFromValue(
+  //       this.height - 200 - h, this.height);
+  //   }
+  //   // based on the row add all width of other items....
+  //   var xoffset = this.calculateNextXOffset((!!(upper_row)) ?
+  //     this.upRow : this.bottomRow);
+  //   item.applyStyle(width, height, xoffset, yoffset);
+  //   if (!!upper_row) {
+  //     this.upRow.add(model);
+  //   } else {
+  //     this.bottomRow.add(model);
+  //   }
+  //   this.drawsheet.addChild(item, true);
+  // };
 
   /**
    * Calculates the next available offset for items. This should become smarted.
@@ -163,9 +173,9 @@ goog.scope(function() {
    * @param {!Element} el The element to install the editor in.
    */
   _.install = function(el) {
-
     this.frame.decorate(goog.dom.getElementByClass(goog.getCssName(
       'container'), el));
+
     this.resetSheetSize();
     this.drawsheet.decorate(goog.dom.getElementByClass(goog.getCssName(
       'child'), el));
