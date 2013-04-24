@@ -4,6 +4,13 @@ goog.require('k3d.template');
 goog.require('pstj.ui.Templated');
 
 /**
+ * @fileoverview Provides the pop over blocker for dialogs in static size
+ *   interface.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+/**
  * Provides the popover dialog widget.
  * @constructor
  * @extends {pstj.ui.Templated}
@@ -22,18 +29,31 @@ goog.scope(function() {
     return k3d.template.popover({});
   };
 
+  /** @inheritDoc */
   _.getContentElement = function() {
     return this.getEls(goog.getCssName('popover-frame'));
   };
 
+  /**
+   * Shows the blocker layer.
+   */
   _.show = function() {
     this.getElement().style.display = 'table';
   };
 
+  /**
+   * Hides the blocker layer.
+   */
   _.hide = function() {
     this.getElement().style.display = 'none';
   };
 
+  /**
+   * Embeds a component instance inside the blocker layer. The method is used
+   *   to embed any UI component in the pop over and basically makes it
+   *   blocking dialog instance.
+   * @param {goog.ui.Component} component The component to embed.
+   */
   _.embed = function(component) {
     if (this.hasChildren()) {
       if (component != this.getChildAt(0)) {
