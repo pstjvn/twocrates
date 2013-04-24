@@ -5,6 +5,13 @@ goog.require('pstj.ng.Template');
 goog.require('pstj.ui.Button');
 
 /**
+ * @fileoverview Provides the embeddeable dialog widget for showing details on
+ *   an item and offering options to alter it.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+/**
  * Implements the item details view. It is partially an ng template and built
  *   on top with some actions/buttons.
  * @constructor
@@ -50,7 +57,7 @@ goog.scope(function() {
 
   /** @inheritDoc */
   _.getTemplate = function() {
-    return k3d.template.itemview({})
+    return k3d.template.itemview({});
   };
 
   /** @inheritDoc */
@@ -64,7 +71,7 @@ goog.scope(function() {
     this.changeSize_.decorate(this.querySelector(
       '.' + goog.getCssName('pstj-button') + '[data-action="change-size"]'));
     this.changeModel_.decorate(this.querySelector(
-      '.' + goog.getCssName('pstj-button') + '[data-action="change-model"]'))
+      '.' + goog.getCssName('pstj-button') + '[data-action="change-model"]'));
   };
 
   /** @inheritDoc */
