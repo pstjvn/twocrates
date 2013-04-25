@@ -1,10 +1,15 @@
 goog.provide('k3d.ds.definitions');
 
+goog.require('goog.asserts');
+goog.require('pstj.configure');
+
 /**
  * @fileoverview Provides the system wide configuration options.
  *
  * @author regardingscot@gmail.com (Peter StJ)
  */
+
+k3d.ds.definitions.PathsPrefix = 'TWOCRATES.PATHS';
 
 /**
  * The heoght of the header in pixels.
@@ -17,7 +22,16 @@ k3d.ds.definitions.headerHeight = 45;
  * @enum {string}
  */
 k3d.ds.definitions.Path = {
-  LOAD_KITCHEN: 'js/testdata.js'
+  LOAD_KITCHEN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'LOAD_KITCHEN', '/loadKitchen', k3d.ds.definitions.PathsPrefix)),
+  SAVE_KITCHEN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'SAVE_KITCHEN', '/saveKitchen', k3d.ds.definitions.PathsPrefix)),
+  LOAD_FINISHES: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'LOAD_FINISHES', '/getFinishes', k3d.ds.definitions.PathsPrefix)),
+  LOAD_ITEMS: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'LOAD_ITEMS', '/getItems', k3d.ds.definitions.PathsPrefix)),
+  LOAD_HANDLES: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'LOAD_HANDLES', '/getHandles', k3d.ds.definitions.PathsPrefix))
 };
 
 /**
@@ -35,7 +49,8 @@ k3d.ds.definitions.Struct = {
   TOP_ROW: 'top',
   BOTTOM_ROW: 'bottom',
   KITCHEN_PROJECT_ID: 'kitchen_project_id',
-  STATUS: 'status'
+  STATUS: 'status',
+  DESCRIPTION: 'description'
 };
 
 /**
