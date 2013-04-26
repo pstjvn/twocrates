@@ -1,5 +1,6 @@
 goog.provide('k3d.component.DrawingBoard');
 
+goog.require('k3d.component.Item');
 goog.require('pstj.ui.TouchSheet');
 
 /**
