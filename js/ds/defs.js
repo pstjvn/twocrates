@@ -50,7 +50,8 @@ k3d.ds.definitions.Struct = {
   BOTTOM_ROW: 'bottom',
   KITCHEN_PROJECT_ID: 'kitchen_project_id',
   STATUS: 'status',
-  DESCRIPTION: 'description'
+  DESCRIPTION: 'description',
+  DATA: 'data'
 };
 
 /**
@@ -61,5 +62,6 @@ k3d.ds.definitions.Struct = {
 k3d.ds.definitions.Static = {
   SERVER_HTTP_ERROR: 0,
   UNPARSABLE_JSON: 1,
-  STRUCTURED_ERROR: 2
+  STRUCTURED_ERROR: 2,
+  RUNTIME: 3
 };
