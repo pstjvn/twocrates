@@ -21,6 +21,7 @@ k3d.control.Loader = function() {
   this.isDirty_ = false;
   this.lastKnownServerError_ = 0;
   this.kitchenDef_ = new goog.async.Deferred();
+  this.itemsDef_ = new goog.async.Deferred();
   this.jsonProcessor_ = new goog.json.NativeJsonProcessor();
   this.handleSaveBound_ = goog.bind(this.handleSave, this);
 };
@@ -38,7 +39,7 @@ goog.scope(function() {
   /**
    * Gets the data for the kitchen project from the server if needed and
    *   returns a deferred.
-   * @return {goog.async.Deferred}
+   * @return {goog.async.Deferred} The deferred object to subscribe to.
    */
   _.getKitchen = function() {
     if (!this.isLoaded_) {
@@ -56,6 +57,25 @@ goog.scope(function() {
     goog.net.XhrIo.send(Path.SAVE_KITCHEN, this.handleSaveBound_, 'POST',
       this.jsonProcessor_.stringify(kitchen), {
         'Content-Type': 'applicaion/json'});
+  };
+
+  /**
+   * Getter for the list of all available items.
+   * @return {goog.async.Deferred} The deferred object to subscribe to.
+   */
+  _.getItems = function() {
+    if (!this.itemsDef_.hasFired()) {
+      goog.net.XhrIo.send(Path.LOAD_ITEMS, goog.bind(function(e) {
+        try {
+          var result = this.checkForErrors(e);
+        } catch (err) {
+          return;
+        }
+        // TODO: Fix this so that appropriate list items be used.
+        this.itemsDef_.callback(new pstj.ds.List(result[Struct.DATA]));
+      }, this));
+    }
+    return this.itemsDef_;
   };
 
   /**
@@ -134,7 +154,9 @@ goog.scope(function() {
     var result;
     try {
       result = this.checkForErrors(e);
-    } catch (err) {}
+    } catch (err) {
+      return;
+    }
     // we want to resolve the deffered onlypossitively, everything else as error
     // is published
     this.kitchenDef_.callback(new k3d.ds.KitchenProject(
