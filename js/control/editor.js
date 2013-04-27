@@ -21,14 +21,24 @@ goog.require('pstj.math.utils');
  */
 k3d.control.Editor = function() {
   goog.base(this);
+  /**
+   * @type {number}
+   * @protected
+   */
   this.width = 0;
+  /**
+   * @type {number}
+   * @protected
+   */
   this.height = 0;
   this.frame = new k3d.ui.Filler();
   this.drawsheet = new k3d.component.DrawingBoard();
-  // the kitchen project reference.
+  /**
+   * Referrence to the kitchen project data structure.
+   * @type {k3d.ds.KitchenProject}
+   * @protected
+   */
   this.data = null;
-
-  this.attachEvents();
 };
 goog.inherits(k3d.control.Editor, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Editor);
@@ -50,23 +60,34 @@ goog.scope(function() {
   var Actions = k3d.control.Editor.Actions;
 
   /**
+   * @protected
+   * @type {number}
+   */
+  _.heightOfUpperRow = 2100;
+
+  /**
    * Loads the kitcen project data record.
+   * @param {k3d.ds.KitchenProject} kitchen The kitchen data structure.
    */
   _.loadData = function(kitchen) {
     this.data = kitchen;
+    this.initialize();
   };
 
-  /**
-   * Serves to attach the events on one place.
-   * @protected
-   */
-  _.attachEvents = function() {
+  /** @inheritDoc */
+  _.initialize = function() {
+    goog.base(this, 'initialize');
     this.getHandler().listen(this.drawsheet,
       goog.ui.Component.EventType.ACTIVATE, this.handleActionEvent);
     this.getHandler().listen(k3d.component.ItemView.getInstance(),
       goog.ui.Component.EventType.ACTION, this.handleItemViewAction);
   };
 
+  /**
+   * Handle actions from the itemview control.
+   * @param {goog.events.Event} e The ACTION event from the view.
+   * @protected
+   */
   _.handleItemViewAction = function(e) {
     var target = /** @type {!pstj.ui.Button} */ (e.target);
     if (target.getActionName() == Actions.CLOSE) {
@@ -74,7 +95,16 @@ goog.scope(function() {
     }
   };
 
+  /**
+   * Loads a wall by its index
+   * @param {number} index The wall number (index).
+   */
   _.loadWall = function(index) {
+    // clear the drawing
+    // using the data structure find out the wall sizes and set them
+    // calculate the potistion of the items on the drawing and store them as
+    // pixel values
+    // calculate percentages
   };
 
   /**
@@ -94,16 +124,12 @@ goog.scope(function() {
     k3d.component.PopOver.getInstance().show();
   };
 
-  /**
-   * @protected
-   * @type {number}
-   */
-  _.heightOfUpperRow = 2100;
 
   /**
    * Sets the sizes of the wall, this should be done in the controler
    * @param {number} w The width of the wall.
    * @param {number} h The height of the wall in the room.
+   * @deprecated This should be handled internally only.
    */
   _.setWallSize = function(w, h) {
     this.width = w + 400;
@@ -184,8 +210,8 @@ goog.scope(function() {
   };
 
   /**
-   * This is called when the wall is actually chenged and we want to reset the
-   *   size of the sheet to 'notife' the user.
+   * This is called when the wall is actually changed and we want to reset the
+   *   size of the sheet to 'notify' the user.
    * @protected
    */
   _.resetSheetSize = function() {
