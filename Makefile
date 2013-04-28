@@ -177,7 +177,8 @@ tpl:
 	--codeStyle concat \
 	--cssHandlingScheme GOOG \
 	--outputPathFormat '$(TEMPLATE_TMP_DIR)/$(LOCALE)/{INPUT_FILE_NAME_NO_EXT}.soy.js' \
-	$(TEMPLATES_SOURCE_DIR)/*.soy
+	$(TEMPLATES_SOURCE_DIR)/*.soy \
+	$(PSTJ)/templates/*.soy
 
 # Extracts the translation messages from the templates in a file
 # Translated file should be used to compile to a different locale.
@@ -185,7 +186,8 @@ extractmsgs:
 	java -jar $(MESSAGE_EXTRACTOR_JAR) \
 	--outputFile "$(I18NDIR)/translations_$(LOCALE).xlf" \
 	--targetLocaleString $(LOCALE) \
-	$(TEMPLATES_SOURCE_DIR)/*.soy
+	$(TEMPLATES_SOURCE_DIR)/*.soy \
+	$(PSTJ)/templates/*.soy
 
 
 # Create CSS file for name space and put name mapping in js/build/
@@ -195,6 +197,7 @@ css:
 	--output-file $(BUILDDIR)/$(NS).css \
 	--output-renaming-map $(BUILDDIR)/$(NS)-cssmap.js \
 	gss/*.gss \
+	gss/linked/*.gss \
 	gss/$(NS)/*.gss
 
 # Build the css into one file using renaming policy (minification).
@@ -204,6 +207,7 @@ cssbuild:
 	--output-file $(BUILDDIR)/$(NS).css \
 	--output-renaming-map $(BUILDDIR)/cssmap-build.js \
 	gss/*.gss \
+	gss/linked/*.gss \
 	gss/$(NS)/*.gss
 
 
