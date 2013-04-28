@@ -12,6 +12,11 @@
         <target/>
         <note priority="1" from="description">Currency sign</note>
       </trans-unit>
+      <trans-unit id="1407560924967345762" datatype="html">
+        <source>Page</source>
+        <target/>
+        <note priority="1" from="description">The word page in the page N of number of X pages</note>
+      </trans-unit>
       <trans-unit id="2018922024247045709" datatype="html">
         <source>Width</source>
         <target/>
@@ -36,6 +41,11 @@
         <source>Select</source>
         <target/>
         <note priority="1" from="description">Select</note>
+      </trans-unit>
+      <trans-unit id="5881876145178332550" datatype="html">
+        <source>of</source>
+        <target/>
+        <note priority="1" from="description">the word of in page N of X pages</note>
       </trans-unit>
       <trans-unit id="7558413604919060916" datatype="html">
         <source>Select item</source>
