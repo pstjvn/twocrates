@@ -15,6 +15,7 @@ k3d.control.ErrorHandler = function() {
   this.initialize();
 };
 goog.inherits(k3d.control.ErrorHandler, pstj.control.Base);
+goog.addSingletonGetter(k3d.control.ErrorHandler);
 
 goog.scope(function() {
 
@@ -36,7 +37,8 @@ goog.scope(function() {
    * @protected
    */
   _.handleError = function(error_index, status_id, message) {
-    console.log('Error occured and is handled', error_index, status_id, message);
+    console.log('Error occured and is handled', error_index, status_id,
+      message);
     if (error_index == Static.SERVER_HTTP_ERROR) {
       // server error occured
     } else if (error_index == Static.UNPARSABLE_JSON) {
