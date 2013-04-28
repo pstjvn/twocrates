@@ -1,5 +1,4 @@
 .item-view-wrapper {
-  display: table;
   margin: auto;
   padding: DIALOG_PADDING;
   border: DIALOG_BORDER;
