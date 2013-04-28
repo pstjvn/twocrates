@@ -39,6 +39,12 @@ k3d.control.Editor = function() {
    * @protected
    */
   this.data = null;
+  /**
+   * Referrence to the currently displayed wall.
+   * @type {k3d.ds.Wall}
+   * @protected
+   */
+  this.currentWall = null;
 };
 goog.inherits(k3d.control.Editor, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Editor);
@@ -81,6 +87,8 @@ goog.scope(function() {
       goog.ui.Component.EventType.ACTIVATE, this.handleActionEvent);
     this.getHandler().listen(k3d.component.ItemView.getInstance(),
       goog.ui.Component.EventType.ACTION, this.handleItemViewAction);
+    // find the first wall and load it.
+    this.loadWall(0);
   };
 
   /**
@@ -100,10 +108,20 @@ goog.scope(function() {
    * @param {number} index The wall number (index).
    */
   _.loadWall = function(index) {
+    if (this.data.hasWallWithIndex(index)) {
+      this.currentWall = this.data.getWall(index)
+    } else {
+      return;
+    }
     // clear the drawing
+    this.drawsheet.removeChildren();
     // using the data structure find out the wall sizes and set them
+    this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
+      k3d.ds.Wall.Property.WIDTH)), goog.asserts.assertNumber(
+        this.currentWall.getProp(k3d.ds.Wall.Property.HEIGHT)));
     // calculate the potistion of the items on the drawing and store them as
     // pixel values
+    this.visualizeItems();
     // calculate percentages
   };
 
@@ -129,7 +147,7 @@ goog.scope(function() {
    * Sets the sizes of the wall, this should be done in the controler
    * @param {number} w The width of the wall.
    * @param {number} h The height of the wall in the room.
-   * @deprecated This should be handled internally only.
+   * @protected
    */
   _.setWallSize = function(w, h) {
     this.width = w + 400;
@@ -137,6 +155,11 @@ goog.scope(function() {
     if (this.drawsheet.isInDocument()) {
       this.resetSheetSize();
     }
+  };
+
+  _.visualizeItems = function() {
+    // iterate top and bottom row and for each calculate the percentage position and pixel difference
+    //goog.array.forEach()
   };
 
   // /**
