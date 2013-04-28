@@ -1,15 +1,18 @@
 goog.provide('k3d.control.Main');
 
 goog.require('goog.asserts');
+goog.require('goog.dom');
 goog.require('k3d.control.Buttons');
 goog.require('k3d.control.Editor');
 goog.require('k3d.control.ErrorHandler');
 goog.require('k3d.control.Loader');
+goog.require('k3d.ds.definitions');
 goog.require('k3d.mb');
+goog.require('k3d.template');
 goog.require('pstj.control.Base');
 
 /**
- * My new class description
+ * Our main controller. Get an instance of it to bootstrap the application.
  * @constructor
  * @extends {pstj.control.Base}
  */
@@ -25,6 +28,25 @@ goog.scope(function() {
 
   /** @inheritDoc */
   _.initialize = function() {
+
+    // first start loading data from server as this tends to be the slowest
+    // process.
+    k3d.control.Loader.getInstance().start(goog.bind(
+      this.onPreloadReady, this));
+  };
+
+  /**
+   * At this point we have certainty that the needed data has been loaded.
+   */
+  _.onPreloadReady = function() {
+    var body = k3d.template.base({});
+    var el = goog.dom.htmlToDocumentFragment(body);
+    document.body.appendChild(el);
+
+    // find header and apply size
+    goog.dom.getElementByClass(goog.getCssName('header')).style.height =
+      k3d.ds.definitions.headerHeight + 'px';
+
     k3d.control.ErrorHandler.getInstance().setParentControlInstance(this);
     k3d.control.Buttons.getInstance().setParentControlInstance(this);
     k3d.control.Editor.getInstance().setParentControlInstance(this);
@@ -43,6 +65,7 @@ goog.scope(function() {
         //   k3d.control.Loader.getInstance().saveKitchen(kitchen);
         // }, 1000);
     });
+
   };
 
 });
