@@ -37,6 +37,20 @@ goog.scope(function() {
   };
 
   /**
+   * Returns all referenced images images in the row. Those are not guaranteed
+   *   to be unique.
+   * @return {Array.<string>}
+   */
+  _.getImageReferences = function() {
+    var result = [];
+    goog.array.forEach(this.items_, function(item) {
+      result.push(item.getProp(k3d.ds.Item.Property.DRAWING_IMAGE));
+      result.push(item.getProp(k3d.ds.Item.Property.SIDE_IMAGE));
+    });
+    return result;
+  };
+
+  /**
    * Provides the strinfigy method for JSON convertion to allow easier serialization.
    * @override
    */

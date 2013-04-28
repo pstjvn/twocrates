@@ -11,7 +11,6 @@ goog.require('pstj.ds.ListItem');
  * @param {Object} data The wall record literal object.
  */
 k3d.ds.Wall = function(data) {
-  goog.base(this, data);
   /**
    * The top row.
    * @type {k3d.ds.CabinetRow}
@@ -24,8 +23,15 @@ k3d.ds.Wall = function(data) {
    * @private
    */
   this.bottom_ = null;
+  goog.base(this, data);
 };
 goog.inherits(k3d.ds.Wall, pstj.ds.ListItem);
+
+k3d.ds.Wall.Property = {
+  WIDTH: 'width',
+  HEIGHT: 'height',
+  ATTACHED: 'is_attached_to_wall'
+};
 
 goog.scope(function() {
 
@@ -43,6 +49,15 @@ goog.scope(function() {
     this.getRawData()[Struct.ITEMS][Struct.BOTTOM_ROW] = bottom;
     this.top_ = top;
     this.bottom_ = bottom;
+  };
+
+  /**
+   * Returns all image references in this wall instance.
+   * @return {Array.<string>}
+   */
+  _.getImageReferences = function() {
+    return this.top_.getImageReferences().concat(
+      this.bottom_.getImageReferences());
   };
 
 });

@@ -40,5 +40,43 @@ goog.scope(function() {
     this.walls.add(new k3d.ds.Wall(wall));
   };
 
+  /**
+   * Returns all image references withint the project.
+   * @return {Array.<string>}
+   */
+  _.getImageReferences = function() {
+    var images;
+    var result = [];
+    for (var i = 0, len = this.walls.getCount(); i < len; i++) {
+      images = this.walls.getByIndex(i).getImageReferences();
+      for (var ii = 0, len2 = images.length; ii < len2; ii++) {
+        if (images[ii] != '') {
+          goog.array.insert(result, images[ii]);
+        }
+      }
+    }
+    return result;
+  };
+
+  /**
+   * Getter for the wall by an index. No checks are performed, thus null can
+   *   be returned.
+   * @param {number} index The index to look up the data under.
+   * @return {k3d.ds.Wall} The wall instance if one exists.
+   */
+  _.getWall = function(index) {
+    return goog.asserts.assertInstanceof(this.walls.getByIndex(index),
+      k3d.ds.Wall, 'Wall instance expected');
+  };
+
+  /**
+   * Checks if a wall with this index exists in the project.
+   * @param {number} index The index to look up.
+   * @return {boolean} True if such wall exists.
+   */
+  _.hasWallWithIndex = function(index) {
+    return (index < this.walls.getCount());
+  };
+
 });
 
