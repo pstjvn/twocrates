@@ -39,7 +39,7 @@
  */
 .child {
   background-color: #fff;
-  background-image: url('../assets/bggrid.jpg');
+  background-image: url('../assets/light-bg.jpg');
 }
 
 .test {
