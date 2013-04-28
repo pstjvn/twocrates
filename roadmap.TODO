@@ -1,0 +1,13 @@
+Next demo:
+ ☐ Algorithm for having both positions as percentage and as pixel offset for the movement to work.
+ ☐ Test data for items list.
+
+Project:
+ ☐ Selection UI suitable for touch and mouse both.
+ ☐ Error handling in load process / progress indication.
+ ☐ Adding item.
+ ☐ Algorythm for changing item.
+ ☐ Algorythm for picking suitable item (corner cases).
+
+Optional:
+ ☐ Modularized code loading path, show load indicator and load the rest as module talking to the indicator.
