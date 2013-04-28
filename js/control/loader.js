@@ -54,11 +54,13 @@ k3d.control.Loader = function() {
     'Value of TWOCRATES.STRINGS.PRELOAD_TEXT should be string'));
   this.getHandler().listenOnce(this.progress_, goog.events.EventType.LOAD,
     function() {
-      goog.dispose(this.progress_);
       if (goog.isFunction(this.onPreloadComplete_)) {
         this.onPreloadComplete_();
         this.onPreloadComplete_ = null;
       }
+      setTimeout(goog.bind(function() {
+        goog.dispose(this.progress_);
+      }, this), 500);
     });
 
   /**
