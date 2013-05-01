@@ -1,7 +1,9 @@
 goog.provide('k3d.ds.CabinetRow');
 
+goog.require('goog.array');
 goog.require('goog.events.EventTarget');
-goog.require('k3d.ds.Item');
+goog.require('k3d.ds.definitions');
+goog.require('pstj.ds.ListItem');
 
 /**
  * The class represents a row on a wall.
@@ -14,11 +16,13 @@ k3d.ds.CabinetRow = function(items) {
   /**
    * The list of items on this row. Rows do not have notion of their blonging
    *   and rows can contains more than one copy of an item.
-   * @type {Array.<k3d.ds.Item>}
+   * @type {Array.<pstj.ds.ListItem>}
    * @private
    */
   this.items_ = [];
-  goog.array.forEach(items, this.addItem, this);
+  goog.array.forEach(items, function(record) {
+    this.addItem(new pstj.ds.ListItem(record));
+  }, this);
 };
 goog.inherits(k3d.ds.CabinetRow, goog.events.EventTarget);
 
@@ -28,12 +32,12 @@ goog.scope(function() {
 
   /**
    * Ads a new item to the list of cabinets on this row.
-   * @param {Object} item The raw literal object represeting the cabinet.
+   * @param {pstj.ds.ListItem} item The raw literal object represeting the
+   *   cabinet.
    */
   _.addItem = function(item) {
-    // we assume the itesm is viable!
-    var record = new k3d.ds.Item(item);
-    this.items_.push(record);
+
+    this.items_.push(item);
   };
 
   /**
@@ -44,14 +48,15 @@ goog.scope(function() {
   _.getImageReferences = function() {
     var result = [];
     goog.array.forEach(this.items_, function(item) {
-      result.push(item.getProp(k3d.ds.Item.Property.DRAWING_IMAGE));
-      result.push(item.getProp(k3d.ds.Item.Property.SIDE_IMAGE));
+      result.push(item.getProp(k3d.ds.definitions.item.DRAWING_IMAGE));
+      result.push(item.getProp(k3d.ds.definitions.item.SIDE_IMAGE));
     });
     return result;
   };
 
   /**
-   * Provides the strinfigy method for JSON convertion to allow easier serialization.
+   * Provides the strinfigy method for JSON convertion to allow easier
+   *   serialization.
    * @override
    */
   _['toJSON'] = function() {

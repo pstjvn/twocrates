@@ -9,22 +9,28 @@
 			// Server settings
 			TWOCRATES = {
 				PATHS: {
-					LOAD_KITCHEN: 'js/testdata.js', //'/tocrates/Kitchens/loadKitchen',
+					LOAD_KITCHEN: '/tocrates/Kitchens/loadKitchen', //'js/testdata.js',
 					SAVE_KITCHEN: '/tocrates/Kitchens/saveKitchen',
 					LOAD_FINISHED: '/tocrates/Finishes/getFinishes',
 					LOAD_HANDLES: '/tocrates/Handles/getHandles',
-					LOAD_ITEMS: '/tocrates/Handles/getItems'
+					LOAD_ITEMS: '/tocrates/Items/getItems'
 				},
 				STRINGS: {
 					PRELOAD_TEXT: 'Loading application'
 				}
 			};
 
+			HEADER_LINKS = [
+				{text: "Home", link: '/'},
+				{text: "How it works", link: '/howto'}
+			];
+
 			PRELOAD_IMAGE_LIST = [
 				'assets/light-bg.jpg',
+				'assets/controls-bg.png',
 				'assets/filler.png',
-				'assets/left-arrow.png',
-				'assets/right-arrow.png'
+				'assets/left.png',
+				'assets/right.png'
 			];
 		</script>
 	</head>

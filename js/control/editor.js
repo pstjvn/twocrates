@@ -8,6 +8,7 @@ goog.require('goog.ui.Component.EventType');
 goog.require('k3d.component.DrawingBoard');
 goog.require('k3d.component.ItemView');
 goog.require('k3d.component.PopOver');
+goog.require('k3d.ds.Wall');
 goog.require('k3d.ui.Filler');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
@@ -80,6 +81,14 @@ goog.scope(function() {
     this.initialize();
   };
 
+  /**
+   * Put logic here that marks that everything possible to be preloaded (prior
+   *   and after the initial showing) is done loading.
+   */
+  _.onLoadComplete = function() {
+
+  };
+
   /** @inheritDoc */
   _.initialize = function() {
     goog.base(this, 'initialize');
@@ -109,7 +118,7 @@ goog.scope(function() {
    */
   _.loadWall = function(index) {
     if (this.data.hasWallWithIndex(index)) {
-      this.currentWall = this.data.getWall(index)
+      this.currentWall = this.data.getWall(index);
     } else {
       return;
     }
@@ -212,7 +221,7 @@ goog.scope(function() {
     var init = 200;
     var count = row.getCount();
     for (var i = 0; i < count; i++) {
-      init += (+row.getByIndex(i).getProp(k3d.ds.Item.Property.WIDTH));
+      init += (+row.getByIndex(i).getProp(k3d.ds.definitions.item.WIDTH));
     }
     return pstj.math.utils.getPercentFromValue(init, this.width);
   };

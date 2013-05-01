@@ -4,6 +4,7 @@ goog.require('goog.Uri');
 goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.async.Deferred');
+goog.require('goog.async.DeferredList');
 goog.require('goog.json.NativeJsonProcessor');
 goog.require('goog.net.XhrIo');
 goog.require('k3d.ds.KitchenProject');
@@ -22,13 +23,14 @@ goog.require('pstj.widget.Progress');
  */
 k3d.control.Loader = function() {
   goog.base(this);
+
   /**
-   * Flag if the kitchen project as already been requested, this will
-   *   guarantee that we request the project only once.
-   * @type {boolean}
+   * Flag for the already requested items. 0 - kitchen, 1 - items, 2 -
+   *   finishes, 3 - handles
+   * @type {Array.<boolean>}
    * @private
    */
-  this.kitchenAsBeenRequest_ = false;
+  this.alreadyRequested_ = [false, false, false, false];
 
   /**
    * Referrence to the last known server error.
@@ -78,6 +80,20 @@ k3d.control.Loader = function() {
   this.itemsDef_ = new goog.async.Deferred();
 
   /**
+   * The deferred for the finishes for the cabinets.
+   * @type {goog.async.Deferred}
+   * @private
+   */
+  this.finishesDef_ = new goog.async.Deferred();
+
+  /**
+   * The deferred for the handles items.
+   * @type {goog.async.Deferred}
+   * @private
+   */
+  this.handlesDef_ = new goog.async.Deferred();
+
+  /**
    * Referrence to a json processor we will be using to serialize data.
    * @type {goog.json.NativeJsonProcessor}
    * @private
@@ -111,6 +127,31 @@ k3d.control.Loader = function() {
     this.boundProgressNotifier_);
 
   /**
+   * Image loader list for images that are not immediately needed.
+   * @type {pstj.ds.ImageList}
+   * @private
+   */
+  this.lateImageLoader_ = new pstj.ds.ImageList();
+  this.getHandler().listen(this.lateImageLoader_, goog.events.EventType.LOAD,
+    goog.bind(function() {
+      this.allImagesDef_.callback();
+      // clean up image storage that is not used.
+      setTimeout(goog.bind(function() {
+        // use chance and free up some memory
+        this.getHandler().unlisten(this.imageLoader_,
+          goog.events.EventType.LOAD, this.boundProgressNotifier_);
+        goog.dispose(this.imageLoader_);
+      }, this), 100);
+    }, this));
+
+  /**
+   * Deferred for the all images loaded case.
+   * @type {goog.async.Deferred}
+   * @private
+   */
+  this.allImagesDef_ = new goog.async.Deferred();
+
+  /**
    * Optional handler for when the preloading is complete.
    * @type {?function(): undefined}
    * @private
@@ -120,6 +161,18 @@ k3d.control.Loader = function() {
 };
 goog.inherits(k3d.control.Loader, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Loader);
+
+/**
+ * The sequential index of items in the cache of requested flags.
+ * @enum {number}
+ * @protected
+ */
+k3d.control.Loader.Item = {
+  KITCHEN: 0,
+  ITEMS: 1,
+  FINISHES: 2,
+  HANDLES: 3
+};
 
 goog.scope(function() {
 
@@ -139,8 +192,60 @@ goog.scope(function() {
   _.start = function(when_done) {
     this.onPreloadComplete_ = when_done || null;
     this.progress_.render();
+
+    /**
+     * When all data is loaded, start loading the images.
+     */
+    goog.async.DeferredList.gatherResults([
+      this.itemsDef_, this.finishesDef_, this.handlesDef_
+    ]).addCallback(function(results) {
+      // collect all images from all data and then load it...
+      var imagelist = [];
+      goog.array.forEach(results, function(list) {
+        list.forEach(function(item) {
+          var src = item.getProp(Struct.PICTRURE);
+          if (goog.isNull(src)) {
+            src = item.getProp(Struct.DRAWING_IMAGE);
+            if (!goog.isNull(src) && src != '') {
+              goog.array.insert(imagelist, src);
+            }
+            src = item.getProp(Struct.SIDE_IMAGE);
+            if (!goog.isNull(src) && src != '') {
+              goog.array.insert(imagelistm, src);
+            }
+          } else if (src != '') {
+            goog.array.insert(imagelist, src);
+          }
+        });
+      });
+      goog.array.forEach(imagelist, function(image) {
+        this.lateImageLoader_.loadImage(image);
+      }, this);
+    });
+
     this.getKitchen().addCallback(goog.bind(this.preloadKitchenImages, this)).
       addCallback(this.boundProgressNotifier_);
+
+  };
+
+  /**
+   * Internal method to check if a data struture has already been requested
+   *   from the server.
+   * @param {k3d.control.Loader.Item} item The index of the item to check.
+   * @return {boolean} true if the item has been already requested.
+   * @private
+   */
+  _.hasBeenRequested_ = function(item) {
+    return this.alreadyRequested_[item];
+  };
+
+  /**
+   * Simple getter for the deferred object allows it to be used in gathered
+   *   deferreres.
+   * @return {goog.async.Deferred}
+   */
+  _.getAllImagesLoadedDeferred = function() {
+    return this.allImagesDef_;
   };
 
   /**
@@ -174,10 +279,24 @@ goog.scope(function() {
    * @return {goog.async.Deferred} The deferred object to subscribe to.
    */
   _.getKitchen = function() {
-    if (!this.kitchenAsBeenRequest_) {
-      this.kitchenAsBeenRequest_ = true;
-      goog.net.XhrIo.send(this.composeLoadUri_(),
-        goog.bind(this.handleKitchenDataLoadEvent_, this));
+    if (!this.hasBeenRequested_(k3d.control.Loader.Item.KITCHEN)) {
+      this.alreadyRequested_[k3d.control.Loader.Item.KITCHEN] = true;
+      goog.net.XhrIo.send(this.composeLoadUri_(), goog.bind(function(e) {
+
+        try {
+          var result = this.checkForErrors(e);
+        } catch (err) {
+          return;
+        }
+
+        if (this.hasData(result)) {
+          this.kitchenDef_.callback(new k3d.ds.KitchenProject(
+            result[Struct.KITCHEN]));
+        } else {
+          this.kitchenDef_.errback();
+        }
+
+      }, this));
     }
     return this.kitchenDef_;
   };
@@ -197,15 +316,92 @@ goog.scope(function() {
    * @return {goog.async.Deferred} The deferred object to subscribe to.
    */
   _.getItems = function() {
-    if (!this.itemsDef_.hasFired()) {
+    if (!this.hasBeenRequested_(k3d.control.Loader.Item.ITEMS)) {
+      this.alreadyRequested_[k3d.control.Loader.Item.ITEMS] = true;
       goog.net.XhrIo.send(Path.LOAD_ITEMS, goog.bind(function(e) {
+
         try {
           var result = this.checkForErrors(e);
         } catch (err) {
           return;
         }
-        // TODO: Fix this so that appropriate list items be used.
-        this.itemsDef_.callback(new pstj.ds.List(result[Struct.DATA]));
+
+        if (this.hasData(result)) {
+          this.itemsDef_.callback(new pstj.ds.List(result[Struct.DATA]));
+        } else {
+          this.itemsDef_.errback(null);
+        }
+
+      }, this));
+    }
+    return this.itemsDef_;
+  };
+
+  /**
+   * Checks if the returned object has 'data' attribute. Only some responses
+   *   use this.
+   * @param {Object} result The response from th server, parsed into JS
+   *   object.
+   * @return {boolean}
+   * @protected
+   */
+  _.hasData = function(result) {
+    if (!goog.isDef(result[Struct.DATA])) {
+      mb.Bus.publish(mb.Topic.ERROR, Static.NO_DATA, Struct.STATUS);
+      return false;
+    }
+    return true;
+  };
+
+  /**
+   * Getter for the finishes, returns the deferred object holding the data
+   *   structure.
+   * @return {goog.async.Deferred} The deferred object.
+   */
+  _.getFinishes = function() {
+    if (!this.hasBeenRequested_(k3d.control.Loader.Item.FINISHES)) {
+      this.alreadyRequested_[k3d.control.Loader.Item.FINISHES] = true;
+      goog.net.XhrIo.send(Path.LOAD_FINISHES, goog.bind(function(e) {
+
+        try {
+          var result = this.checkForErrors(e);
+        } catch (err) {
+          return;
+        }
+
+        if (this.hasData(result)) {
+          this.finishesDef_.callback(new pstj.ds.List(result[Struct.DATA]));
+        } else {
+          this.finishesDef_.errback(null);
+        }
+
+      }, this));
+    }
+    return this.itemsDef_;
+  };
+
+  /**
+   * Getter for the handles, returns the deferred object holding the data
+   *   structure.
+   * @return {goog.async.Deferred} The deferred object.
+   */
+  _.getHandles = function() {
+    if (!this.hasBeenRequested_(k3d.control.Loader.Item.HANDLES)) {
+      this.alreadyRequested_[k3d.control.Loader.Item.HANDLES] = true;
+      goog.net.XhrIo.send(Path.LOAD_FINISHES, goog.bind(function(e) {
+
+        try {
+          var result = this.checkForErrors(e);
+        } catch (err) {
+          return;
+        }
+
+        if (this.hasData(result)) {
+          this.handlesDef_.callback(new pstj.ds.List(result[Struct.DATA]));
+        } else {
+          this.handlesDef_.errback(null);
+        }
+
       }, this));
     }
     return this.itemsDef_;
@@ -258,7 +454,8 @@ goog.scope(function() {
     }
     if (data[Struct.STATUS] != 0) {
       this.lastKnownServerError_ = data[Struct.STATUS];
-      mb.Bus.publish(mb.Topic.ERROR, Static.STRUCTURED_ERROR);
+      mb.Bus.publish(mb.Topic.ERROR, Static.STRUCTURED_ERROR, Struct.STATUS,
+        Struct.ERROR_MESSAGE);
       throw new Error('Status of result was not OK');
     }
     goog.asserts.assertObject(data);
@@ -276,23 +473,5 @@ goog.scope(function() {
       result = this.checkForErrors(e);
     } catch (err) {
     }
-  };
-
-  /**
-   * Handles the load event from the xhr request for loading the project.
-   * @param {goog.events.Event} e The COMPLETE event from the net package.
-   * @private
-   */
-  _.handleKitchenDataLoadEvent_ = function(e) {
-    var result;
-    try {
-      result = this.checkForErrors(e);
-    } catch (err) {
-      return;
-    }
-    // we want to resolve the deffered onlypossitively, everything else as error
-    // is published
-    this.kitchenDef_.callback(new k3d.ds.KitchenProject(
-      result[Struct.KITCHEN]));
   };
 });

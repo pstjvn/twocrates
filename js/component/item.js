@@ -3,7 +3,9 @@ goog.provide('k3d.component.Item');
 goog.require('goog.asserts');
 goog.require('goog.dom.classlist');
 goog.require('goog.style');
-goog.require('k3d.ds.Item');
+goog.require('k3d.ds.definitions');
+goog.require('k3d.template');
+goog.require('pstj.ds.ListItem');
 goog.require('pstj.lab.style.css');
 goog.require('pstj.ui.MoveTouch');
 
@@ -57,14 +59,14 @@ goog.scope(function() {
 
   /**
    * @override
-   * @return {k3d.ds.Item} The data record for the item.
+   * @return {pstj.ds.ListItem} The data record for the item.
    */
   _.getModel;
 
   /** @inheritDoc */
   _.setModel = function(model) {
-    goog.asserts.assertInstanceof(model, k3d.ds.Item,
-      'The data record should be one of kitchen item');
+    goog.asserts.assertInstanceof(model, pstj.ds.ListItem,
+      'The data record should be a ListItem');
     goog.base(this, 'setModel', model);
     if (this.isInDocument()) {
       this.dispatchEvent(k3d.component.Item.EventType.MODEL_CHANGE);
@@ -151,9 +153,10 @@ goog.scope(function() {
     this.getElement().style.height = this.styleoptions_[1] + '%';
     this.getElement().style.top = this.styleoptions_[2] + '%';
     this.getElement().style.left = this.styleoptions_[3] + '%';
-    this.getElement().style.backgroundImage = 'url(' + goog.asserts.assertString(
-      this.getModel().getProp(k3d.ds.Item.Property.DRAWING_IMAGE),
-      'Image path shoudl be string') + ')';
+    this.getElement().style.backgroundImage = 'url(' +
+      goog.asserts.assertString(this.getModel().getProp(
+        k3d.ds.definitions.item.DRAWING_IMAGE),
+        'Image path shoudl be string') + ')';
   };
 
   /**

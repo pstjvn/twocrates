@@ -39,17 +39,14 @@ k3d.ds.definitions.Path = {
  * @enum {string}
  */
 k3d.ds.definitions.Struct = {
-  KITCHEN: 'kitchen',
-  ID: 'id',
+  KITCHEN: 'data',
   WALLS: 'walls',
-  WIDTH: 'width',
-  HEIGHT: 'height',
-  ATTACHED: 'is_attached_to_wall',
   ITEMS: 'items',
   TOP_ROW: 'top',
   BOTTOM_ROW: 'bottom',
   KITCHEN_PROJECT_ID: 'kitchen_project_id',
   STATUS: 'status',
+  ERROR_MESSAGE: 'message',
   DESCRIPTION: 'description',
   DATA: 'data'
 };
@@ -63,5 +60,52 @@ k3d.ds.definitions.Static = {
   SERVER_HTTP_ERROR: 0,
   UNPARSABLE_JSON: 1,
   STRUCTURED_ERROR: 2,
-  RUNTIME: 3
+  RUNTIME: 3,
+  NO_DATA: 4
+};
+
+k3d.ds.definitions.item = {
+  ID: 'id',
+  // The item is designed to be used next to a wall (single fron view)
+  ATTACHED: 'is_attached_to_wall',
+  // Short description to display on detail page
+  DESCRIPTION: 'description',
+  // the category ID, thees need to be clarified.
+  CATEGORY: 'category_id',
+  // the width of the item.
+  WIDTH: 'width',
+  // on items with two walls (corner items) the second wall (right) width
+  WIDTH2: 'width2',
+  // the height of the item
+  HEIGHT: 'height',
+  // depth of the item, used only in stone bench calculations.
+  DEPTH: 'depth',
+  // image of the item in front view
+  DRAWING_IMAGE: 'front_picture',
+  // Image of the item in side view
+  SIDE_IMAGE: 'angle_picture',
+  // THe item requires to be covered on top by the stone bench
+  USE_TOP_BOARD: 'has_top_board',
+  // THe model ID (number).
+  MODEL: 'model_id',
+  // the item is actually a spacer
+  ISSPACE: 'is_spacer',
+  // price in cents
+  PRICE: 'price',
+  // number of handles to use with this item
+  HANDLES: 'required_handles'
+};
+
+k3d.ds.definitions.finish = {
+  DESCRIPTION: 'description',
+  PICTURE: 'picture',
+  COLOR: 'color',
+  PRICE: 'price'
+};
+
+k3d.ds.definitions.handle = {
+  DESCRIPTION: 'description',
+  PICTURE: 'picture',
+  DIMENTIONS: 'dimentions',
+  PRICE: 'price'
 };

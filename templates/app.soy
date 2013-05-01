@@ -1,17 +1,30 @@
 {namespace k3d.template}
 
 /**
- *
+ * Provides the main body of the application.
+ * @param links The links to use in the header.
  */
 {template .base}
-
-  <div class="{css header}">
-  </div>
+  {call .header data="all" /}
   <div class="{css container}">
     <div class="{css child}">
     </div>
   </div>
   {call .viewcontrols /}
+{/template}
+
+/**
+ * The header implementation.
+ * @param links The links.
+ */
+{template .header}
+  <div class="{css header}">
+    {foreach $link in $links}
+      <div class="{css goog-inline-block} {css header-link}">
+        <a href="{$link.link}">{$link.text}</a>
+      </div>
+    {/foreach}
+  </div>
 {/template}
 
 /**
@@ -81,29 +94,29 @@
  */
 {template .viewcontrols}
   <div class="{css design-tool-controls} {css d-table}">
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="prev">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="prev" title="{msg desc="Tooltip: previous"}previous{/msg}">
       <div class="{css d-table} {css margin-auto}">
-        <img src="assets/left-arrow.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="assets/left.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-finish">
       <div class="{css d-table} {css margin-auto}">
-        <img src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-handles">
       <div class="{css d-table} {css margin-auto}">
-        <img src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="save">
       <div class="{css d-table} {css margin-auto}">
-        <img src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="next">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="next" title="{msg desc="Tooltip: next"}next{/msg}">
       <div class="{css d-table} {css margin-auto}">
-        <img src="assets/right-arrow.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="assets/right.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
   </div>
