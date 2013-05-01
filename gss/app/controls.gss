@@ -1,15 +1,20 @@
+@def TC_CONTROL_BUTTONS_BG url('../assets/controls-bg.png');
+
 .design-tool-controls {
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
+  height: 40px;
+  background: TC_CONTROL_BUTTONS_BG;
 }
 
 .design-tool-control-button {
   background-color: #342D82;
 }
 
-.design-tool-controls .pstj-button-active {
+.design-tool-controls .pstj-button.pstj-button-active {
+  background-color: rgba(0,0,0,0.5);
   top: 0;
 }
 
@@ -17,7 +22,5 @@
   display: table-cell;
   border: none;
   padding: 0;
-  background-image: -webkit-linear-gradient(top, MAIN_BLUE 0%, adjustBrightness(MAIN_BLUE, 10) 49%, MAIN_BLUE 100%);
-  /* @alternate */
-  background-image: linear-gradient(to bottom, MAIN_BLUE 0%, adjustBrightness(MAIN_BLUE, 10) 49%, MAIN_BLUE 100%);
+  background: transparent;
 }
