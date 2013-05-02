@@ -77,13 +77,16 @@ goog.scope(function() {
    * Execute pre-loading of data AFTER the initial paint.
    */
   _.postLoad = function() {
-    // gather the results and notify the editor control when ready.
-
+    //Notify the editor when all images have been loaded, including ones on post
+    //load.
     k3d.control.Loader.getInstance().getAllImagesLoadedDeferred().addCallback(
       function() {
         k3d.control.Editor.getInstance().onLoadComplete();
       }
     );
+    k3d.control.Loader.getInstance().getItems();
+    k3d.control.Loader.getInstance().getFinishes();
+    k3d.control.Loader.getInstance().getHandles();
   };
 
 });
