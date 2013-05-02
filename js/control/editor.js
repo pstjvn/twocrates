@@ -167,6 +167,10 @@ goog.scope(function() {
     }
   };
 
+  /**
+   * Show items on the wall on the drawing board.
+   * @protected
+   */
   _.visualizeItems = function() {
     // iterate top and bottom row and for each calculate the percentage position and pixel difference
     //goog.array.forEach()
