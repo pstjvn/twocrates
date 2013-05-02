@@ -8,7 +8,7 @@ goog.require('goog.ui.Component.EventType');
 goog.require('k3d.component.DrawingBoard');
 goog.require('k3d.component.ItemView');
 goog.require('k3d.component.PopOver');
-goog.require('k3d.ds.Wall');
+goog.require('k3d.ds.definitions');
 goog.require('k3d.ui.Filler');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
@@ -127,7 +127,7 @@ goog.scope(function() {
     this.drawsheet.removeChildren();
     // using the data structure find out the wall sizes and set them
     this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
-      k3d.ds.Wall.Property.WIDTH)), goog.asserts.assertNumber(
+      Struct.WIDTH)), goog.asserts.assertNumber(
         this.currentWall.getProp(Struct.HEIGHT)));
     // calculate the potistion of the items on the drawing and store them as
     // pixel values
