@@ -203,7 +203,7 @@ goog.scope(function() {
       var imagelist = [];
       goog.array.forEach(results, function(list) {
         list.forEach(function(item) {
-          var src = item.getProp(Struct.PICTRURE);
+          var src = item.getProp(Struct.PICTURE);
           if (goog.isNull(src)) {
             src = item.getProp(Struct.DRAWING_IMAGE);
             if (!goog.isNull(src) && src != '') {
@@ -211,7 +211,7 @@ goog.scope(function() {
             }
             src = item.getProp(Struct.SIDE_IMAGE);
             if (!goog.isNull(src) && src != '') {
-              goog.array.insert(imagelistm, src);
+              goog.array.insert(imagelist, src);
             }
           } else if (src != '') {
             goog.array.insert(imagelist, src);

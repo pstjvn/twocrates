@@ -65,7 +65,7 @@ k3d.control.Editor.Actions = {
 goog.scope(function() {
   var _ = k3d.control.Editor.prototype;
   var Actions = k3d.control.Editor.Actions;
-  var Struct = k3d.de.definitions.Struct;
+  var Struct = k3d.ds.definitions.Struct;
 
   /**
    * @protected
