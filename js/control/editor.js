@@ -65,6 +65,7 @@ k3d.control.Editor.Actions = {
 goog.scope(function() {
   var _ = k3d.control.Editor.prototype;
   var Actions = k3d.control.Editor.Actions;
+  var Struct = k3d.de.definitions.Struct;
 
   /**
    * @protected
@@ -127,7 +128,7 @@ goog.scope(function() {
     // using the data structure find out the wall sizes and set them
     this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
       k3d.ds.Wall.Property.WIDTH)), goog.asserts.assertNumber(
-        this.currentWall.getProp(k3d.ds.Wall.Property.HEIGHT)));
+        this.currentWall.getProp(Struct.HEIGHT)));
     // calculate the potistion of the items on the drawing and store them as
     // pixel values
     this.visualizeItems();
@@ -221,7 +222,7 @@ goog.scope(function() {
     var init = 200;
     var count = row.getCount();
     for (var i = 0; i < count; i++) {
-      init += (+row.getByIndex(i).getProp(k3d.ds.definitions.item.WIDTH));
+      init += (+row.getByIndex(i).getProp(Struct.WIDTH));
     }
     return pstj.math.utils.getPercentFromValue(init, this.width);
   };

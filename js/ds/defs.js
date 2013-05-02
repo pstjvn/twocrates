@@ -39,32 +39,6 @@ k3d.ds.definitions.Path = {
  * @enum {string}
  */
 k3d.ds.definitions.Struct = {
-  KITCHEN: 'data',
-  WALLS: 'walls',
-  ITEMS: 'items',
-  TOP_ROW: 'top',
-  BOTTOM_ROW: 'bottom',
-  KITCHEN_PROJECT_ID: 'kitchen_project_id',
-  STATUS: 'status',
-  ERROR_MESSAGE: 'message',
-  DESCRIPTION: 'description',
-  DATA: 'data'
-};
-
-/**
- * THe static string used for errors.
- * TODO: this should actually be implemented as templates instead
- * @enum {number}
- */
-k3d.ds.definitions.Static = {
-  SERVER_HTTP_ERROR: 0,
-  UNPARSABLE_JSON: 1,
-  STRUCTURED_ERROR: 2,
-  RUNTIME: 3,
-  NO_DATA: 4
-};
-
-k3d.ds.definitions.item = {
   ID: 'id',
   // The item is designed to be used next to a wall (single fron view)
   ATTACHED: 'is_attached_to_wall',
@@ -93,19 +67,43 @@ k3d.ds.definitions.item = {
   // price in cents
   PRICE: 'price',
   // number of handles to use with this item
-  HANDLES: 'required_handles'
-};
-
-k3d.ds.definitions.finish = {
-  DESCRIPTION: 'description',
+  HANDLES: 'required_handles',
+  // The picture of finishes and handles to use.
   PICTURE: 'picture',
-  COLOR: 'color',
-  PRICE: 'price'
-};
-
-k3d.ds.definitions.handle = {
-  DESCRIPTION: 'description',
-  PICTURE: 'picture',
+  // The dimentions of the handles ("XxY")
   DIMENTIONS: 'dimentions',
-  PRICE: 'price'
+  // The color of the finish when it is not pattern.
+  COLOR: 'color',
+  //----- Data structure names ----//
+  //Kitchen record.
+  KITCHEN: 'data',
+  // walls list
+  WALLS: 'walls',
+  // walls items list
+  ITEMS: 'items',
+  // top row in a wall
+  TOP_ROW: 'top',
+  // bottom row in a wall
+  BOTTOM_ROW: 'bottom',
+  // the parameter for the kitchen project id.
+  KITCHEN_PROJECT_ID: 'kitchen_project_id',
+  // Status of the server respnse (0 -> 99)
+  STATUS: 'status',
+  // THe error message attached to a non 0 server response.
+  ERROR_MESSAGE: 'message',
+  // The payload of a response.
+  DATA: 'data'
+};
+
+/**
+ * THe static string used for errors.
+ * TODO: this should actually be implemented as templates instead
+ * @enum {number}
+ */
+k3d.ds.definitions.Static = {
+  SERVER_HTTP_ERROR: 0,
+  UNPARSABLE_JSON: 1,
+  STRUCTURED_ERROR: 2,
+  RUNTIME: 3,
+  NO_DATA: 4
 };

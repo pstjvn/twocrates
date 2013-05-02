@@ -5,7 +5,9 @@ goog.require('k3d.ds.definitions');
 goog.require('pstj.ds.ListItem');
 
 /**
- * Provides the wall asbtraction data strucure.
+ * Provides the wall asbtraction data strucure. This structures represents a
+ *   single wall in our design for a kitchen. It has knowledge of the rows of
+ *   cabinets (floor and upper row).
  * @constructor
  * @extends {pstj.ds.ListItem}
  * @param {Object} data The wall record literal object.
@@ -27,12 +29,6 @@ k3d.ds.Wall = function(data) {
 };
 goog.inherits(k3d.ds.Wall, pstj.ds.ListItem);
 
-k3d.ds.Wall.Property = {
-  WIDTH: 'width',
-  HEIGHT: 'height',
-  ATTACHED: 'is_attached_to_wall'
-};
-
 goog.scope(function() {
 
   var _ = k3d.ds.Wall.prototype;
@@ -40,7 +36,8 @@ goog.scope(function() {
 
   /** @inheritDoc */
   _.convert = function() {
-    var top = new k3d.ds.CabinetRow(this.getRawData()[Struct.ITEMS][Struct.TOP_ROW]);
+    var top = new k3d.ds.CabinetRow(
+      this.getRawData()[Struct.ITEMS][Struct.TOP_ROW]);
 
     var bottom = new k3d.ds.CabinetRow(
       this.getRawData()[Struct.ITEMS][Struct.BOTTOM_ROW]);
@@ -52,7 +49,9 @@ goog.scope(function() {
   };
 
   /**
-   * Returns all image references in this wall instance.
+   * Returns all image references in this wall instance. It will walk all the
+   *   items that are currently applied on the wall (both top and floor rows)
+   *   and gather all images linked in each item applied to the wall instance.
    * @return {Array.<string>}
    */
   _.getImageReferences = function() {

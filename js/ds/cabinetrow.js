@@ -29,6 +29,7 @@ goog.inherits(k3d.ds.CabinetRow, goog.events.EventTarget);
 goog.scope(function() {
 
   var _ = k3d.ds.CabinetRow.prototype;
+  var Struct = k3d.ds.definitions.Struct;
 
   /**
    * Ads a new item to the list of cabinets on this row.
@@ -48,8 +49,8 @@ goog.scope(function() {
   _.getImageReferences = function() {
     var result = [];
     goog.array.forEach(this.items_, function(item) {
-      result.push(item.getProp(k3d.ds.definitions.item.DRAWING_IMAGE));
-      result.push(item.getProp(k3d.ds.definitions.item.SIDE_IMAGE));
+      result.push(item.getProp(Struct.DRAWING_IMAGE));
+      result.push(item.getProp(Struct.SIDE_IMAGE));
     });
     return result;
   };

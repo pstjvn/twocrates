@@ -155,7 +155,7 @@ goog.scope(function() {
     this.getElement().style.left = this.styleoptions_[3] + '%';
     this.getElement().style.backgroundImage = 'url(' +
       goog.asserts.assertString(this.getModel().getProp(
-        k3d.ds.definitions.item.DRAWING_IMAGE),
+        k3d.ds.definitions.Struct.DRAWING_IMAGE),
         'Image path shoudl be string') + ')';
   };
 
