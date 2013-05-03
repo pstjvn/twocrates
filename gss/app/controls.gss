@@ -1,3 +1,6 @@
+/**
+ * How the whole control will look like.
+ */
 @def TC_CONTROL_BUTTONS_BG url('../assets/controls-bg.png');
 
 .design-tool-controls {
@@ -10,17 +13,12 @@
 }
 
 .design-tool-control-button {
-  background-color: #342D82;
-}
-
-.design-tool-controls .pstj-button.pstj-button-active {
-  background-color: rgba(0,0,0,0.5);
-  top: 0;
-}
-
-.design-tool-controls .pstj-button {
   display: table-cell;
   border: none;
   padding: 0;
-  background: transparent;
+  outline: none;
+}
+
+.design-tool-control-button-active {
+  background-color: rgba(0,0,0,0.5);
 }
