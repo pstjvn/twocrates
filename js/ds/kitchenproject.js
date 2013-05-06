@@ -40,6 +40,10 @@ goog.scope(function() {
     this.walls.add(new k3d.ds.Wall(wall));
   };
 
+  _.getWallIndex = function(wall) {
+    return this.walls.getIndexByItem(wall);
+  };
+
   /**
    * Returns all image references withint the project.
    * @return {Array.<string>}
@@ -59,6 +63,22 @@ goog.scope(function() {
   };
 
   /**
+   * Sets the Finishes to be used in the project data structure.
+   * @param {pstj.ds.RecordID} id The id of the finish record.
+   */
+  _.setFinishId = function(id) {
+    this.getRawData()[Struct.FINISH] = id.toString();
+  };
+
+  /**
+   * Sets the ID of handles to be used in the project.
+   * @param {pstj.ds.RecordID} id The id of the handle record to use.
+   */
+  _.setHandleId = function(id) {
+    this.getRawData()[Struct.HANDLE] = id.toString();
+  };
+
+  /**
    * Getter for the wall by an index. No checks are performed, thus null can
    *   be returned.
    * @param {number} index The index to look up the data under.
@@ -75,7 +95,7 @@ goog.scope(function() {
    * @return {boolean} True if such wall exists.
    */
   _.hasWallWithIndex = function(index) {
-    return (index < this.walls.getCount());
+    return (index < this.walls.getCount() && index >= 0);
   };
 
 });

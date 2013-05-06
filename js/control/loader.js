@@ -5,6 +5,7 @@ goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.async.Deferred');
 goog.require('goog.async.DeferredList');
+goog.require('goog.dom');
 goog.require('goog.json.NativeJsonProcessor');
 goog.require('goog.net.XhrIo');
 goog.require('k3d.ds.KitchenProject');
@@ -62,6 +63,7 @@ k3d.control.Loader = function() {
       }
       setTimeout(goog.bind(function() {
         goog.dispose(this.progress_);
+        goog.dom.removeNode(document.getElementById('progress'));
       }, this), 500);
     });
 
@@ -191,14 +193,15 @@ goog.scope(function() {
    */
   _.start = function(when_done) {
     this.onPreloadComplete_ = when_done || null;
-    this.progress_.render();
+    //this.progress_.render();
+    this.progress_.decorate(goog.dom.getElement('progress'));
 
     /**
      * When all data is loaded, start loading the images.
      */
     goog.async.DeferredList.gatherResults([
       this.itemsDef_, this.finishesDef_, this.handlesDef_
-    ]).addCallback(function(results) {
+    ]).addCallback(goog.bind(function(results) {
       // collect all images from all data and then load it...
       var imagelist = [];
       goog.array.forEach(results, function(list) {
@@ -218,10 +221,14 @@ goog.scope(function() {
           }
         });
       });
-      goog.array.forEach(imagelist, function(image) {
-        this.lateImageLoader_.loadImage(image);
-      }, this);
-    });
+      if (goog.array.isEmpty(imagelist)) {
+        this.allImagesDef_.callback();
+      } else {
+        goog.array.forEach(imagelist, function(image) {
+          this.lateImageLoader_.loadImage(image);
+        }, this);
+      }
+    }, this));
 
     this.getKitchen().addCallback(goog.bind(this.preloadKitchenImages, this)).
       addCallback(this.boundProgressNotifier_);
@@ -377,7 +384,7 @@ goog.scope(function() {
 
       }, this));
     }
-    return this.itemsDef_;
+    return this.finishesDef_;
   };
 
   /**
@@ -404,7 +411,7 @@ goog.scope(function() {
 
       }, this));
     }
-    return this.itemsDef_;
+    return this.handlesDef_;
   };
 
   /**

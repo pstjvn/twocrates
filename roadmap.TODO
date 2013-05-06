@@ -1,9 +1,11 @@
 Next demo:
+ ✔ Migrate component code of project to the new templated interface (selector branch) @done (13-05-06 01:59)
+ ☐ Finish migration of item component and test.
  ☐ Algorithm for having both positions as percentage and as pixel offset for the movement to work.
- ☐ Test data for items list.
+ ✔ Test data for items list. @done (13-05-04 19:30)
 
 Project:
- ☐ Selection UI suitable for touch and mouse both.
+ ✔ Selection UI suitable for touch and mouse both. @done (13-05-04 19:30)
  ☐ Error handling in load process / progress indication.
  ☐ Adding item.
  ☐ Algorythm for changing item.

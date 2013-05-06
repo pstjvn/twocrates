@@ -49,6 +49,16 @@ goog.scope(function() {
   };
 
   /**
+   * Getter for the rows of cabinets as data structures.
+   * @param {boolean=} top True if we want to access the top row.
+   * @return {k3d.ds.CabinetRow}
+   */
+  _.getRow = function(top) {
+    if (top) return this.top_;
+    else return this.bottom_;
+  };
+
+  /**
    * Returns all image references in this wall instance. It will walk all the
    *   items that are currently applied on the wall (both top and floor rows)
    *   and gather all images linked in each item applied to the wall instance.

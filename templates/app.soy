@@ -10,7 +10,7 @@
     <div class="{css child}">
     </div>
   </div>
-  {call .viewcontrols /}
+  {call .controls /}
 {/template}
 
 /**
@@ -44,15 +44,6 @@
   <div id="logger"></div>
 {/template}
 
-/**
- * Provides the pop over blocker and frame for dialogs.
- */
-{template .popover}
-  <div class="{css popover-event-blocker}">
-    <div class="{css popover-frame}">
-    </div>
-  </div>
-{/template}
 
 /**
  * Item details view
@@ -92,9 +83,9 @@
 /**
  * The control buttons layer.
  */
-{template .viewcontrols}
+{template .controls}
   <div class="{css design-tool-controls} {css d-table}">
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="prev" title="{msg desc="Tooltip: previous"}previous{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="previous" title="{msg desc="Tooltip: previous"}previous{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="assets/left.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>

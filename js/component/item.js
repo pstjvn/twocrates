@@ -4,18 +4,36 @@ goog.require('goog.asserts');
 goog.require('goog.dom.classlist');
 goog.require('goog.style');
 goog.require('k3d.ds.definitions');
-goog.require('k3d.template');
+// goog.require('k3d.template');
 goog.require('pstj.ds.ListItem');
 goog.require('pstj.lab.style.css');
 goog.require('pstj.ui.MoveTouch');
+// goog.require('pstj.ui.Template');
+
+// /**
+//  * The item template.
+//  * @constructor
+//  * @extends {pstj.ui.Template}
+//  */
+// k3d.component.ItemTemplate = function() {
+//   goog.base(this);
+// };
+// goog.inherits(k3d.component.ItemTemplate, pstj.ui.Template);
+// goog.addSingletonGetter(k3d.component.ItemTemplate);
+
+// k3d.component.ItemTemplate.prototype.getTemplate = function(model) {
+//   return k3d.template.item(model);
+// };
 
 /**
  * The item that we work with on the drawing board.
  * @constructor
  * @extends {pstj.ui.MoveTouch}
+ * @param {pstj.ui.Template=} opt_template The optional template to use when
+ *   constructing dom from scratch.
  */
-k3d.component.Item = function() {
-  goog.base(this);
+k3d.component.Item = function(opt_template) {
+  goog.base(this, opt_template);
   /**
    * Provides cachable values for item's visual setup: [width, height, top,
    *   left].
@@ -44,11 +62,6 @@ goog.scope(function() {
 
   var _ = k3d.component.Item.prototype;
   var css = pstj.lab.style.css;
-
-  /** @inheritDoc */
-  _.getTemplate = function() {
-    return k3d.template.item({});
-  };
 
   /**
    * We need to apply the scale each time we change the tranformation.
@@ -153,10 +166,11 @@ goog.scope(function() {
     this.getElement().style.height = this.styleoptions_[1] + '%';
     this.getElement().style.top = this.styleoptions_[2] + '%';
     this.getElement().style.left = this.styleoptions_[3] + '%';
-    this.getElement().style.backgroundImage = 'url(' +
-      goog.asserts.assertString(this.getModel().getProp(
-        k3d.ds.definitions.Struct.DRAWING_IMAGE),
-        'Image path shoudl be string') + ')';
+    this.getElement().style.backgroundImage = 'url(' + 'assets/1.png' + ')';
+    // this.getElement().style.backgroundImage = 'url(' +
+    //   goog.asserts.assertString(this.getModel().getProp(
+    //     k3d.ds.definitions.Struct.DRAWING_IMAGE),
+    //     'Image path shoudl be string') + ')';
   };
 
   /**

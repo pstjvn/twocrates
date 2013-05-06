@@ -210,7 +210,7 @@ cssbuild:
 	gss/linked/*.gss \
 	gss/$(NS)/*.gss
 
-
+## rm $(BUILDDIR)/cssmap-build.js
 compile: cssbuild tpl deps
 	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
 	-n $(NS) \
@@ -226,7 +226,6 @@ compile: cssbuild tpl deps
 	-f --define='goog.LOCALE="$(LOCALE)"' \
 	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS).build.js
-	rm $(BUILDDIR)/cssmap-build.js
 	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS).build.js`
 
 size:

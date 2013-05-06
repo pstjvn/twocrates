@@ -92,7 +92,9 @@ k3d.ds.definitions.Struct = {
   // THe error message attached to a non 0 server response.
   ERROR_MESSAGE: 'message',
   // The payload of a response.
-  DATA: 'data'
+  DATA: 'data',
+  FINISH: 'finish_id',
+  HANDLE: 'handle_id'
 };
 
 /**

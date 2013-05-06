@@ -73,21 +73,53 @@ goog.scope(function() {
     );
   };
 
+  /** @inheritDoc */
+  _.notify = function(child, action) {
+    if (child == k3d.control.Buttons.getInstance()) {
+      switch (action) {
+        case 'previous':
+          k3d.control.Editor.getInstance().loadSiblingWall(false);
+          break;
+        case 'next':
+          k3d.control.Editor.getInstance().loadSiblingWall(true);
+          break;
+        case 'select-finish':
+          k3d.control.Editor.getInstance().showSelectFinishes();
+          break;
+        case 'select-handles':
+          k3d.control.Editor.getInstance().showSelectHandles();
+          break;
+        case 'save':
+          console.log('Save prodecure');
+          break;
+      }
+    }
+    goog.base(this, 'notify', child, action);
+  };
+
   /**
    * Execute pre-loading of data AFTER the initial paint.
    */
   _.postLoad = function() {
+
+    // Setup the action to take when the data record changes.
+    k3d.control.Editor.getInstance().setDataChangeHandler(function(kitchen) {
+      k3d.control.Loader.getInstance().saveKitchen(kitchen);
+    });
+
     //Notify the editor when all images have been loaded, including ones on post
     //load.
     k3d.control.Loader.getInstance().getAllImagesLoadedDeferred().addCallback(
       function() {
         k3d.control.Editor.getInstance().onLoadComplete();
+
       }
     );
     k3d.control.Loader.getInstance().getItems();
     k3d.control.Loader.getInstance().getFinishes();
     k3d.control.Loader.getInstance().getHandles();
   };
+
 
 });
 

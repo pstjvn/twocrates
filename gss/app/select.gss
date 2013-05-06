@@ -1,0 +1,25 @@
+.pstj-widget-select {
+  margin: auto;
+  padding: DIALOG_PADDING;
+  border: DIALOG_BORDER;
+  background: DIALOG_BACKGROUND;
+}
+
+.pstj-widget-select-body {
+  height: 370px;
+}
+
+.pstj-widget-select-footer {
+  margin: 8px 5% 0 0;
+}
+
+.pstj-widget-select-title {
+  margin-left: 5%;
+}
+
+.pstj-list {
+  -webkit-box-shadow: inset 0 0 2px MAIN_BLUE;
+  /* @alternate */
+  box-shadow: inset 0 0 2px MAIN_BLUE;
+}
+

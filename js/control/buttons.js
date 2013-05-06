@@ -1,9 +1,11 @@
 goog.provide('k3d.control.Buttons');
 
+goog.require('goog.asserts');
 goog.require('goog.ui.Component.EventType');
-goog.require('k3d.component.ControlButtons');
+goog.require('goog.ui.ControlRenderer');
 goog.require('pstj.control.Base');
-
+goog.require('pstj.ui.CustomButtonRenderer');
+goog.require('pstj.widget.ControlGroup');
 /**
  * Provides the control instance for the buttons on the bottom of the screen.
  * @constructor
@@ -23,7 +25,13 @@ goog.scope(function() {
   _.initialize = function() {
     if (!this.isInitialized()) {
       goog.base(this, 'initialize');
-      this.buttonsComponent_ = new k3d.component.ControlButtons();
+      // create instance of pstj's control button group and use it, we do not
+      // need special template as we are decorating.
+      this.buttonsComponent_ = new pstj.widget.ControlGroup(null,
+        goog.ui.ControlRenderer.getCustomRenderer(pstj.ui.CustomButtonRenderer,
+          goog.getCssName('design-tool-control-button')));
+
+      //this.buttonsComponent_ = new k3d.component.ControlButtons();
       this.buttonsComponent_.decorate(document.querySelector(
         '.' + goog.getCssName('design-tool-controls')));
       this.getHandler().listen(this.buttonsComponent_,
@@ -38,6 +46,7 @@ goog.scope(function() {
    */
   _.handleAction = function(e) {
     var target = /** @type {!pstj.ui.Button} */ (e.target);
+    this.notify(null, goog.asserts.assertString(target.getActionName()));
     //console.log('Chld action', e.target.getActionName());
-  }
+  };
 });

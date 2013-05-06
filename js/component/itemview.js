@@ -3,6 +3,7 @@ goog.provide('k3d.component.ItemView');
 goog.require('k3d.template');
 goog.require('pstj.ng.Template');
 goog.require('pstj.ui.Button');
+goog.require('pstj.ui.Template');
 
 /**
  * @fileoverview Provides the embeddeable dialog widget for showing details on
@@ -12,18 +13,36 @@ goog.require('pstj.ui.Button');
  */
 
 /**
+ * The app item template.
+ * @constructor
+ * @extends {pstj.ui.Template}
+ */
+k3d.component.ItemViewTemplate = function() {
+  goog.base(this);
+};
+goog.inherits(k3d.component.ItemViewTemplate, pstj.ui.Template);
+goog.addSingletonGetter(k3d.component.ItemViewTemplate);
+/** @inheritDoc */
+k3d.component.ItemViewTemplate.prototype.getTemplate = function(model) {
+  return k3d.template.itemview({});
+};
+/** @inheritDoc */
+k3d.component.ItemViewTemplate.prototype.getContentElement = function(comp) {
+  return comp.getEls(goog.getCssName('item-view-controls'));
+};
+
+
+/**
  * Implements the item details view. It is partially an ng template and built
  *   on top with some actions/buttons.
  * @constructor
  * @extends {pstj.ng.Template}
+ * @param {pstj.ui.Template=} opt_template Alternative template to use.
+ * @param {string=} opt_null_value Optioal null value to use in NG template.
  */
-k3d.component.ItemView = function() {
-  goog.base(this);
-  /**
-   * @private
-   * @type {Element}
-   */
-  this.contentElement_ = null;
+k3d.component.ItemView = function(opt_template, opt_null_value) {
+  goog.base(this, opt_template || k3d.component.ItemViewTemplate.getInstance(),
+    opt_null_value);
   /**
    * @private
    * @type {pstj.ui.Button}
@@ -42,6 +61,7 @@ k3d.component.ItemView = function() {
    */
   this.changeSize_ = new pstj.ui.Button();
   this.addChild(this.changeSize_);
+
   this.render();
 };
 goog.inherits(k3d.component.ItemView, pstj.ng.Template);
@@ -51,37 +71,26 @@ goog.scope(function() {
   var _ = k3d.component.ItemView.prototype;
 
   /** @inheritDoc */
-  _.getContentElement = function() {
-    return this.contentElement_;
-  };
-
-  /** @inheritDoc */
-  _.getTemplate = function() {
-    return k3d.template.itemview({});
-  };
-
-  /** @inheritDoc */
   _.decorateInternal = function(el) {
     goog.base(this, 'decorateInternal', el);
-    this.contentElement_ = this.getEls(goog.getCssName('item-view-controls'));
+
     // use decoration to allow easier translation of the buttons (i.e. labels
     // come from the templates and thus from the translation files).
-    this.dismissButton_.decorate(this.querySelector(
-      '.' + goog.getCssName('pstj-button') + '[data-action="close"]'));
+    this.dismissButton_.decorate(this.querySelector('[data-action="close"]'));
+
     this.changeSize_.decorate(this.querySelector(
-      '.' + goog.getCssName('pstj-button') + '[data-action="change-size"]'));
+      '[data-action="change-size"]'));
+
     this.changeModel_.decorate(this.querySelector(
-      '.' + goog.getCssName('pstj-button') + '[data-action="change-model"]'));
+      '[data-action="change-model"]'));
   };
 
   /** @inheritDoc */
   _.disposeInternal = function() {
-    goog.dispose(this.dismissButton_);
-    goog.dispose(this.changeSize_);
-    goog.dispose(this.changeModel_);
+    goog.base(this, 'disposeInternal');
     this.dismissButton_ = null;
     this.changeSize_ = null;
     this.changeModel_ = null;
-    goog.base(this, 'disposeInternal');
   };
+
 });
