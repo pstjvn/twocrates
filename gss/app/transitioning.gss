@@ -9,3 +9,14 @@
   transition: transform 90ms linear, width 90ms linear, height 90ms linear;
 }
 
+
+/**
+ * Setup the style in such a way that when we change the left position of an element
+ */
+.k3d-transition > div {
+  -webkit-transition: -webkit-transform 200ms linear;
+}
+
+.k3d-transition > div.sheet-item-moving {
+  -webkit-transition: none;
+}

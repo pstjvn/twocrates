@@ -8,12 +8,14 @@ goog.require('goog.ui.Component.EventType');
 goog.require('k3d.component.DrawingBoard');
 goog.require('k3d.component.ItemView');
 goog.require('k3d.component.PopOver');
+goog.require('k3d.component.PubSub');
 goog.require('k3d.control.Loader');
 goog.require('k3d.ds.ItemPool');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.ui.Filler');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
+goog.require('pstj.lab.style.css');
 goog.require('pstj.math.utils');
 goog.require('pstj.widget.Select');
 
@@ -61,6 +63,9 @@ k3d.control.Editor = function() {
    */
   this.drawsheet = new k3d.component.DrawingBoard();
   this.registerDisposable(this.drawsheet);
+  this.getHandler().listen(this.drawsheet,
+    k3d.component.DrawingBoard.EventType.REQUIRES_STOP_POINTS,
+    this.provideStopPoints);
 
   /**
    * The selection box for items.
@@ -97,6 +102,23 @@ k3d.control.Editor = function() {
    * @private
    */
   this.scaleFactor_ = 1;
+  /**
+   * List of components that have been added to the top row.
+   * @type {Array.<k3d.component.Item>}
+   */
+  this.topchildren_ = [];
+  /**
+   * List of components that have been added to the bottom row.
+   * @type {Array.<k3d.component.Item>}
+   */
+  this.bottomchildren_ = [];
+
+  /**
+   * The list of lists of stop points forthe movement.
+   * @type {Array.<Array.<number>>}
+   * @protected
+   */
+  this.stopPoints = null;
   /**
    * The delayed reaction to a sheet resize. This is delayed to avoid unneeded
    *   calculation during refitting of the sheet in the frame.
@@ -213,9 +235,58 @@ goog.scope(function() {
       e.stopPropagation();
       this.handleSheetResizeDelayed_.start();
     });
+
+    // Subscribe for position updated on children We need this in order to make
+    // the movement of component possible.
+    k3d.component.PubSub.subscribe(k3d.component.PubSubTopic, function() {
+      var movedchild = this.drawsheet.getMovedChild();
+      var currentoffset = movedchild.getXOffset();
+      var row = 0;
+      var index_of_child = goog.array.indexOf(this.topchildren_, movedchild);
+      if (index_of_child == -1) {
+        row = 1;
+        index_of_child = goog.array.indexOf(this.bottomchildren_, movedchild);
+      }
+      var rowOfChildren = (row == 0) ? this.topchildren_ : this.bottomchildren_;
+      var childwidth = movedchild.getModel().getProp(Struct.WIDTH);
+      if (currentoffset < 0) {
+        // move to the left, search smaller indexes
+        var distancetraveled = currentoffset * this.scaleFactor_;
+        var startpoint = (childwidth / 2) - this.stopPoints[row][index_of_child];
+        console.log('Index of child', index_of_child, row);
+        console.log('Stop points', this.stopPoints[row]);
+        for (var i = index_of_child - 1; i >= 0; i--) {
+          console.log(this.stopPoints[row][i] + distancetraveled);
+          if ((this.stopPoints[row][i] + distancetraveled) < 0) {
+              console.log(rowOfChildren[i]);
+              pstj.lab.style.css.setTranslation(rowOfChildren[i].getElement(),
+                childwidth / this.scaleFactor_, 0);
+          } else {
+            pstj.lab.style.css.setTranslation(rowOfChildren[i].getElement(), 0,
+              0);
+          }
+        }
+      } else if (currentoffset > 0) {
+
+      }
+
+    }, this);
+
     // find the first wall and load it.
     this.loadWall(0);
 
+  };
+
+  /**
+   * UPdates the stop points recorded
+   * @param {[type]} e [description]
+   * @return {[type]} [description]
+   */
+  _.provideStopPoints = function(e) {
+    e.stopPropagation();
+    // inscribe index  list of stop points here...
+    this.stopPoints = this.currentWall.getStopPoints();
+    console.log(this.stopPoints);
   };
 
   /**
@@ -319,6 +390,9 @@ goog.scope(function() {
     }
     // clear the drawing
     this.drawsheet.removeChildren(true);
+    goog.array.clear(this.topchildren_);
+    goog.array.clear(this.bottomchildren_);
+
     // using the data structure find out the wall sizes and set them
     this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
       Struct.WIDTH)), goog.asserts.assertNumber(
@@ -418,7 +492,12 @@ goog.scope(function() {
     child.setModel(item);
     child.applyStyle(width, height, xoffsetperc, yoffsetperc);
     this.drawsheet.addChild(child, true);
-
+    // Add child to list of items so we can find it easily if it is on the move.
+    if (is_upper_row) {
+      this.topchildren_.push(child);
+    } else {
+      this.bottomchildren_.push(child);
+    }
   };
 
   /**

@@ -1,29 +1,27 @@
 goog.provide('k3d.component.Item');
+goog.provide('k3d.component.PubSub');
 
 goog.require('goog.asserts');
 goog.require('goog.dom.classlist');
+goog.require('goog.pubsub.PubSub');
 goog.require('goog.style');
 goog.require('k3d.ds.definitions');
-// goog.require('k3d.template');
 goog.require('pstj.ds.ListItem');
 goog.require('pstj.lab.style.css');
 goog.require('pstj.ui.MoveTouch');
-// goog.require('pstj.ui.Template');
 
-// /**
-//  * The item template.
-//  * @constructor
-//  * @extends {pstj.ui.Template}
-//  */
-// k3d.component.ItemTemplate = function() {
-//   goog.base(this);
-// };
-// goog.inherits(k3d.component.ItemTemplate, pstj.ui.Template);
-// goog.addSingletonGetter(k3d.component.ItemTemplate);
+/**
+ * The pubsub channel for the move of an item.
+ * @type {goog.pubsub.PubSub}
+ */
+k3d.component.PubSub = new goog.pubsub.PubSub();
 
-// k3d.component.ItemTemplate.prototype.getTemplate = function(model) {
-//   return k3d.template.item(model);
-// };
+/**
+ * The topic we are publishing on.
+ * @type {string}
+ */
+
+k3d.component.PubSubTopic = 'MOVE';
 
 /**
  * The item that we work with on the drawing board.
@@ -117,9 +115,15 @@ goog.scope(function() {
     this.moveCache_[1] = e.y;
   };
 
-  /** @inheritDoc */
+  /**
+   * Do not stop the event as we use it in the sheet to switch move modes.
+   * @override
+   * @param {pstj.ui.Touchable.Event} e The long press touch event.
+   * @protected
+   */
   _.handleLongPress = function(e) {
-    goog.base(this, 'handleLongPress', e);
+    //goog.base(this, 'handleLongPress', e);
+    this.setMoveEnabled(true);
     goog.dom.classlist.add(this.getElement(),
       goog.getCssName('sheet-item-moving'));
   };
@@ -152,7 +156,16 @@ goog.scope(function() {
       -(this.moveCache_[0] - this.moveCache_[2]),
       -(this.moveCache_[1] - this.moveCache_[3]), undefined,
       this.activatedScaleProperty);
+    k3d.component.PubSub.publish(k3d.component.PubSubTopic);
     return false;
+  };
+
+  /**
+   * Provides access method to the currently applied difference in position.
+   * @return {number}
+   */
+  _.getXOffset = function() {
+    return -(this.moveCache_[0] - this.moveCache_[2]);
   };
 
   /**

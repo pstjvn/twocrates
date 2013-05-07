@@ -20,6 +20,15 @@
 				}
 			};
 
+			/* Provide defaults for the widgets */
+			PSTJ = {
+				WIDGET: {
+					LISTITEM: {
+						THUMBNAIL: 'default_thumbnail.jpg'
+					}
+				}
+			};
+
 			HEADER_LINKS = [
 				{text: "Home", link: '/'},
 				{text: "How it works", link: '/howto'}
@@ -36,21 +45,21 @@
 	</head>
 	<body>
 
-		<div id="progress" class="h-B-C">
-		  <div class="h-B-C-D">Loading application </div>
-		  <div class="h-B-C-s">
-		    <div class="h-B-C-E"></div>
+		<div id="progress" class="pstj-widget-progress">
+		  <div class="pstj-widget-progress-text">Loading application </div>
+		  <div class="pstj-widget-progress-container">
+		    <div class="pstj-widget-progress-bar"></div>
 		  </div>
 		</div>
-<!--
+
 		<script src="build/app-cssmap.js"></script>
 		<script src="../../library/closure/goog/base.js"></script>
 		<script src="../pstj/deps.js"></script>
 		<script src="build/deps.js"></script>
 		<script>goog.require('app');</script>
- -->
 
+<!--
 		<script src="build/app.build.js"></script>
-
+ -->
 	</body>
 </html>

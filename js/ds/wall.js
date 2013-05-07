@@ -59,6 +59,17 @@ goog.scope(function() {
   };
 
   /**
+   * Iterate over all the data and return the matrix of stop points.
+   * @return {Array.<Array.<number>>} The stop point matrix.
+   */
+  _.getStopPoints = function() {
+    var result = [];
+    result[0] = this.top_.getStopPoints();
+    result[1] = this.bottom_.getStopPoints();
+    return result;
+  };
+
+  /**
    * Returns all image references in this wall instance. It will walk all the
    *   items that are currently applied on the wall (both top and floor rows)
    *   and gather all images linked in each item applied to the wall instance.

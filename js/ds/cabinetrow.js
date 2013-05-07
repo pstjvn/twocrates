@@ -27,6 +27,8 @@ k3d.ds.CabinetRow = function(items) {
 };
 goog.inherits(k3d.ds.CabinetRow, goog.events.EventTarget);
 
+
+
 goog.scope(function() {
 
   var _ = k3d.ds.CabinetRow.prototype;
@@ -95,6 +97,27 @@ goog.scope(function() {
     });
     return result;
   };
+
+  /**
+   * Returns the current stop points for the row.
+   * @return {Array.<number>}
+   */
+  _.getStopPoints = function() {
+    var result = [];
+    var advancement = 0;
+    var width = 0;
+    goog.array.forEach(this.items_, function(item) {
+
+      width = goog.asserts.assertNumber(
+        item.getProp(goog.array.contains(k3d.ds.definitions.CORNER_CATEGORIES,
+          item.getProp(Struct.CATEGORY)) ? Struct.WIDTH2 : Struct.WIDTH));
+
+      result.push(advancement + (width / 2));
+      advancement += width;
+    });
+    return result;
+  };
+
 
   /**
    * Provides the strinfigy method for JSON convertion to allow easier

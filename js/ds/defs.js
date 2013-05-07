@@ -98,6 +98,12 @@ k3d.ds.definitions.Struct = {
 };
 
 /**
+ * The categories that are basically corner elements
+ * @type {Array.<number>}
+ */
+k3d.ds.definitions.CORNER_CATEGORIES = [3, 4, 6];
+
+/**
  * THe static string used for errors.
  * TODO: this should actually be implemented as templates instead
  * @enum {number}
