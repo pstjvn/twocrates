@@ -11,6 +11,13 @@ goog.require('pstj.lab.style.css');
 goog.require('pstj.ui.MoveTouch');
 
 /**
+ * @fileoverview Provides the specialized component to represent an item
+ *   (cabinet) on the drawing board.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+/**
  * The pubsub channel for the move of an item.
  * @type {goog.pubsub.PubSub}
  */

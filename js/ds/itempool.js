@@ -4,12 +4,12 @@ goog.require('goog.structs.Pool');
 goog.require('k3d.component.Item');
 
 /**
- * My new class description
+ * The item pool for items on the drawing board.
  * @constructor
  * @extends {goog.structs.Pool}
  */
 k3d.ds.ItemPool = function() {
-  goog.base(this, 0, 100)
+  goog.base(this, 0, 100);
 };
 goog.inherits(k3d.ds.ItemPool, goog.structs.Pool);
 goog.addSingletonGetter(k3d.ds.ItemPool);

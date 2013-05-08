@@ -6,6 +6,7 @@ goog.require('goog.ui.ControlRenderer');
 goog.require('pstj.control.Base');
 goog.require('pstj.ui.CustomButtonRenderer');
 goog.require('pstj.widget.ControlGroup');
+
 /**
  * Provides the control instance for the buttons on the bottom of the screen.
  * @constructor
@@ -47,6 +48,5 @@ goog.scope(function() {
   _.handleAction = function(e) {
     var target = /** @type {!pstj.ui.Button} */ (e.target);
     this.notify(null, goog.asserts.assertString(target.getActionName()));
-    //console.log('Chld action', e.target.getActionName());
   };
 });

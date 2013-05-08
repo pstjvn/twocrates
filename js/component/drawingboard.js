@@ -1,19 +1,38 @@
 goog.provide('k3d.component.DrawingBoard');
 
+goog.require('goog.asserts');
 goog.require('goog.dom.classlist');
 goog.require('goog.events');
 goog.require('k3d.component.Item');
 goog.require('pstj.ui.TouchSheet');
 
 /**
- * The drawing board for the kitchen.
+ * @fileoverview Provides the drawing board sheet for the project's editor
+ *   implementation. It is constructed to e used with the editor control.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+
+/**
+ * The drawing board for the kitchen project.
  * @constructor
  * @extends {pstj.ui.TouchSheet}
  * @param {pstj.ui.Template=} opt_template Optional template.
  */
 k3d.component.DrawingBoard = function(opt_template) {
   goog.base(this, opt_template);
+  /**
+   * The moved child if there is one.
+   * @type {k3d.component.Item}
+   * @private
+   */
   this.movedChild_ = null;
+  /**
+   * Flag if a child is currently moved from its stationary position.
+   * @type {boolean}
+   * @private
+   */
   this.isChildMoving_ = false;
 };
 goog.inherits(k3d.component.DrawingBoard, pstj.ui.TouchSheet);
@@ -23,7 +42,8 @@ goog.inherits(k3d.component.DrawingBoard, pstj.ui.TouchSheet);
  * @enum {string}
  */
 k3d.component.DrawingBoard.EventType = {
-  REQUIRES_STOP_POINTS: goog.events.getUniqueId('a')
+  REQUIRES_STOP_POINTS: goog.events.getUniqueId('a'),
+  RELEASE_OF_CHILD: goog.events.getUniqueId('b')
 };
 
 goog.scope(function() {
@@ -45,11 +65,17 @@ goog.scope(function() {
       this.handleRelease_);
   };
 
+  /**
+   * Handles the relase touch event from a child.
+   * @param {pstj.ui.Touchable.Event} e The RELEASE touch event.
+   * @private
+   */
   _.handleRelease_ = function(e) {
     if (e.target != this) {
       this.isChildMoving_ = false;
       this.movedChild_ = null;
       goog.dom.classlist.remove(this.getElement(), 'k3d-transition');
+      this.dispatchEvent(k3d.component.DrawingBoard.EventType.RELEASE_OF_CHILD);
     }
   };
 
@@ -60,17 +86,28 @@ goog.scope(function() {
     }
   };
 
+  /**
+   * Handles the long press event from children. This is we need to mark the
+   *   child as the one we will be moving and record it for reference.
+   * @param {pstj.ui.Touchable.Event} e The LONG_PRESS event.
+   * @private
+   */
   _.handleLongPress_ = function(e) {
     // make sure the event comes from a child.
     if (e.target != this) {
       this.isChildMoving_ = true;
-      this.movedChild_ = e.target;
+      this.movedChild_ = /** @type {k3d.component.Item} */ (e.target);
       goog.dom.classlist.add(this.getElement(), 'k3d-transition');
       this.dispatchEvent(
         k3d.component.DrawingBoard.EventType.REQUIRES_STOP_POINTS);
     }
   };
 
+  /**
+   * Getter for the last recorded child that was moved independently of the
+   *   sheet.
+   * @return {k3d.component.Item}
+   */
   _.getMovedChild = function() {
     return this.movedChild_;
   };
@@ -81,5 +118,5 @@ goog.scope(function() {
     if (!goog.isNull(this.size)) {
       this.dispatchEvent(goog.events.EventType.RESIZE);
     }
-  }
+  };
 });

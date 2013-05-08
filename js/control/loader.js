@@ -17,6 +17,15 @@ goog.require('pstj.ds.ImageList');
 goog.require('pstj.widget.Progress');
 
 /**
+ * @fileoverview Provides the loading and saving of data abstraction for the
+ *   project. It handles transparently the loading and storing of data and is
+ *   made accessible and available to all parts of the application by
+ *   providing it as singleton.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+/**
  * This is our loader controler class. Use the instance getter to always refer
  *   correctly to it.
  * @constructor
@@ -55,6 +64,7 @@ k3d.control.Loader = function() {
   this.progress_.setContent(goog.asserts.assertString(
     pstj.configure.getRuntimeValue('PRELOAD_TEXT', '', 'TWOCRATES.STRINGS'),
     'Value of TWOCRATES.STRINGS.PRELOAD_TEXT should be string'));
+
   this.getHandler().listenOnce(this.progress_, goog.events.EventType.LOAD,
     function() {
       if (goog.isFunction(this.onPreloadComplete_)) {
@@ -65,7 +75,8 @@ k3d.control.Loader = function() {
         goog.dispose(this.progress_);
         goog.dom.removeNode(document.getElementById('progress'));
       }, this), 500);
-    });
+    }
+  );
 
   /**
    * The deferred object for the kitchen project data structure.
@@ -145,21 +156,18 @@ k3d.control.Loader = function() {
         goog.dispose(this.imageLoader_);
       }, this), 100);
     }, this));
-
   /**
    * Deferred for the all images loaded case.
    * @type {goog.async.Deferred}
    * @private
    */
   this.allImagesDef_ = new goog.async.Deferred();
-
   /**
    * Optional handler for when the preloading is complete.
    * @type {?function(): undefined}
    * @private
    */
   this.onPreloadComplete_ = null;
-
 };
 goog.inherits(k3d.control.Loader, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Loader);

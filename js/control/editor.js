@@ -19,6 +19,14 @@ goog.require('pstj.lab.style.css');
 goog.require('pstj.math.utils');
 goog.require('pstj.widget.Select');
 
+/**
+ * @fileoverview Provides the 'editor' functionality. It is closely bound to
+ *   the datasheet component and depends on its implmentation for determining
+ *   the moved objects in the sheet so do not use the generic touchsheet with
+ *   this control, instead use the drawing board or a subclass of it.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
 
 /**
  * Provides the design tool's editor controls.
@@ -56,7 +64,6 @@ k3d.control.Editor = function() {
    */
   this.frame = new k3d.ui.Filler();
   this.registerDisposable(this.frame);
-
   /**
    * The drawing sheet / board used to display the items.
    * @type {k3d.component.DrawingBoard}
@@ -65,7 +72,9 @@ k3d.control.Editor = function() {
   this.registerDisposable(this.drawsheet);
   this.getHandler().listen(this.drawsheet,
     k3d.component.DrawingBoard.EventType.REQUIRES_STOP_POINTS,
-    this.provideStopPoints);
+    this.provideStopPoints_).listen(this.drawsheet,
+    k3d.component.DrawingBoard.EventType.RELEASE_OF_CHILD,
+    this.onShiftCabinetEnd_);
 
   /**
    * The selection box for items.
@@ -105,20 +114,42 @@ k3d.control.Editor = function() {
   /**
    * List of components that have been added to the top row.
    * @type {Array.<k3d.component.Item>}
+   * @private
    */
   this.topchildren_ = [];
   /**
    * List of components that have been added to the bottom row.
    * @type {Array.<k3d.component.Item>}
+   * @private
    */
   this.bottomchildren_ = [];
-
   /**
    * The list of lists of stop points forthe movement.
-   * @type {Array.<Array.<number>>}
+   * @type {Array.<number>}
    * @protected
    */
   this.stopPoints = null;
+  /**
+   * The offset that should be applied to the item after all movement has
+   *   ended.
+   * @type {number}
+   * @private
+   */
+  this.lastMovementOffset_ = 0;
+  /**
+   * Cache for the currently moved child. We can use this to speed up things
+   *   and reuse it when calculating new positions after the move,
+   * @type {k3d.component.Item}
+   * @private
+   */
+  this.movedChild_ = null;
+  /**
+   * Cache the moved child's row, it can be reused in movement and after
+   *   movement calculations.
+   * @type {Array.<k3d.component.Item>}
+   * @private
+   */
+  this.movedChildsRow_ = null;
   /**
    * The delayed reaction to a sheet resize. This is delayed to avoid unneeded
    *   calculation during refitting of the sheet in the frame.
@@ -183,10 +214,6 @@ goog.scope(function() {
     this.initialize();
   };
 
-  ///// handle move
-  //find index of child (indexOfChild);
-  //find treshholds for movement and on move apply search on tresholds.
-
   /**
    * Put logic here that marks that everything possible to be preloaded (prior
    *   and after the initial showing) is done loading.
@@ -239,37 +266,63 @@ goog.scope(function() {
     // Subscribe for position updated on children We need this in order to make
     // the movement of component possible.
     k3d.component.PubSub.subscribe(k3d.component.PubSubTopic, function() {
-      var movedchild = this.drawsheet.getMovedChild();
+      // Finds the child that is moving currently (only one really).
+      var movedchild = this.movedChild_;
+      // Find where in X coordinate is the child now (offset in pixels).
       var currentoffset = movedchild.getXOffset();
-      var row = 0;
-      var index_of_child = goog.array.indexOf(this.topchildren_, movedchild);
-      if (index_of_child == -1) {
-        row = 1;
-        index_of_child = goog.array.indexOf(this.bottomchildren_, movedchild);
-      }
-      var rowOfChildren = (row == 0) ? this.topchildren_ : this.bottomchildren_;
+      // Find the index of the moved child in the list of children currently
+      // visualized.
+      var index_of_child = goog.array.indexOf(this.movedChildsRow_, movedchild);
+      // Record the child's natural width (mm).
       var childwidth = movedchild.getModel().getProp(Struct.WIDTH);
+      // The distance the object was moved calculated in millimeters.
+      var distancetraveled = currentoffset * this.scaleFactor_;
+      var rowOfChildren = this.movedChildsRow_;
+      // Null out out cache of positioning.
+      this.lastMovementOffset_ = 0;
+
+      // Handler for offsets, we need different handling for positive and
+      // negative offsets.
       if (currentoffset < 0) {
-        // move to the left, search smaller indexes
-        var distancetraveled = currentoffset * this.scaleFactor_;
-        var startpoint = (childwidth / 2) - this.stopPoints[row][index_of_child];
-        console.log('Index of child', index_of_child, row);
-        console.log('Stop points', this.stopPoints[row]);
+
+        // Determine the start (edge) point agains which to calculate where the
+        // moving element is tipping at right now. We are comparing those to the
+        // stop points calculated when the movement started.
+        var startpoint = this.stopPoints[index_of_child] - (
+          childwidth / 2);
+
+        // Iterate over the children that are left of the moved item (smaller
+        // indexes) because the movement is determined to be to left.
         for (var i = index_of_child - 1; i >= 0; i--) {
-          console.log(this.stopPoints[row][i] + distancetraveled);
-          if ((this.stopPoints[row][i] + distancetraveled) < 0) {
-              console.log(rowOfChildren[i]);
+
+          // If a stop point is passed
+          if ((startpoint + distancetraveled) < this.stopPoints[i]) {
+              this.lastMovementOffset_--;
+              // Move the item to the right by the pixelized width of the moved
+              // item.
               pstj.lab.style.css.setTranslation(rowOfChildren[i].getElement(),
                 childwidth / this.scaleFactor_, 0);
           } else {
+
+            // If the item is not passed return it ot its normal position.
             pstj.lab.style.css.setTranslation(rowOfChildren[i].getElement(), 0,
               0);
           }
         }
       } else if (currentoffset > 0) {
-
+        var startpoint = this.stopPoints[index_of_child] + (
+          childwidth / 2);
+        for (var i = (index_of_child + 1); i < rowOfChildren.length; i++) {
+          if ((startpoint + distancetraveled) > this.stopPoints[i]) {
+            this.lastMovementOffset_++;
+            pstj.lab.style.css.setTranslation(rowOfChildren[i].getElement(),
+              -(childwidth / this.scaleFactor_), 0);
+          } else {
+            pstj.lab.style.css.setTranslation(rowOfChildren[i].getElement(), 0,
+              0);
+          }
+        }
       }
-
     }, this);
 
     // find the first wall and load it.
@@ -278,15 +331,41 @@ goog.scope(function() {
   };
 
   /**
-   * UPdates the stop points recorded
-   * @param {[type]} e [description]
-   * @return {[type]} [description]
+   * Updates the stop points based on the current configuration of the items
+   *   in the data record and cache the moved component.
+   * @param {goog.events.Event} e The request for points event.
+   * @private
    */
-  _.provideStopPoints = function(e) {
+  _.provideStopPoints_ = function(e) {
     e.stopPropagation();
-    // inscribe index  list of stop points here...
-    this.stopPoints = this.currentWall.getStopPoints();
-    console.log(this.stopPoints);
+    this.movedChild_ = this.drawsheet.getMovedChild();
+    if (goog.array.contains(this.topchildren_, this.movedChild_)) {
+      this.movedChildsRow_ = this.topchildren_;
+      this.stopPoints = this.currentWall.getStopPoints(true);
+    } else if (goog.array.contains(this.bottomchildren_, this.movedChild_)) {
+      this.movedChildsRow_ = this.bottomchildren_;
+      this.stopPoints = this.currentWall.getStopPoints(false);
+    } else {
+      throw new Error('Cannot determine the row of the moved child');
+    }
+  };
+
+  /**
+   * Handles the event from drawsheet when a child of the sheet has been moved
+   *   and then released.
+   * @param {goog.events.Event} e The END OF MOVEMENT event.
+   * @private
+   */
+  _.onShiftCabinetEnd_ = function(e) {
+    e.stopPropagation();
+    goog.array.forEach(this.movedChildsRow_, function(item) {
+      pstj.lab.style.css.setTranslation(item.getElement(), 0, 0);
+    });
+    this.currentWall.getRow(
+      (this.movedChildsRow_ == this.topchildren_) ? true : false).shiftItem(
+      this.movedChild_.getModel(), this.lastMovementOffset_);
+    if (goog.isNull(this.currentWall)) throw new Error('We are mossing our call reference');
+    this.loadWall(this.data.getWallIndex(this.currentWall));
   };
 
   /**
@@ -388,6 +467,7 @@ goog.scope(function() {
     } else {
       return;
     }
+
     // clear the drawing
     this.drawsheet.removeChildren(true);
     goog.array.clear(this.topchildren_);
@@ -397,10 +477,8 @@ goog.scope(function() {
     this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
       Struct.WIDTH)), goog.asserts.assertNumber(
         this.currentWall.getProp(Struct.HEIGHT)));
-    // calculate the potistion of the items on the drawing and store them as
-    // pixel values
+
     this.visualizeItems();
-    // calculate percentages
   };
 
   /**

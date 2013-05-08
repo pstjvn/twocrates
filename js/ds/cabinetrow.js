@@ -7,6 +7,12 @@ goog.require('k3d.ds.definitions');
 goog.require('pstj.ds.ListItem');
 
 /**
+ * @fileoverview Data structure to present a row of cabinets in a kitchen wall.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+/**
  * The class represents a row on a wall.
  * @constructor
  * @extends {goog.events.EventTarget}
@@ -26,8 +32,6 @@ k3d.ds.CabinetRow = function(items) {
   }, this);
 };
 goog.inherits(k3d.ds.CabinetRow, goog.events.EventTarget);
-
-
 
 goog.scope(function() {
 
@@ -85,6 +89,22 @@ goog.scope(function() {
   };
 
   /**
+   * Removes the element from its current position and inserts it at a new
+   *   position that is shifted with the move index.
+   * @param {pstj.ds.ListItem} item The data record item to move.
+   * @param {number} moveIndex The number of position to move, negative means
+   *   to the left in the array.
+   * @return {boolean} True if the move was performed successfully.
+   */
+  _.shiftItem = function(item, moveIndex) {
+    var index = goog.array.indexOf(this.items_, item);
+    if (index < 0) return false;
+    if (!goog.array.removeAt(this.items_, index)) return false;
+    goog.array.insertAt(this.items_, item, index + moveIndex);
+    return true;
+  };
+
+  /**
    * Returns all referenced images images in the row. Those are not guaranteed
    *   to be unique.
    * @return {Array.<string>}
@@ -117,7 +137,6 @@ goog.scope(function() {
     });
     return result;
   };
-
 
   /**
    * Provides the strinfigy method for JSON convertion to allow easier

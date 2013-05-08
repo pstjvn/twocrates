@@ -7,19 +7,30 @@ goog.require('pstj.ds.List');
 goog.require('pstj.ds.ListItem');
 
 /**
+ * @fileoverview Provides data structure for a whole project. This will allows
+ *   us to have the complete data structure at one place and available for
+ *   serialization as well as coherent.
+ *
+ * @author regardingscot@gmail.com (Peter StJ)
+ */
+
+/**
  * The kitchen project data type.
  * @param {Object} data The literal object represeting a kitchen project.
  * @constructor
  * @extends {pstj.ds.ListItem}
  */
 k3d.ds.KitchenProject = function(data) {
+  /**
+   * The walls on the kitchen.
+   * @type {pstj.ds.List}
+   */
   this.walls = new pstj.ds.List();
   goog.base(this, data);
 };
 goog.inherits(k3d.ds.KitchenProject, pstj.ds.ListItem);
 
 goog.scope(function() {
-
   var _ = k3d.ds.KitchenProject.prototype;
   var Struct = k3d.ds.definitions.Struct;
 
@@ -40,6 +51,11 @@ goog.scope(function() {
     this.walls.add(new k3d.ds.Wall(wall));
   };
 
+  /**
+   * Getter for the index of a wall.
+   * @param {pstj.ds.ListItem} wall The wall to find the index of.
+   * @return {number}
+   */
   _.getWallIndex = function(wall) {
     return this.walls.getIndexByItem(wall);
   };
@@ -97,6 +113,4 @@ goog.scope(function() {
   _.hasWallWithIndex = function(index) {
     return (index < this.walls.getCount() && index >= 0);
   };
-
 });
-

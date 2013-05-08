@@ -93,7 +93,9 @@ k3d.ds.definitions.Struct = {
   ERROR_MESSAGE: 'message',
   // The payload of a response.
   DATA: 'data',
+  // The finish id in the kitchen project.
   FINISH: 'finish_id',
+  // The handles id in the kitchen project.
   HANDLE: 'handle_id'
 };
 

@@ -60,13 +60,13 @@ goog.scope(function() {
 
   /**
    * Iterate over all the data and return the matrix of stop points.
-   * @return {Array.<Array.<number>>} The stop point matrix.
+   * @param {boolean} top If the stop points should be obtained from the top
+   *   or bottom row.
+   * @return {Array.<number>} The stop point matrix.
    */
-  _.getStopPoints = function() {
-    var result = [];
-    result[0] = this.top_.getStopPoints();
-    result[1] = this.bottom_.getStopPoints();
-    return result;
+  _.getStopPoints = function(top) {
+    if (top) return this.top_.getStopPoints();
+    return this.bottom_.getStopPoints();
   };
 
   /**
