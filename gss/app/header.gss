@@ -14,5 +14,20 @@
   vertical-align: middle;
   padding: 0 10px 0 10px;
   line-height: 45px;
+  background-color: #2D3033;
+
+  -webkit-transition: background-color 300ms linear;
+  /* @alternate */
+  -moz-transition: background-color 300ms linear;
+  /* @alternate */
+  -o-transition: background-color 300ms linear;
+  /* @alternate */
+  -ms-transition: background-color 300ms linear;
+  /* @alternate */
+  transition: background-color 300ms linear;
 }
 
+
+.header-link:hover, .header-link:active {
+  background-color: MAIN_BLUE;
+}
