@@ -71,6 +71,7 @@ goog.scope(function() {
    * @private
    */
   _.handleRelease_ = function(e) {
+    if (!this.isChildMoving_) return;
     if (e.target != this) {
       this.isChildMoving_ = false;
       this.movedChild_ = null;
