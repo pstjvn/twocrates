@@ -405,7 +405,7 @@ goog.scope(function() {
   _.getHandles = function() {
     if (!this.hasBeenRequested_(k3d.control.Loader.Item.HANDLES)) {
       this.alreadyRequested_[k3d.control.Loader.Item.HANDLES] = true;
-      goog.net.XhrIo.send(Path.LOAD_FINISHES, goog.bind(function(e) {
+      goog.net.XhrIo.send(Path.LOAD_HANDLES, goog.bind(function(e) {
 
         try {
           var result = this.checkForErrors(e);
