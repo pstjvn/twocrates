@@ -9,6 +9,7 @@ goog.require('k3d.component.DrawingBoard');
 goog.require('k3d.component.ItemView');
 goog.require('k3d.component.PopOver');
 goog.require('k3d.component.PubSub');
+goog.require('k3d.component.SelectItemTemplate');
 goog.require('k3d.control.Loader');
 goog.require('k3d.ds.ItemPool');
 goog.require('k3d.ds.definitions');
@@ -80,17 +81,20 @@ k3d.control.Editor = function() {
    * The selection box for items.
    * @type {pstj.widget.Select}
    */
-  this.selectBox = new pstj.widget.Select();
+  this.selectBox = new pstj.widget.Select(undefined,
+    k3d.component.SelectItemTemplate.getInstance());
   /**
    * The selection box for items.
    * @type {pstj.widget.Select}
    */
-  this.selectFinish = new pstj.widget.Select();
+  this.selectFinish = new pstj.widget.Select(undefined,
+    k3d.component.SelectItemTemplate.getInstance());
   /**
    * The selection box for items.
    * @type {pstj.widget.Select}
    */
-  this.selectHandles = new pstj.widget.Select();
+  this.selectHandles = new pstj.widget.Select(undefined,
+    k3d.component.SelectItemTemplate.getInstance());
   /**
    * Referrence to the kitchen project data structure.
    * @type {k3d.ds.KitchenProject}
@@ -364,7 +368,9 @@ goog.scope(function() {
     this.currentWall.getRow(
       (this.movedChildsRow_ == this.topchildren_) ? true : false).shiftItem(
       this.movedChild_.getModel(), this.lastMovementOffset_);
-    if (goog.isNull(this.currentWall)) throw new Error('We are mossing our call reference');
+    if (goog.isNull(this.currentWall)) {
+      throw new Error('We are mossing our call reference');
+    }
     this.clearDrawing();
     this.visualizeItems();
     //this.loadWall(this.data.getWallIndex(this.currentWall));
@@ -481,6 +487,9 @@ goog.scope(function() {
     this.visualizeItems();
   };
 
+  /**
+   * Removes all components from the drawing.
+   */
   _.clearDrawing = function() {
     goog.array.forEach(this.drawsheet.removeChildren(true), function(item) {
       k3d.ds.ItemPool.getInstance().releaseObject(item);
