@@ -287,7 +287,7 @@ goog.scope(function() {
    * @private
    */
   _.loadImage_ = function(src) {
-    this.imageLoader_.loadImage(src);
+    this.imageLoader_.loadImage(goog.global['ASSETS_PREFIX'] + src);
   };
 
   /**
