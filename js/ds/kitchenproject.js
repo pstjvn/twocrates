@@ -70,7 +70,7 @@ goog.scope(function() {
     for (var i = 0, len = this.walls.getCount(); i < len; i++) {
       images = this.walls.getByIndex(i).getImageReferences();
       for (var ii = 0, len2 = images.length; ii < len2; ii++) {
-        if (images[ii] != '') {
+        if (!goog.isNull(images[ii]) && images[ii] != '') {
           goog.array.insert(result, images[ii]);
         }
       }
