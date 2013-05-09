@@ -3,6 +3,7 @@
 /**
  * Provides the main body of the application.
  * @param links The links to use in the header.
+ * @param prefix The prefix for images.
  */
 {template .base}
   {call .header data="all" /}
@@ -10,7 +11,9 @@
     <div class="{css child}">
     </div>
   </div>
-  {call .controls /}
+  {call .controls}
+    {param prefix: $prefix /}
+  {/call}
 {/template}
 
 /**
@@ -21,7 +24,7 @@
   <div class="{css header}">
     {foreach $link in $links}
       <div class="{css goog-inline-block} {css header-link}">
-        <a href="{$link.link}">{$link.text}</a>
+        <a href="{$link.link}">{$link.text |noAutoescape}</a>
       </div>
     {/foreach}
   </div>
@@ -47,12 +50,13 @@
 
 /**
  * Item details view
+ * @param prefix The prefix to use when retrieving
  */
 {template .itemview}
   <div class="{css item-view-wrapper}">
     <div class="{css item-view-image-container} {css goog-inline-block}">
       <div class="{css item-view-image-centerer}">
-        <img class="{css item-view-image}" src="" data-model="angle_picture" />
+        <img class="{css item-view-image}" src="" data-model="angle_picture" data-filter="prepend({$prefix})" />
       </div>
     </div>
     <div class="{css item-view-details-coniainer} {css goog-inline-block}">
@@ -82,32 +86,33 @@
 
 /**
  * The control buttons layer.
+ * @param prefix
  */
 {template .controls}
   <div class="{css design-tool-controls} {css d-table}">
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="previous" title="{msg desc="Tooltip: previous"}previous{/msg}">
       <div class="{css d-table} {css margin-auto}">
-        <img width="60" height="40" src="assets/left.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="{$prefix}public/assets/left.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-finish">
       <div class="{css d-table} {css margin-auto}">
-        <img width="60" height="40" src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="{$prefix}public/assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-handles">
       <div class="{css d-table} {css margin-auto}">
-        <img width="60" height="40" src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="{$prefix}public/assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="save">
       <div class="{css d-table} {css margin-auto}">
-        <img width="60" height="40" src="assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="{$prefix}public/assets/filler.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
     <div class="{css design-tool-control-button} {css d-table-cell}" data-action="next" title="{msg desc="Tooltip: next"}next{/msg}">
       <div class="{css d-table} {css margin-auto}">
-        <img width="60" height="40" src="assets/right.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
+        <img width="60" height="40" src="{$prefix}public/assets/right.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
   </div>

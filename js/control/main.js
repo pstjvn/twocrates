@@ -43,7 +43,10 @@ goog.scope(function() {
    * At this point we have certainty that the needed data has been loaded.
    */
   _.onPreloadReady = function() {
-    var body = k3d.template.base({links: goog.global['HEADER_LINKS']});
+    var body = k3d.template.base({
+      links: goog.global['HEADER_LINKS'],
+      prefix: goog.global['ASSETS_PREFIX']
+    });
     var el = goog.dom.htmlToDocumentFragment(body);
     document.body.appendChild(el);
 

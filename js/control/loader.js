@@ -14,6 +14,7 @@ goog.require('k3d.mb');
 goog.require('pstj.configure');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.ImageList');
+goog.require('pstj.ds.ImageList.EventType');
 goog.require('pstj.widget.Progress');
 
 /**
@@ -145,7 +146,8 @@ k3d.control.Loader = function() {
    * @private
    */
   this.lateImageLoader_ = new pstj.ds.ImageList();
-  this.getHandler().listen(this.lateImageLoader_, goog.events.EventType.LOAD,
+  this.getHandler().listen(this.lateImageLoader_,
+    pstj.ds.ImageList.EventType.READY,
     goog.bind(function() {
       this.allImagesDef_.callback();
       // clean up image storage that is not used.
@@ -233,7 +235,7 @@ goog.scope(function() {
         this.allImagesDef_.callback();
       } else {
         goog.array.forEach(imagelist, function(image) {
-          this.lateImageLoader_.loadImage(image);
+          this.lateImageLoader_.loadImage(goog.global['ASSETS_PREFIX'] + image);
         }, this);
       }
     }, this));
