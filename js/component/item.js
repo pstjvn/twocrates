@@ -186,11 +186,13 @@ goog.scope(function() {
     this.getElement().style.height = this.styleoptions_[1] + '%';
     this.getElement().style.top = this.styleoptions_[2] + '%';
     this.getElement().style.left = this.styleoptions_[3] + '%';
-    this.getElement().style.backgroundImage = 'url(' + 'assets/1.png' + ')';
-    // this.getElement().style.backgroundImage = 'url(' +
-    //   goog.asserts.assertString(this.getModel().getProp(
-    //     k3d.ds.definitions.Struct.DRAWING_IMAGE),
-    //     'Image path shoudl be string') + ')';
+    var img = goog.asserts.assertString(this.getModel().getProp(
+        k3d.ds.definitions.Struct.DRAWING_IMAGE),
+        'Image path shoudl be string');
+    if (img == '') img = 'public/assets/1.png';
+    // this.getElement().style.backgroundImage = 'url(' + 'assets/1.png' + ')';
+    this.getElement().style.backgroundImage = 'url(' +
+      goog.global['ASSETS_PREFIX'] + img + ')';
   };
 
   /**

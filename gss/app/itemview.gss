@@ -3,6 +3,7 @@
   padding: DIALOG_PADDING;
   border: DIALOG_BORDER;
   background: DIALOG_BACKGROUND;
+  width: 600px;
 }
 
 .item-view-image-container {

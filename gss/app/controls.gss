@@ -9,7 +9,7 @@
   bottom: 0;
   left: 0;
   height: 40px;
-  background: TC_CONTROL_BUTTONS_BG;
+  background: MAIN_BLUE;
 }
 
 .design-tool-control-button {

@@ -9,3 +9,7 @@
   /* @alternate */
   transform: scale(1.1);
 }
+
+.child > div {
+  background-size: 100% 100%;
+}

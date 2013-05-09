@@ -1,0 +1,5 @@
+.pstj-list-item-container {
+  border: 1px solid SECONDARY_GREY;
+  height: 100%;
+  padding: 5px;
+}

@@ -24,7 +24,9 @@ goog.inherits(k3d.component.ItemViewTemplate, pstj.ui.Template);
 goog.addSingletonGetter(k3d.component.ItemViewTemplate);
 /** @inheritDoc */
 k3d.component.ItemViewTemplate.prototype.getTemplate = function(model) {
-  return k3d.template.itemview({});
+  return k3d.template.itemview({
+    prefix: goog.global['ASSETS_PREFIX']
+  });
 };
 /** @inheritDoc */
 k3d.component.ItemViewTemplate.prototype.getContentElement = function(comp) {
