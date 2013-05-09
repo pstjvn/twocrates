@@ -75,7 +75,8 @@ goog.scope(function() {
     if (e.target != this) {
       this.isChildMoving_ = false;
       this.movedChild_ = null;
-      goog.dom.classlist.remove(this.getElement(), 'k3d-transition');
+      goog.dom.classlist.remove(this.getElement(),
+        goog.getCssName('k3d-transition'));
       this.dispatchEvent(k3d.component.DrawingBoard.EventType.RELEASE_OF_CHILD);
     }
   };
@@ -98,7 +99,7 @@ goog.scope(function() {
     if (e.target != this) {
       this.isChildMoving_ = true;
       this.movedChild_ = /** @type {k3d.component.Item} */ (e.target);
-      goog.dom.classlist.add(this.getElement(), 'k3d-transition');
+      goog.dom.classlist.add(this.getElement(), goog.getCssName('k3d-transition'));
       this.dispatchEvent(
         k3d.component.DrawingBoard.EventType.REQUIRES_STOP_POINTS);
     }
