@@ -365,7 +365,9 @@ goog.scope(function() {
       (this.movedChildsRow_ == this.topchildren_) ? true : false).shiftItem(
       this.movedChild_.getModel(), this.lastMovementOffset_);
     if (goog.isNull(this.currentWall)) throw new Error('We are mossing our call reference');
-    this.loadWall(this.data.getWallIndex(this.currentWall));
+    this.clearDrawing();
+    this.visualizeItems();
+    //this.loadWall(this.data.getWallIndex(this.currentWall));
   };
 
   /**
@@ -469,9 +471,7 @@ goog.scope(function() {
     }
 
     // clear the drawing
-    this.drawsheet.removeChildren(true);
-    goog.array.clear(this.topchildren_);
-    goog.array.clear(this.bottomchildren_);
+    this.clearDrawing();
 
     // using the data structure find out the wall sizes and set them
     this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
@@ -479,6 +479,14 @@ goog.scope(function() {
         this.currentWall.getProp(Struct.HEIGHT)));
 
     this.visualizeItems();
+  };
+
+  _.clearDrawing = function() {
+    goog.array.forEach(this.drawsheet.removeChildren(true), function(item) {
+      k3d.ds.ItemPool.getInstance().releaseObject(item);
+    });
+    goog.array.clear(this.topchildren_);
+    goog.array.clear(this.bottomchildren_);
   };
 
   /**
