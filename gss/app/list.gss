@@ -1,5 +1,23 @@
+.pstj-list-item-active .pstj-list-item-container {
+  background-color: MAIN_BLUE;
+  color: white;
+}
+
 .pstj-list-item-container {
   border: 1px solid SECONDARY_GREY;
   height: 100%;
   padding: 5px;
+}
+
+.pstj-list-item-thumbnail {
+  width: 88px;
+  height: 88px;
+}
+
+.pstj-list-item-image-holder {
+  float: left;
+  margin-right: 5px;
+  height: 98px;
+  padding: 5px;
+  background-color: SECONDARY_GREY;
 }
