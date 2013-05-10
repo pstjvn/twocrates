@@ -373,6 +373,7 @@ goog.scope(function() {
     }
     this.clearDrawing();
     this.visualizeItems();
+    this.onDataChange();
     //this.loadWall(this.data.getWallIndex(this.currentWall));
   };
 
