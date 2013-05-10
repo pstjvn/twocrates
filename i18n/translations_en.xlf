@@ -12,6 +12,11 @@
         <target/>
         <note priority="1" from="description">Currency sign</note>
       </trans-unit>
+      <trans-unit id="1320824107426276525" datatype="html">
+        <source>Handles</source>
+        <target/>
+        <note priority="1" from="description">Tooltip: Handles</note>
+      </trans-unit>
       <trans-unit id="1407560924967345762" datatype="html">
         <source>Page</source>
         <target/>
@@ -32,25 +37,55 @@
         <target/>
         <note priority="1" from="description">Height</note>
       </trans-unit>
+      <trans-unit id="3249513483374643425" datatype="html">
+        <source>Add</source>
+        <target/>
+        <note priority="1" from="description">Tooltip: Add</note>
+      </trans-unit>
       <trans-unit id="3417781606255954910" datatype="html">
         <source>Change model</source>
         <target/>
         <note priority="1" from="description">Button label: change model</note>
+      </trans-unit>
+      <trans-unit id="3768927257183755959" datatype="html">
+        <source>Save</source>
+        <target/>
+        <note priority="1" from="description">Tooltip: Save</note>
       </trans-unit>
       <trans-unit id="3797570084942068182" datatype="html">
         <source>Select</source>
         <target/>
         <note priority="1" from="description">Select</note>
       </trans-unit>
+      <trans-unit id="5736512712252459867" datatype="html">
+        <source>next</source>
+        <target/>
+        <note priority="1" from="description">Tooltip: next</note>
+      </trans-unit>
       <trans-unit id="5881876145178332550" datatype="html">
         <source>of</source>
         <target/>
         <note priority="1" from="description">the word of in page N of X pages</note>
       </trans-unit>
+      <trans-unit id="6095534740119293938" datatype="html">
+        <source>previous</source>
+        <target/>
+        <note priority="1" from="description">Tooltip: previous</note>
+      </trans-unit>
+      <trans-unit id="6955289202401596804" datatype="html">
+        <source>Price: <x id="PRICE"/> AU</source>
+        <target/>
+        <note priority="1" from="description">Price stating string</note>
+      </trans-unit>
       <trans-unit id="7558413604919060916" datatype="html">
         <source>Select item</source>
         <target/>
         <note priority="1" from="description">Select item</note>
+      </trans-unit>
+      <trans-unit id="8146368110648003985" datatype="html">
+        <source>Finishes</source>
+        <target/>
+        <note priority="1" from="description">Tooltip: Finishes</note>
       </trans-unit>
       <trans-unit id="8720977247725652816" datatype="html">
         <source>Ok</source>
