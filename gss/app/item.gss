@@ -4,9 +4,13 @@
 
 .sheet-item-moving {
   z-index: 9999;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
   opacity: 0.7;
   -webkit-transform: scale(1.1);
-  /* @alternate */
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
 
