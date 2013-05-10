@@ -83,7 +83,8 @@ goog.scope(function() {
    * @param {pstj.ds.RecordID} id The id of the finish record.
    */
   _.setFinishId = function(id) {
-    this.getRawData()[Struct.FINISH] = id.toString();
+    this.mutate(Struct.FINISH, id.toString());
+    //this.getRawData()[Struct.FINISH] = id.toString();
   };
 
   /**
@@ -91,7 +92,8 @@ goog.scope(function() {
    * @param {pstj.ds.RecordID} id The id of the handle record to use.
    */
   _.setHandleId = function(id) {
-    this.getRawData()[Struct.HANDLE] = id.toString();
+    this.mutate(Struct.HANDLE, id.toString());
+    //this.getRawData()[Struct.HANDLE] = id.toString();
   };
 
   /**
