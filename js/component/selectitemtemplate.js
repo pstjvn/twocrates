@@ -2,8 +2,11 @@ goog.provide('k3d.component.SelectItemTemplate');
 
 goog.require('k3d.ds.definitions');
 goog.require('pstj.ui.ListItemTemplate');
+
+/** @author regardingscot@gmail.com (Peter StJ) */
+
 /**
- * My new class description
+ * The template for the select item in item select.
  * @constructor
  * @extends {pstj.ui.ListItemTemplate}
  */
@@ -28,6 +31,5 @@ goog.scope(function() {
       thumbnail: component.getModel().getProp(Struct.SIDE_IMAGE)
     };
   };
-
 });
 

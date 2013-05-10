@@ -6,6 +6,8 @@ goog.require('goog.events.EventHandler');
 goog.require('goog.math.Size');
 goog.require('goog.ui.Component.EventType');
 goog.require('k3d.component.DrawingBoard');
+goog.require('k3d.component.FinishItemTemplate');
+goog.require('k3d.component.HandleItemTemplate');
 goog.require('k3d.component.ItemView');
 goog.require('k3d.component.PopOver');
 goog.require('k3d.component.PubSub');
@@ -88,13 +90,13 @@ k3d.control.Editor = function() {
    * @type {pstj.widget.Select}
    */
   this.selectFinish = new pstj.widget.Select(undefined,
-    k3d.component.SelectItemTemplate.getInstance());
+    k3d.component.FinishItemTemplate.getInstance());
   /**
    * The selection box for items.
    * @type {pstj.widget.Select}
    */
   this.selectHandles = new pstj.widget.Select(undefined,
-    k3d.component.SelectItemTemplate.getInstance());
+    k3d.component.HandleItemTemplate.getInstance());
   /**
    * Referrence to the kitchen project data structure.
    * @type {k3d.ds.KitchenProject}
