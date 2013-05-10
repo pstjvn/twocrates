@@ -40,8 +40,8 @@ goog.scope(function() {
    */
   _.update = function() {
     this.label_.setModel({
-      id: 1,
-      price: 124399
+      'id': 1,
+      'price': 124399
     });
     // recalculate the price and vizualize! for ech wall iterate bottom row and
     // calculate bench size and kickboard size. sum(bench), sum(kickboard),
