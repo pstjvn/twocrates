@@ -7,3 +7,7 @@
   border: 2px solid MAIN_BLUE;
   color: white;
 }
+
+.price-label-text, .price-label-value, .price-label-currency {
+  font-weight: bold;
+}
