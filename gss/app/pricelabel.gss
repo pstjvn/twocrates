@@ -1,0 +1,9 @@
+.price-label {
+  position: absolute;
+  top: 48px;
+  right: 3px;
+  background-color: SECONDARY_GREY;
+  padding: 5px;
+  border: 2px solid MAIN_BLUE;
+  color: white;
+}

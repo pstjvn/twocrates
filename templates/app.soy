@@ -159,7 +159,16 @@
   </div>
 {/template}
 
-
+/**
+ * The teplate for the price label.
+ */
+{template .pricelabel}
+  <div class="{css price-label}">
+    <span class="{css price-label-text}">{msg desc="Price"}Price{/msg}:{sp}</span>
+    <span class="{css price-label-value}" data-model="price" data-filter="price(2)"></span>
+    <span class="{css price-label-currency}">{sp}{msg desc="currency abbreviation"}AU{/msg}</span>
+  </div>
+{/template}
 
 /**
  * The messages from errors / globals.
