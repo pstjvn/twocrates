@@ -407,9 +407,17 @@ goog.scope(function() {
    *   Confiturable.
    */
   _.onDataChange = function() {
+    this.recalculatePrice();
     if (goog.isFunction(this.ondatachangecallback_)) {
       this.ondatachangecallback_(this.data);
     }
+  };
+
+  /**
+   * Forces price recalculation
+   */
+  _.recalculatePrice = function() {
+    k3d.control.Price.getInstance().update();
   };
 
   /**

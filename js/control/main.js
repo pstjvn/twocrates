@@ -8,6 +8,7 @@ goog.require('k3d.control.Buttons');
 goog.require('k3d.control.Editor');
 goog.require('k3d.control.ErrorHandler');
 goog.require('k3d.control.Loader');
+goog.require('k3d.control.Price');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.mb');
 goog.require('k3d.template');
@@ -66,6 +67,8 @@ goog.scope(function() {
         goog.asserts.assertInstanceof(kitchen, k3d.ds.KitchenProject,
           'Should have been a kitchen');
 
+        // tell the price calculator about the data model.
+        k3d.control.Price.getInstance().loadData(kitchen);
         k3d.control.Editor.getInstance().loadData(kitchen);
         this.delayLoad_.start();
         // kitchen.setDescription('New descritpion for project 3');
@@ -116,13 +119,10 @@ goog.scope(function() {
       function() {
         k3d.control.Editor.getInstance().onLoadComplete();
 
-      }
-    );
+      });
+
     k3d.control.Loader.getInstance().getItems();
     k3d.control.Loader.getInstance().getFinishes();
     k3d.control.Loader.getInstance().getHandles();
   };
-
-
 });
-
