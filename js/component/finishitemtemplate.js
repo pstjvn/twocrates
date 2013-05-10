@@ -1,6 +1,7 @@
 goog.provide('k3d.component.FinishItemTemplate');
 
 goog.require('pstj.ui.ListItemTemplate');
+goog.require('k3d.template');
 
 /** @author regardingscot@gmail.com (Peter StJ) */
 

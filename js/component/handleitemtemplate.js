@@ -1,8 +1,9 @@
 goog.provide('k3d.component.HandleItemTemplate');
 
 goog.require('goog.asserts');
-goog.require('pstj.ui.ListItemTemplate');
+goog.require('k3d.template');
 goog.require('pstj.ng.filters');
+goog.require('pstj.ui.ListItemTemplate');
 
 /**
  * @author regardingscot@gmail.com (Peter StJ)
