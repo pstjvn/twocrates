@@ -80,4 +80,19 @@ goog.scope(function() {
       this.bottom_.getImageReferences());
   };
 
+  /**
+   * Returns the row an item belongs to if found.
+   * @param {pstj.ds.ListItem} item The item to look for.
+   * @return {k3d.ds.CabinetRow} The row the item is in or null.
+   */
+  _.getRowOfItem = function(item) {
+    if (this.top_.hasItem(item)) {
+      return this.top_;
+    } else if (this.bottom_.hasItem(item)) {
+      return this.bottom_;
+    } else {
+      return null;
+    }
+  };
+
 });

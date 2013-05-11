@@ -4,6 +4,7 @@ goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.events.EventTarget');
 goog.require('k3d.ds.definitions');
+goog.require('k3d.ds.helpers');
 goog.require('pstj.ds.ListItem');
 
 /**
@@ -45,6 +46,50 @@ goog.scope(function() {
    */
   _.getItemByIndex = function(index) {
     return this.items_[index] || null;
+  };
+
+  /**
+   * Returns the width of an item that is to be used in calculations. It takes
+   *   into account corner items and on which corner of the row they are.
+   * @param {pstj.ds.ListItem} item The item to obtain the width of.
+   * @return {number} The widht to use in millimeters.
+   */
+  _.getItemWidth = function(item) {
+    if (k3d.ds.helpers.isCornerItem(item) && this.getIndexByItem(item) == 0) {
+      return goog.asserts.assertNumber(item.getProp(Struct.WIDTH2));
+    } else {
+      return goog.asserts.assertNumber(item.getProp(Struct.WIDTH));
+    }
+  };
+
+  /**
+   * Gets the index of the item in the list.
+   * @param {pstj.ds.ListItem} item The item to look up.
+   * @return {number} The index, could be -1.
+   */
+  _.getIndexByItem = function(item) {
+    return goog.array.indexOf(this.items_, item);
+  };
+
+  /**
+   * Checks if an item is in the list.
+   * @param {pstj.ds.ListItem} item The item to check if we have it.
+   * @return {boolean} True if there is such item in the list.
+   */
+  _.hasItem = function(item) {
+    return goog.array.contains(this.items_, item);
+  };
+
+  /**
+   * Calculates the used up widht on this row.
+   * @return {number} The used up widht in millimeters.
+   */
+  _.getWidth = function() {
+    var taken = 0;
+    this.forEach(function(item) {
+      taken = taken + this.getItemWidth(item);
+    }, this);
+    return taken;
   };
 
   /**

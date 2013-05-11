@@ -13,6 +13,7 @@ goog.require('k3d.component.PopOver');
 goog.require('k3d.component.PubSub');
 goog.require('k3d.component.SelectItemTemplate');
 goog.require('k3d.control.Loader');
+goog.require('k3d.control.Price');
 goog.require('k3d.ds.ItemPool');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.ui.Filler');
@@ -21,6 +22,7 @@ goog.require('pstj.ds.List');
 goog.require('pstj.lab.style.css');
 goog.require('pstj.math.utils');
 goog.require('pstj.widget.Select');
+goog.require('k3d.component.Select');
 
 /**
  * @fileoverview Provides the 'editor' functionality. It is closely bound to
@@ -83,7 +85,7 @@ k3d.control.Editor = function() {
    * The selection box for items.
    * @type {pstj.widget.Select}
    */
-  this.selectBox = new pstj.widget.Select(undefined,
+  this.selectBox = new k3d.component.Select(undefined,
     k3d.component.SelectItemTemplate.getInstance());
   /**
    * The selection box for items.
@@ -176,7 +178,7 @@ goog.addSingletonGetter(k3d.control.Editor);
 k3d.control.Editor.Actions = {
   CLOSE: 'close',
   CHANGE_MODEL: 'change-model',
-  CHNAGE_SIZE: 'change-size'
+  CHANGE_SIZE: 'change-size'
 };
 
 // TODO: when loading a wall make sure to load all relevant images by items!
@@ -460,8 +462,28 @@ goog.scope(function() {
     if (target.getActionName() == Actions.CLOSE) {
       k3d.component.PopOver.getInstance().setVisible(false);
     } else if (target.getActionName() == Actions.CHANGE_MODEL) {
+      // disable the filters because we are already filtering the view.
+      this.selectBox.setFiltersVisible(false);
+      // find the item we want to change.
+      var item = k3d.component.ItemView.getInstance().getModel();
+      var cabinetrow = this.currentWall.getRowOfItem(item);
+      var usedwidth = cabinetrow.getWidth() - cabinetrow.getItemWidth(item);
+      var availablewidth = this.currentWall.getProp(Struct.WIDTH) - usedwidth;
+
+      // console.log(this.currentWall.getProp(Struct.WIDTH),
+      //   ' - ',
+      //   '(',
+      //   cabinetrow.getWidth(),
+      //   ' - ',
+      //   cabinetrow.getItemWidth(item),
+      //   ') = ',
+      //   availablewidth);
+
       k3d.component.PopOver.getInstance().addChild(this.selectBox, true);
       k3d.component.PopOver.getInstance().setVisible(true);
+    } else if (target.getActionName() == Actions.CHANGE_SIZE) {
+      // generate filter function and pass it to the select box, it should apply
+      // it to the view.
     }
   };
 
