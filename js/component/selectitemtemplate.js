@@ -1,6 +1,7 @@
 goog.provide('k3d.component.SelectItemTemplate');
 
 goog.require('k3d.ds.definitions');
+goog.require('k3d.template');
 goog.require('pstj.ui.ListItemTemplate');
 
 /** @author regardingscot@gmail.com (Peter StJ) */
@@ -22,12 +23,19 @@ goog.scope(function() {
   var Struct = k3d.ds.definitions.Struct;
 
   /** @inheritDoc */
+  _.getTemplate = function(model) {
+    return k3d.template.cabinet(model);
+  };
+
+  /** @inheritDoc */
   _.generateTemplateData = function(component) {
     return {
-      name: component.getModel().getProp(Struct.DESCRIPTION) + '(' +
+      desc: component.getModel().getProp(Struct.DESCRIPTION),
+      size: '(' +
         component.getModel().getProp(Struct.WIDTH) + 'x' +
         component.getModel().getProp(Struct.HEIGHT) + 'x' +
         component.getModel().getProp(Struct.DEPTH) + ')',
+      wallmounted: component.getModel().getProp(Struct.ATTACHED),
       thumbnail: component.getModel().getProp(Struct.SIDE_IMAGE)
     };
   };

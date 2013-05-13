@@ -81,6 +81,24 @@ goog.scope(function() {
   };
 
   /**
+   * Replaces an existing item on its corresponding row with a new one.
+   * @param {pstj.ds.ListItem} item The item to replace.
+   * @param {pstj.ds.ListItem} newitem The new item to use.
+   */
+  _.replaceItem = function(item, newitem) {
+    var row = this.getRowOfItem(item);
+    row.replaceItem(item, newitem);
+  };
+
+  /**
+   * Removes an item from the wall.
+   * @param {pstj.ds.ListItem} item The item to remove (reference).
+   */
+  _.removeItem = function(item) {
+    this.getRowOfItem(item).removeItem(item);
+  };
+
+  /**
    * Returns the row an item belongs to if found.
    * @param {pstj.ds.ListItem} item The item to look for.
    * @return {k3d.ds.CabinetRow} The row the item is in or null.

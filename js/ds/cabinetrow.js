@@ -134,6 +134,30 @@ goog.scope(function() {
   };
 
   /**
+   * Replaces an item on the cabinet row with a new one, no checks are
+   *   performed.
+   * @param {pstj.ds.ListItem} item The item to replace.
+   * @param {pstj.ds.ListItem} newitem The item that will replace the original
+   *   one.
+   */
+  _.replaceItem = function(item, newitem) {
+    var index = goog.array.indexOf(this.items_, item);
+    if (index != -1) {
+      this.items_[index] = newitem;
+    } else {
+      throw new Error('Trying to replace item that does not exists');
+    }
+  };
+
+  /**
+   * Removes the item from the cabinet row.
+   * @param {pstj.ds.ListItem} item The item record to remove.
+   */
+  _.removeItem = function(item) {
+    goog.array.remove(this.items_, item);
+  };
+
+  /**
    * Removes the element from its current position and inserts it at a new
    *   position that is shifted with the move index.
    * @param {pstj.ds.ListItem} item The data record item to move.

@@ -89,6 +89,9 @@ goog.scope(function() {
         case 'next':
           k3d.control.Editor.getInstance().loadSiblingWall(true);
           break;
+        case 'add':
+          k3d.control.Editor.getInstance().addNewItem();
+          break;
         case 'select-finish':
           k3d.control.Editor.getInstance().showSelectFinishes();
           break;

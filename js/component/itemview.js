@@ -64,6 +64,13 @@ k3d.component.ItemView = function(opt_template, opt_null_value) {
   this.changeSize_ = new pstj.ui.Button();
   this.addChild(this.changeSize_);
 
+  /**
+   * @private
+   * @type {pstj.ui.Button}
+   */
+  this.delete_ = new pstj.ui.Button();
+  this.addChild(this.delete_);
+
   this.render();
 };
 goog.inherits(k3d.component.ItemView, pstj.ng.Template);
@@ -85,6 +92,8 @@ goog.scope(function() {
 
     this.changeModel_.decorate(this.querySelector(
       '[data-action="change-model"]'));
+
+    this.delete_.decorate(this.querySelector('[data-action="delete"]'));
   };
 
   /** @inheritDoc */
@@ -93,6 +102,7 @@ goog.scope(function() {
     this.dismissButton_ = null;
     this.changeSize_ = null;
     this.changeModel_ = null;
+    this.delete_ = null;
   };
 
 });

@@ -77,6 +77,7 @@
       </div>
     </div>
     <div class="{css item-view-controls}">
+      <div class="{css pstj-button}" data-action="delete">{msg desc="Button label: delete"}Delete{/msg}</div>
       <div class="{css pstj-button}" data-action="change-size">{msg desc="Button label: change size"}Change size{/msg}</div>
       <div class="{css pstj-button}" data-action="change-model">{msg desc="Button label: change model"}Change model{/msg}</div>
       <div class="{css pstj-button}" data-action="close">{msg desc="Button label: ok/close/dismiss"}Ok{/msg}</div>
@@ -123,6 +124,35 @@
   </div>
 {/template}
 
+
+/**
+ * The template for the cabinet item listing.
+ * @param thumbnail The thumbnail to use.
+ * @param desc The description (could be empty string).
+ * @param size The size as string represented.
+ * @param wallmounted Boolean flag, true if the item has only one face.
+ */
+{template .cabinet}
+  <div class="{css pstj-list-item}">
+    <div class="{css pstj-list-item-container}">
+      <div class="{css pstj-list-item-image-holder}">
+        <img src="{$thumbnail}" class="{css pstj-list-item-thumbnail}" />
+      </div>
+      <div class="{css pstj-list-item-name}">
+      {if $desc != ''}
+        {msg desc="Description label"}Description{/msg}:{sp}{$desc}<br>
+      {/if}
+      {msg desc="Size label"}Size{/msg}:{sp}{$size}<br>
+      {msg desc="Mounted label"}Wall mounted{/msg}:{sp}
+      {if $wallmounted == true}
+        {msg desc="Yes"}Yes{/msg}
+      {else}
+        {msg desc="No"}No{/msg}
+      {/if}
+      </div>
+    </div>
+  </div>
+{/template}
 
 /**
  * Provides the default template for the list item representation.

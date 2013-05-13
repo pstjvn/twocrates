@@ -25,5 +25,11 @@ goog.scope(function() {
    */
   _.setFiltersVisible = function(visible) {};
 
+  /** @inheritDoc */
+  _.setModel = function(model) {
+    model.setDelayFilterAppliedEvent(false);
+    goog.base(this, 'setModel', model);
+  };
+
 });
 

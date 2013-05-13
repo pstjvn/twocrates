@@ -11,18 +11,19 @@ goog.require('k3d.component.HandleItemTemplate');
 goog.require('k3d.component.ItemView');
 goog.require('k3d.component.PopOver');
 goog.require('k3d.component.PubSub');
+goog.require('k3d.component.Select');
 goog.require('k3d.component.SelectItemTemplate');
 goog.require('k3d.control.Loader');
 goog.require('k3d.control.Price');
 goog.require('k3d.ds.ItemPool');
 goog.require('k3d.ds.definitions');
+goog.require('k3d.ds.filter');
 goog.require('k3d.ui.Filler');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
 goog.require('pstj.lab.style.css');
 goog.require('pstj.math.utils');
 goog.require('pstj.widget.Select');
-goog.require('k3d.component.Select');
 
 /**
  * @fileoverview Provides the 'editor' functionality. It is closely bound to
@@ -158,6 +159,14 @@ k3d.control.Editor = function() {
    * @private
    */
   this.movedChildsRow_ = null;
+
+  /**
+   * Keep reference to item that was last edited.
+   * @type {pstj.ds.ListItem}
+   * @private
+   */
+  this.editedChild_ = null;
+
   /**
    * The delayed reaction to a sheet resize. This is delayed to avoid unneeded
    *   calculation during refitting of the sheet in the frame.
@@ -178,7 +187,8 @@ goog.addSingletonGetter(k3d.control.Editor);
 k3d.control.Editor.Actions = {
   CLOSE: 'close',
   CHANGE_MODEL: 'change-model',
-  CHANGE_SIZE: 'change-size'
+  CHANGE_SIZE: 'change-size',
+  DELETE: 'delete'
 };
 
 // TODO: when loading a wall make sure to load all relevant images by items!
@@ -222,6 +232,11 @@ goog.scope(function() {
     this.initialize();
   };
 
+  _.addNewItem = function() {
+    this.selectBox.setFiltersVisible(true);
+    this.isInAddMode_ = true;
+  };
+
   /**
    * Put logic here that marks that everything possible to be preloaded (prior
    *   and after the initial showing) is done loading.
@@ -231,6 +246,8 @@ goog.scope(function() {
       function(items) {
         this.selectBox.setModel(items);
         this.selectBox.render();
+        console.log(items);
+        k3d.ds.filter.preFilter(items);
       }, this));
 
     k3d.control.Loader.getInstance().getFinishes().addCallback(goog.bind(
@@ -448,7 +465,26 @@ goog.scope(function() {
         k3d.component.ItemView.getInstance(), true);
     } else if (e.type == goog.ui.Component.EventType.SELECT) {
       // upate the model
-      console.log('Selection made on a select component');
+      var item = /** @type {pstj.ui.ListItem} */ (e.target);
+      var ref;
+      // if the item id is different than the one in currently edited file and
+      // is different than the one in itemview we should dispose it and use
+      // clone of the one chosen right now.
+      if (k3d.component.ItemView.getInstance().getModel().getId() !=
+        item.getModel().getId()) {
+
+        if (k3d.component.ItemView.getInstance().getModel().getId() !=
+          this.editedChild_.getId()) {
+
+          ref = k3d.component.ItemView.getInstance().getModel();
+        }
+        k3d.component.ItemView.getInstance().setModel(item.getModel().clone());
+        goog.dispose(ref);
+      }
+
+      k3d.component.PopOver.getInstance().addChild(
+        k3d.component.ItemView.getInstance(), true);
+      k3d.component.PopOver.getInstance().setVisible(true);
     }
   };
 
@@ -460,16 +496,50 @@ goog.scope(function() {
   _.handleItemViewAction = function(e) {
     var target = /** @type {!pstj.ui.Button} */ (e.target);
     if (target.getActionName() == Actions.CLOSE) {
+
+      // CLOSE (ACTIVATE CHANGES)
+
+      var newcab = k3d.component.ItemView.getInstance().getModel();
+
       k3d.component.PopOver.getInstance().setVisible(false);
+
+      if (newcab.getId() != this.editedChild_.getId()) {
+        this.currentWall.replaceItem(this.editedChild_, newcab);
+        goog.dispose(this.editedChild_);
+        this.editedChild_ = null;
+        this.clearDrawing();
+        this.visualizeItems();
+        this.onDataChange();
+      }
+
+    } else if (target.getActionName() == Actions.DELETE) {
+
+      // DELETE AN ITEM
+
+      k3d.component.PopOver.getInstance().setVisible(false);
+      this.currentWall.removeItem(this.editedChild_);
+      goog.dispose(this.editedChild_);
+      this.clearDrawing();
+      this.visualizeItems();
+      this.onDataChange();
     } else if (target.getActionName() == Actions.CHANGE_MODEL) {
+
+      // CHANGE MODEL
+
       // disable the filters because we are already filtering the view.
       this.selectBox.setFiltersVisible(false);
       // find the item we want to change.
-      var item = k3d.component.ItemView.getInstance().getModel();
-      var cabinetrow = this.currentWall.getRowOfItem(item);
-      var usedwidth = cabinetrow.getWidth() - cabinetrow.getItemWidth(item);
-      var availablewidth = this.currentWall.getProp(Struct.WIDTH) - usedwidth;
 
+      var cabinetrow = this.currentWall.getRowOfItem(this.editedChild_);
+      var usedwidth = cabinetrow.getWidth() - cabinetrow.getItemWidth(
+        this.editedChild_);
+
+      var availablewidth = this.currentWall.getProp(Struct.WIDTH) - usedwidth;
+      var item_category = this.editedChild_.getProp(Struct.CATEGORY);
+
+      // we need all items that are !!wall_is_attached, that are the same type
+      this.selectBox.setFilter(k3d.ds.filter.createChangeFilter(
+        goog.asserts.assertNumber(item_category), availablewidth));
       // console.log(this.currentWall.getProp(Struct.WIDTH),
       //   ' - ',
       //   '(',
@@ -481,9 +551,23 @@ goog.scope(function() {
 
       k3d.component.PopOver.getInstance().addChild(this.selectBox, true);
       k3d.component.PopOver.getInstance().setVisible(true);
+
     } else if (target.getActionName() == Actions.CHANGE_SIZE) {
-      // generate filter function and pass it to the select box, it should apply
-      // it to the view.
+
+      // CHANGE SIZE
+
+      this.selectBox.setFiltersVisible(false);
+      var cabinetrow = this.currentWall.getRowOfItem(this.editedChild_);
+      var usedwidth = cabinetrow.getWidth() - cabinetrow.getItemWidth(
+        this.editedChild_);
+      var availablewidth = this.currentWall.getProp(Struct.WIDTH) - usedwidth;
+      var item_model = this.editedChild_.getProp(Struct.MODEL);
+
+      this.selectBox.setFilter(k3d.ds.filter.createModelFilter(
+        goog.asserts.assertString(item_model), availablewidth));
+
+      k3d.component.PopOver.getInstance().addChild(this.selectBox, true);
+      k3d.component.PopOver.getInstance().setVisible(true);
     }
   };
 
@@ -508,6 +592,10 @@ goog.scope(function() {
     } else {
       return;
     }
+
+    // Tell the filter factory if we want items that are attached to wall.
+    k3d.ds.filter.setAttachedToWall(
+      !!this.currentWall.getProp(Struct.ATTACHED));
 
     // clear the drawing
     this.clearDrawing();
@@ -541,6 +629,8 @@ goog.scope(function() {
     // assume one of the items was activated
     var target = /** @type {k3d.component.Item} */ (e.target);
     var model = target.getModel();
+
+    this.editedChild_ = model;
     // open dialog for change.
     //k3d.component.ItemView.getInstance().setModel(model);
     k3d.component.PopOver.getInstance().addChild(
