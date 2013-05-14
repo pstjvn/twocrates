@@ -5,6 +5,18 @@
   background: DIALOG_BACKGROUND;
 }
 
+.pstj-widget-select .filters-group {
+  display: none;
+}
+
+.pstj-widget-select.filters-visible .filters-group {
+  display: block;
+}
+
+.pstj-widget-select.filters-visible .pstj-widget-select-body {
+  height: 340px;
+}
+
 .pstj-widget-select-body {
   height: 370px;
 }
@@ -23,3 +35,19 @@
   box-shadow: inset 0 0 2px MAIN_BLUE;
 }
 
+.pstj-widget-select .item-view-controls {
+  text-align: center;
+}
+
+.pstj-button-selected {
+  background-image: -webkit-linear-gradient(top, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: -moz-linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: -o-linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: -ms-linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+
+}
