@@ -52,7 +52,7 @@ goog.scope(function() {
 
   /** @inheritDoc */
   _.addChild = function(child, render) {
-    goog.asserts.assertInstanceof(child, k3d.component.Item);
+    goog.asserts.assertInstanceof(child, k3d.component.Item, 'drawingboard');
     goog.base(this, 'addChild', child, render);
   };
 

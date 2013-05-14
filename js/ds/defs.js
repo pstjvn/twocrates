@@ -100,6 +100,20 @@ k3d.ds.definitions.Struct = {
 };
 
 /**
+ * Provides symbolic names for the categories.
+ * @enum {number}
+ */
+k3d.ds.definitions.Category = {
+  TOP: 1,
+  BOTTOM: 2,
+  TOP_CORNER: 3,
+  BOTTOM_CORNER: 4,
+  TWO_ROW: 5,
+  TWO_ROW_CORNER: 6,
+  OTHER: 7
+};
+
+/**
  * The categories that are basically corner elements
  * @type {Array.<number>}
  */

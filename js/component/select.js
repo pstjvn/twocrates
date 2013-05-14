@@ -1,6 +1,31 @@
 goog.provide('k3d.component.Select');
+goog.provide('k3d.component.SelectTemplate');
 
+goog.require('goog.asserts');
+goog.require('goog.async.Delay');
+goog.require('goog.ui.Component.EventType');
+goog.require('k3d.component.FiltersTemplate');
+goog.require('k3d.ds.filter');
+goog.require('k3d.template');
+goog.require('pstj.ui.Template');
 goog.require('pstj.widget.Select');
+goog.require('pstj.widget.ToggleGroup');
+
+/**
+ * The template for the item selection dialog.
+ * @constructor
+ * @extends {pstj.ui.Template}
+ */
+k3d.component.SelectTemplate = function() {
+  goog.base(this);
+};
+goog.inherits(k3d.component.SelectTemplate, pstj.ui.Template);
+goog.addSingletonGetter(k3d.component.SelectTemplate);
+
+/** @inheritDoc */
+k3d.component.SelectTemplate.prototype.getTemplate = function(model) {
+  return k3d.template.itemselectbox({});
+};
 
 /**
  * Suctom select box that understands our filters.
@@ -11,7 +36,18 @@ goog.require('pstj.widget.Select');
  *   selection item.
  */
 k3d.component.Select = function(opt_template, opt_item_template) {
-  goog.base(this, opt_template, opt_item_template);
+  goog.base(this, opt_template ||
+    k3d.component.SelectTemplate.getInstance(), opt_item_template);
+  /**
+   * @private
+   * @type {pstj.widget.ToggleGroup}
+   */
+  this.filterGroup_ = new pstj.widget.ToggleGroup(
+    k3d.component.FiltersTemplate.getInstance());
+  this.updateFiltersInternal_ = new goog.async.Delay(function() {
+    this.setFilter(k3d.ds.filter.createNamedFilter(this.getCheckedFilter(),
+      this.topSpace_, this.bottomSpace_));
+  }, 10, this);
 };
 goog.inherits(k3d.component.Select, pstj.widget.Select);
 
@@ -22,8 +58,51 @@ goog.scope(function() {
   /**
    * Sets the visibility of the filter buttons.
    * @param {boolean} visible True to make the filter buttons visible.
+   * @param {number=} top If we want to show the filter buttons we would
+   *   provide the available widths.
+   * @param {number=} bottom Available width at the bottom row.
    */
-  _.setFiltersVisible = function(visible) {};
+  _.setFiltersVisible = function(visible, top, bottom) {
+    if (visible) {
+      goog.dom.classlist.add(this.getElement(), goog.getCssName(
+        'filters-visible'));
+      this.setAvailableSpaces(goog.asserts.assertNumber(top),
+        goog.asserts.assertNumber(bottom));
+      this.setFilter(k3d.ds.filter.createNamedFilter(this.getCheckedFilter(),
+        this.topSpace_, this.bottomSpace_));
+
+    } else {
+      goog.dom.classlist.remove(this.getElement(), goog.getCssName(
+        'filters-visible'));
+    }
+  };
+
+  /**
+   * Sets the spaces available on both top and bottom row.
+   * @param {number} top The width available in the top row
+   * @param {number} bottom The width available in the bottom row.
+   */
+  _.setAvailableSpaces = function(top, bottom) {
+    this.topSpace_ = top;
+    this.bottomSpace_ = bottom
+  };
+
+  /** @inheritDoc */
+  _.enterDocument = function() {
+    goog.base(this, 'enterDocument');
+    this.getHandler().listen(this.filterGroup_,
+      goog.ui.Component.EventType.SELECT, function(e) {
+      e.stopPropagation();
+      this.updateFiltersInternal_.start();
+    });
+  };
+
+  /** @inheritDoc */
+  _.decorateInternal = function(el) {
+    goog.base(this, 'decorateInternal', el);
+    this.addChild(this.filterGroup_);
+    this.filterGroup_.decorate(this.getEls(goog.getCssName('filters-group')));
+  };
 
   /** @inheritDoc */
   _.setModel = function(model) {
@@ -31,5 +110,12 @@ goog.scope(function() {
     goog.base(this, 'setModel', model);
   };
 
-});
+  /**
+   * Getter for the prefered filter action.
+   * @return {string}
+   */
+  _.getCheckedFilter = function() {
+    return this.filterGroup_.getCheckedAction();
+  };
 
+});

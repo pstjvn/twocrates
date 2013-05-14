@@ -1,6 +1,7 @@
 goog.provide('k3d.control.Buttons');
 
 goog.require('goog.asserts');
+goog.require('goog.ui.ButtonRenderer');
 goog.require('goog.ui.Component.EventType');
 goog.require('goog.ui.ControlRenderer');
 goog.require('pstj.control.Base');
@@ -29,8 +30,11 @@ goog.scope(function() {
       // create instance of pstj's control button group and use it, we do not
       // need special template as we are decorating.
       this.buttonsComponent_ = new pstj.widget.ControlGroup(null,
+        goog.asserts.assertInstanceof(
         goog.ui.ControlRenderer.getCustomRenderer(pstj.ui.CustomButtonRenderer,
-          goog.getCssName('design-tool-control-button')));
+          goog.getCssName('design-tool-control-button')),
+        goog.ui.ButtonRenderer,
+        'The renderer for the buttons must be a button renderer'));
 
       //this.buttonsComponent_ = new k3d.component.ControlButtons();
       this.buttonsComponent_.decorate(document.querySelector(

@@ -63,6 +63,14 @@ goog.scope(function() {
   };
 
   /**
+   * Getter for the number of items on the row.
+   * @return {number}
+   */
+  _.getItemCount = function() {
+    return this.items_.length;
+  };
+
+  /**
    * Gets the index of the item in the list.
    * @param {pstj.ds.ListItem} item The item to look up.
    * @return {number} The index, could be -1.

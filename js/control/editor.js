@@ -233,8 +233,17 @@ goog.scope(function() {
   };
 
   _.addNewItem = function() {
-    this.selectBox.setFiltersVisible(true);
     this.isInAddMode_ = true;
+    this.selectBox.setFiltersVisible(true,
+      this.currentWall.getProp(Struct.WIDTH) - this.currentWall.getRow(
+        true).getWidth(),
+      this.currentWall.getProp(Struct.WIDTH) - this.currentWall.getRow(
+        false).getWidth());
+
+    k3d.component.PopOver.getInstance().addChild(
+      this.selectBox, true);
+
+    k3d.component.PopOver.getInstance().setVisible(true);
   };
 
   /**
@@ -248,6 +257,7 @@ goog.scope(function() {
         this.selectBox.render();
         console.log(items);
         k3d.ds.filter.preFilter(items);
+
       }, this));
 
     k3d.control.Loader.getInstance().getFinishes().addCallback(goog.bind(
@@ -261,6 +271,13 @@ goog.scope(function() {
         this.selectHandles.setModel(handles);
         this.selectHandles.render();
       }, this));
+
+    this.getHandler().listen(this.selectBox, [goog.ui.Component.EventType.SELECT,
+      goog.ui.Component.EventType.CLOSE], this.handleItemSelectEvent)
+    .listen(this.selectFinish, goog.ui.Component.EventType.SELECT,
+      this.handleFinishSelection_)
+    .listen(this.selectHandles, goog.ui.Component.EventType.SELECT,
+      this.handleHandleSelection_)
   };
 
   /** @inheritDoc */
@@ -273,15 +290,6 @@ goog.scope(function() {
 
     .listen(k3d.component.ItemView.getInstance(),
       goog.ui.Component.EventType.ACTION, this.handleItemViewAction)
-
-    .listen(this.selectBox, [goog.ui.Component.EventType.SELECT,
-      goog.ui.Component.EventType.CLOSE], this.handleItemSelectEvent)
-
-    .listen(this.selectFinish, goog.ui.Component.EventType.SELECT,
-      this.handleFinishSelection_)
-
-    .listen(this.selectHandles, goog.ui.Component.EventType.SELECT,
-      this.handleHandleSelection_)
 
     .listen(this.drawsheet, goog.events.EventType.RESIZE, function(e) {
       e.stopPropagation();
@@ -461,31 +469,60 @@ goog.scope(function() {
     if (e.type == goog.ui.Component.EventType.CLOSE) {
       // prevent the popover from closing.
       e.stopPropagation();
-      k3d.component.PopOver.getInstance().addChild(
-        k3d.component.ItemView.getInstance(), true);
-    } else if (e.type == goog.ui.Component.EventType.SELECT) {
-      // upate the model
-      var item = /** @type {pstj.ui.ListItem} */ (e.target);
-      var ref;
-      // if the item id is different than the one in currently edited file and
-      // is different than the one in itemview we should dispose it and use
-      // clone of the one chosen right now.
-      if (k3d.component.ItemView.getInstance().getModel().getId() !=
-        item.getModel().getId()) {
-
-        if (k3d.component.ItemView.getInstance().getModel().getId() !=
-          this.editedChild_.getId()) {
-
-          ref = k3d.component.ItemView.getInstance().getModel();
-        }
-        k3d.component.ItemView.getInstance().setModel(item.getModel().clone());
-        goog.dispose(ref);
+      if (this.isInAddMode_) {
+        k3d.component.PopOver.getInstance().setVisible(false);
+      } else {
+        k3d.component.PopOver.getInstance().addChild(
+          k3d.component.ItemView.getInstance(), true);
       }
+    } else if (e.type == goog.ui.Component.EventType.SELECT) {
 
-      k3d.component.PopOver.getInstance().addChild(
-        k3d.component.ItemView.getInstance(), true);
-      k3d.component.PopOver.getInstance().setVisible(true);
+      //var item = /** @type {pstj.ui.ListItem} */ (e.target);
+      var item = this.selectBox.getSelection();
+      var ref;
+
+      // If we are in 'add mode' do not track anything, just add the item to the
+      // matching wall.
+      if (this.isInAddMode_) {
+        k3d.component.PopOver.getInstance().setVisible(false);
+        var category = item.getProp(Struct.CATEGORY);
+        // TODO: rework this to account for corner items.
+        switch (category) {
+          case k3d.ds.definitions.Category.TOP:
+          case k3d.ds.definitions.Category.TOP_CORNER:
+            this.currentWall.getRow(true).addItem(item.clone());
+            break;
+          case k3d.ds.definitions.Category.BOTTOM:
+          case k3d.ds.definitions.Category.BOTTOM_CORNER:
+            this.currentWall.getRow(false).addItem(item.clone());
+            break;
+          default: console.log('Not yet supported', category);
+        }
+        this.clearDrawing();
+        this.visualizeItems();
+        this.onDataChange();
+      } else {
+        // if the item id is different than the one in currently edited file and
+        // is different than the one in itemview we should dispose it and use
+        // clone of the one chosen right now.
+        if (k3d.component.ItemView.getInstance().getModel().getId() !=
+          item.getId()) {
+
+          if (k3d.component.ItemView.getInstance().getModel().getId() !=
+            this.editedChild_.getId()) {
+
+            ref = k3d.component.ItemView.getInstance().getModel();
+          }
+          k3d.component.ItemView.getInstance().setModel(item.clone());
+          goog.dispose(ref);
+        }
+
+        k3d.component.PopOver.getInstance().addChild(
+          k3d.component.ItemView.getInstance(), true);
+        k3d.component.PopOver.getInstance().setVisible(true);
+      }
     }
+    this.isInAddMode_ = false;
   };
 
   /**
@@ -539,7 +576,8 @@ goog.scope(function() {
 
       // we need all items that are !!wall_is_attached, that are the same type
       this.selectBox.setFilter(k3d.ds.filter.createChangeFilter(
-        goog.asserts.assertNumber(item_category), availablewidth));
+        goog.asserts.assertNumber(item_category,
+          'Item category should be a number'), availablewidth));
       // console.log(this.currentWall.getProp(Struct.WIDTH),
       //   ' - ',
       //   '(',
@@ -564,7 +602,8 @@ goog.scope(function() {
       var item_model = this.editedChild_.getProp(Struct.MODEL);
 
       this.selectBox.setFilter(k3d.ds.filter.createModelFilter(
-        goog.asserts.assertString(item_model), availablewidth));
+        goog.asserts.assertString(item_model, 'Items model should be a string'),
+        availablewidth));
 
       k3d.component.PopOver.getInstance().addChild(this.selectBox, true);
       k3d.component.PopOver.getInstance().setVisible(true);
@@ -602,8 +641,8 @@ goog.scope(function() {
 
     // using the data structure find out the wall sizes and set them
     this.setWallSize(goog.asserts.assertNumber(this.currentWall.getProp(
-      Struct.WIDTH)), goog.asserts.assertNumber(
-        this.currentWall.getProp(Struct.HEIGHT)));
+      Struct.WIDTH), 'Size should be number'), goog.asserts.assertNumber(
+        this.currentWall.getProp(Struct.HEIGHT), 'Size should be a number'));
 
     this.visualizeItems();
   };
@@ -679,11 +718,13 @@ goog.scope(function() {
   _.addItem = function(item, idx, is_upper_row) {
 
     // The original width and height (millimeters).
-    var w = goog.asserts.assertNumber(item.getProp(Struct.WIDTH));
+    var w = goog.asserts.assertNumber(item.getProp(Struct.WIDTH),
+      'Width should be number');
     // On Items that are on the floor there is the kickboard (130 mm) and the
     // becnhtop (50mm); Height is equal to the item's height + the kickboard
     // (130mm) + the bench top (50mm)
-    var h = goog.asserts.assertNumber(item.getProp(Struct.HEIGHT)) + (
+    var h = goog.asserts.assertNumber(item.getProp(Struct.HEIGHT),
+      'Height should be number') + (
       (!is_upper_row) ? 180 : 0);
 
     // The width and height to set in the DOM (drawing representation).
@@ -706,7 +747,8 @@ goog.scope(function() {
         this.height - this.widthVisualOffset - h, this.height);
     }
     var child = goog.asserts.assertInstanceof(
-      k3d.ds.ItemPool.getInstance().getObject(), k3d.component.Item);
+      k3d.ds.ItemPool.getInstance().getObject(), k3d.component.Item,
+      'Item pool is probably empty');
     child.setModel(item);
     child.applyStyle(width, height, xoffsetperc, yoffsetperc);
     this.drawsheet.addChild(child, true);

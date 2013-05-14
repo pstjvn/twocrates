@@ -31,10 +31,12 @@
 {/template}
 
 /**
- *
+ * The item template.
  */
 {template .item}
-  <div></div>
+  <div>
+    <span class="{css corner-label}"></span>
+  </div>
 {/template}
 
 /**
@@ -126,6 +128,18 @@
 
 
 /**
+ * Provides the filter buttons.
+ */
+{template .filters}
+  <div class="{css item-view-controls} {css filters-group}">
+    <div class="{css pstj-button}" data-action="filter1">{msg desc="Button label: Upper row"}Upper row{/msg}</div>
+    <div class="{css pstj-button}" data-action="filter2">{msg desc="Button label: Floor row"}Floor row{/msg}</div>
+    <div class="{css pstj-button}" data-action="filter3">{msg desc="Button label: Upper row corner"}Upper row corner{/msg}</div>
+    <div class="{css pstj-button}" data-action="filter4">{msg desc="Button label: Floor row corner"}Floor row corner{/msg}</div>
+  </div>
+{/template}
+
+/**
  * The template for the cabinet item listing.
  * @param thumbnail The thumbnail to use.
  * @param desc The description (could be empty string).
@@ -205,4 +219,22 @@
  */
 {template .message}
   <div class="{css system-message}"></div>
+{/template}
+
+/**
+ * Provides the selection widget.
+ */
+{template .itemselectbox}
+  <div class="{css pstj-widget-select}">
+    <div class="{css pstj-widget-select-view}">
+      {call .filters /}
+      <div class="{css pstj-widget-select-body}">
+        {call pstj.templates.list /}
+      </div>
+      <div class="{css pstj-widget-select-footer}">
+        <div class="{css form-button} {css text-button} {css pstj-widget-select-text-button} {css pstj-action-select}" data-action="select">{msg desc="Select"}Select{/msg}</div>
+        <div class="{css form-button} {css text-button} {css pstj-widget-select-text-button} {css pstj-action-cancel}" data-action="cancel">{msg desc="Cancel"}Cancel{/msg}</div>
+      </div>
+    </div>
+  </div>
 {/template}

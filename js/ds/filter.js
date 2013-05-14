@@ -46,7 +46,7 @@ goog.scope(function() {
    * @param {pstj.ds.List} items The list of items we are ging to filter on.
    */
   k3d.ds.filter.preFilter = function(items) {
-    goog.asserts.assertInstanceof(items, pstj.ds.List);
+    goog.asserts.assertInstanceof(items, pstj.ds.List, 'filters');
     _.items_ = items;
     _.items_.forEach(function(item, index) {
       if (item.getProp(Struct.ATTACHED)) {
@@ -65,6 +65,29 @@ goog.scope(function() {
    */
   _.setAttachedToWall = function(attached) {
     _.isAttachedToWall_ = attached;
+  };
+
+  /**
+   * Generates a filter by names.
+   * @param {string} filterName The filter name.
+   * @return {function(pstj.ds.ListItem): boolean} The filter to use.
+   */
+  _.createNamedFilter = function(filterName, top, bottom) {
+    return function(item) {
+      var cat = item.getProp(Struct.CATEGORY);
+      var width = item.getProp(Struct.WIDTH);
+      switch (filterName) {
+        case 'filter1':
+          return cat != 1 || width > top;
+        case 'filter2':
+          return cat != 2 || width > bottom;
+        case 'filter3':
+          return cat != 3 || width > top;
+        case 'filter4':
+          return cat != 4 || width > bottom;
+        default: return true;
+      }
+    };
   };
 
   /**

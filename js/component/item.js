@@ -6,9 +6,11 @@ goog.require('goog.dom.classlist');
 goog.require('goog.pubsub.PubSub');
 goog.require('goog.style');
 goog.require('k3d.ds.definitions');
+goog.require('k3d.ds.helpers');
 goog.require('pstj.ds.ListItem');
 goog.require('pstj.lab.style.css');
 goog.require('pstj.ui.MoveTouch');
+goog.require('pstj.ui.Template');
 
 /**
  * @fileoverview Provides the specialized component to represent an item
@@ -31,6 +33,27 @@ k3d.component.PubSub = new goog.pubsub.PubSub();
 k3d.component.PubSubTopic = 'MOVE';
 
 /**
+ * The template with the lable.
+ * @constructor
+ * @extends {pstj.ui.Template}
+ */
+k3d.component.ItemTemplate = function() {
+  goog.base(this);
+};
+goog.inherits(k3d.component.ItemTemplate, pstj.ui.Template);
+goog.addSingletonGetter(k3d.component.ItemTemplate);
+/** @inheritDoc */
+k3d.component.ItemTemplate.prototype.getTemplate = function(model) {
+  return k3d.template.item({});
+};
+/** @inheritDoc */
+k3d.component.ItemTemplate.prototype.getContentElement = function(comp) {
+  comp.getElement();
+  return comp.querySelector('.' + goog.getCssName('corner-label'));
+};
+
+
+/**
  * The item that we work with on the drawing board.
  * @constructor
  * @extends {pstj.ui.MoveTouch}
@@ -38,7 +61,7 @@ k3d.component.PubSubTopic = 'MOVE';
  *   constructing dom from scratch.
  */
 k3d.component.Item = function(opt_template) {
-  goog.base(this, opt_template);
+  goog.base(this, opt_template || k3d.component.ItemTemplate.getInstance());
   /**
    * Provides cachable values for item's visual setup: [width, height, top,
    *   left].
@@ -83,8 +106,7 @@ goog.scope(function() {
 
   /** @inheritDoc */
   _.setModel = function(model) {
-    goog.asserts.assertInstanceof(model, pstj.ds.ListItem,
-      'The data record should be a ListItem');
+    goog.asserts.assertInstanceof(model, pstj.ds.ListItem, 'The data record should be a ListItem');
     goog.base(this, 'setModel', model);
     if (this.isInDocument()) {
       this.dispatchEvent(k3d.component.Item.EventType.MODEL_CHANGE);
@@ -99,6 +121,14 @@ goog.scope(function() {
     this.getHandler().listen(this, pstj.ui.Touchable.EventType.PRESS,
       this.handlePress);
     this.applySizeOnDOM_();
+
+    if (goog.isDefAndNotNull(this.getModel()) &&
+      k3d.ds.helpers.isCornerItem(this.getModel())) {
+
+      this.getContentElement().innerHTML = 'corner';
+    } else {
+      this.getContentElement().innerHTML = '';
+    }
   };
 
   /**
