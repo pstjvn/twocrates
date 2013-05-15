@@ -1,7 +1,14 @@
 Next demo:
- ☐ Create toggle group widget based on the control group.
- ☐ Use control group to set filters in selection.
- ☐ Use project reference and current wall reference to compile filters for selection when adding items.
+ ☐ Use cloned items to manage corners and double rows. When an item is corner item always put it on the end of the list and do not allow its movement. Once added, clone it to the adjacent wall. When item is double row add clone of it on the upper row BUT when displaying it account for this and instead of providing the real height use 0 for the DOM presenation.
+ ☐ Cloned items should not be calculated in the price.
+ ☐ Cloned items that are not corner items should have height = 0
+ ☐ Cloned corner items should have backgroud image reversed in drawing board.
+ ☐ Cloned items on bottom row should add to the top one but not overlap, i.e. the user must fix this manually.
+ ☐ Deleting original item should delete the clone too. For this to work in two fold items we need to mark reference to the original item and use the 'onDispose' method. Disposing he original should remove the clone and dispose it as well.
+ ✔ Cloned items should not allow 'change' and 'delete' in item view. @done (13-05-15 17:52)
+ ✔ Create toggle group widget based on the control group. @done (13-05-15 17:30)
+ ✔ Use control group to set filters in selection. @done (13-05-15 17:30)
+ ✔ Use project reference and current wall reference to compile filters for selection when adding items. @done (13-05-15 17:30)
  ☐ Make sure the scale factor is correctly set upon first loading (resolve small bug in movement)
  ✔ Migrate component code of project to the new templated interface (selector branch) @done (13-05-06 01:59)
  ✔ Finish migration of item component and test. @done (13-05-10 22:29)
@@ -11,12 +18,12 @@ Next demo:
 Project:
  ✔ Selection UI suitable for touch and mouse both. @done (13-05-04 19:30)
  ☐ Error handling in load process / progress indication.
- ☐ Adding item.
+ ✔ Adding item. @done (13-05-15 17:30)
  ✔ Algorythm for changing item. @done (13-05-10 22:29)
- ☐ Algorythm for picking suitable item (corner cases).
- ☐ Price calculator procedure
- ☐ Filter functions for items.
- ☐ Filter functions UI settings.
+ ✔ Algorythm for picking suitable item (corner cases). @done (13-05-15 17:30)
+ ✔ Price calculator procedure @done (13-05-15 17:30)
+ ✔ Filter functions for items. @done (13-05-15 17:30)
+ ✔ Filter functions UI settings. @done (13-05-15 17:30)
 
 Optional:
  ✔ Modularized code loading path, show load indicator and load the rest as module talking to the indicator. @done (13-05-10 22:29)
