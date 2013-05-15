@@ -372,14 +372,19 @@ goog.scope(function() {
   _.provideStopPoints_ = function(e) {
     e.stopPropagation();
     this.movedChild_ = this.drawsheet.getMovedChild();
-    if (goog.array.contains(this.topchildren_, this.movedChild_)) {
-      this.movedChildsRow_ = this.topchildren_;
-      this.stopPoints = this.currentWall.getStopPoints(true);
-    } else if (goog.array.contains(this.bottomchildren_, this.movedChild_)) {
-      this.movedChildsRow_ = this.bottomchildren_;
-      this.stopPoints = this.currentWall.getStopPoints(false);
+    // Cloned items should not be moved
+    if (k3d.ds.helpers.isClone(this.movedChild_)) {
+      return [];
     } else {
-      throw new Error('Cannot determine the row of the moved child');
+      if (goog.array.contains(this.topchildren_, this.movedChild_)) {
+        this.movedChildsRow_ = this.topchildren_;
+        this.stopPoints = this.currentWall.getStopPoints(true);
+      } else if (goog.array.contains(this.bottomchildren_, this.movedChild_)) {
+        this.movedChildsRow_ = this.bottomchildren_;
+        this.stopPoints = this.currentWall.getStopPoints(false);
+      } else {
+        throw new Error('Cannot determine the row of the moved child');
+      }
     }
   };
 
