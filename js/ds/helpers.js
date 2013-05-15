@@ -18,4 +18,14 @@ goog.scope(function() {
     return goog.array.contains(k3d.ds.definitions.CORNER_CATEGORIES,
       item.getProp(k3d.ds.definitions.Struct.CATEGORY));
   };
+
+  /**
+   * Checks if the item is clone of another item.
+   * @param {pstj.ds.ListItem} item The item to check.
+   * @return {boolean} True if the item is a clone.
+   */
+  _.isClone = function(item) {
+    return !!item.getProp(k3d.ds.definitions.Struct.CLONE);
+  };
+
 });

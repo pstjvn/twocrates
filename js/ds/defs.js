@@ -74,11 +74,16 @@ k3d.ds.definitions.Struct = {
   DIMENTIONS: 'dimentions',
   // The color of the finish when it is not pattern.
   COLOR: 'color',
+  // Flag for items that are a copy of a real item but are used to allow for
+  // easier construction of the view.
+  CLONE: 'is_secondary',
   //----- Data structure names ----//
   //Kitchen record.
   KITCHEN: 'data',
   // walls list
   WALLS: 'walls',
+  // The corners for the project
+  CORNERS: 'corners'
   // walls items list
   ITEMS: 'items',
   // top row in a wall
