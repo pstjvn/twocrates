@@ -80,6 +80,18 @@ goog.scope(function() {
   var _ = k3d.component.ItemView.prototype;
 
   /** @inheritDoc */
+  _.setModel = function(model) {
+    goog.base(this, 'setModel', model);
+    goog.asserts.assertInstanceof(this.getModel(), pstj.ds.ListItem,
+      'The model should be a list item');
+    var enable = !this.getModel().getProp(k3d.ds.definitions.Struct.CLONE);
+    this.delete_.setEnabled(enable);
+    this.changeSize_.setEnabled(enable);
+    this.changeModel_.setEnabled(enable);
+    }
+  };
+
+  /** @inheritDoc */
   _.decorateInternal = function(el) {
     goog.base(this, 'decorateInternal', el);
 
