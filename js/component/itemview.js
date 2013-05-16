@@ -85,8 +85,7 @@ goog.scope(function() {
     goog.base(this, 'setModel', model);
     goog.asserts.assertInstanceof(this.getModel(), pstj.ds.ListItem,
       'The model should be a list item');
-    var enable = !k3d.ds.helpers.isClone(model);
-    console.log('model is a clone', model, enable);
+    var enable = !k3d.ds.helpers.isClone(this.getModel());
     this.delete_.setEnabled(enable);
     this.changeSize_.setEnabled(enable);
     this.changeModel_.setEnabled(enable);

@@ -141,8 +141,12 @@ goog.scope(function() {
     // if we have come items, if the item is corner one and is not a clone,
     // shift it last
     if (this.getItemCount() > 0 &&
-      k3d.ds.helpers.isCornerItem(goog.array.peek(this.items_)) &&
-      !k3d.ds.helpers.isClone(goog.array.peek(this.items_))) {
+      k3d.ds.helpers.isCornerItem(
+        goog.asserts.assertInstanceof(
+          goog.array.peek(this.items_), pstj.ds.ListItem)) &&
+      !k3d.ds.helpers.isClone(
+        goog.asserts.assertInstanceof(
+          goog.array.peek(this.items_), pstj.ds.ListItem))) {
 
       goog.array.insertBefore(this.items_, item, goog.array.peek(this.items_));
     } else {
