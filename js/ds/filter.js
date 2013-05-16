@@ -19,6 +19,12 @@ goog.scope(function() {
    * @private
    */
   _.isAttachedToWall_ = false;
+  /**
+   * Global flag set per wall. If this is the last wall no corner items should be alloed on it.
+   * @private
+   * @type {boolean}
+   */
+  _.isLastWall_ = false;
 
   /**
    * Lists all the indexes of items that are attached to a wall.
@@ -68,6 +74,17 @@ goog.scope(function() {
   };
 
   /**
+   * Sets the last wall flag, Walls that are the last ones should set this to
+   *   true.
+   * @param {boolean} islast True if the wall is the last one thus does not
+   *   allow corner items.
+   */
+  _.setIsLastWall = function(islast) {
+    _.isLastWall_ = islast;
+  };
+
+
+  /**
    * Generates a filter by names.
    * @param {string} filterName The filter name.
    * @return {function(pstj.ds.ListItem): boolean} The filter to use.
@@ -78,13 +95,30 @@ goog.scope(function() {
       var width = item.getProp(Struct.WIDTH);
       switch (filterName) {
         case 'filter1':
-          return cat != 1 || width > top;
+          // top regular, can only happen on attached walls
+          if (!_.isAttachedToWall_) return true;
+          if (cat != 1) return true;
+          if (width > top) return true;
+          return false;
         case 'filter2':
-          return cat != 2 || width > bottom;
+          //bottom regular, can happen anywhere
+          if (cat != 2) return true;
+          if (width > bottom) return truel
+          return false;
         case 'filter3':
-          return cat != 3 || width > top;
+          // top corner, can happen only on attacched wall and if the wall is
+          // NOT the last one.
+          if (!_.isAttachedToWall_) return true;
+          if (_.isLastWall_) return true;
+          if (cat != 3) return true;
+          if (width > top) return true;
+          return false;
         case 'filter4':
-          return cat != 4 || width > bottom;
+          // Bottom corner can happen on any wall if it is not the last one
+          if (_.isLastWall_) return true;
+          if (cat != 4) return true;
+          if (width > bottom) return true;
+          return false;
         default: return true;
       }
     };

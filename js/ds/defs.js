@@ -82,8 +82,6 @@ k3d.ds.definitions.Struct = {
   KITCHEN: 'data',
   // walls list
   WALLS: 'walls',
-  // The corners for the project
-  CORNERS: 'corners'
   // walls items list
   ITEMS: 'items',
   // top row in a wall
