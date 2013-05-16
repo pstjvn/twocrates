@@ -88,7 +88,6 @@ goog.scope(function() {
     this.delete_.setEnabled(enable);
     this.changeSize_.setEnabled(enable);
     this.changeModel_.setEnabled(enable);
-    }
   };
 
   /** @inheritDoc */
