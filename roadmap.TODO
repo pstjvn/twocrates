@@ -5,6 +5,8 @@ Next demo:
  ☐ Cloned corner items should have backgroud image reversed in drawing board.
  ☐ Cloned items on bottom row should add to the top one but not overlap, i.e. the user must fix this manually.
  ☐ Deleting original item should delete the clone too. For this to work in two fold items we need to mark reference to the original item and use the 'onDispose' method. Disposing he original should remove the clone and dispose it as well.
+ ☐ Add interface for showing runtime errors to user.
+ ✔ Test with single wall - corner items should not be listed. @done (13-05-16 12:50)
  ✔ Cloned items should not allow 'change' and 'delete' in item view. @done (13-05-15 17:52)
  ✔ Create toggle group widget based on the control group. @done (13-05-15 17:30)
  ✔ Use control group to set filters in selection. @done (13-05-15 17:30)

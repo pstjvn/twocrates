@@ -28,4 +28,15 @@ goog.scope(function() {
     return !!item.getProp(k3d.ds.definitions.Struct.CLONE);
   };
 
+  /**
+   * Decides if the item ciould be put on the upper row of a kitchen wall.
+   * @param {pstj.ds.ListItem} item The item to check against.
+   * @return {boolean} True if the item could be put on a up row.
+   */
+  _.isUpperRowItem = function(item) {
+    var category = item.getProp(k3d.ds.definitions.Struct.CATEGORY);
+    if (category == 1 || category == 3) return true;
+    return false;
+  };
+
 });

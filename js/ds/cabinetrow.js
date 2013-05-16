@@ -138,7 +138,32 @@ goog.scope(function() {
    *   cabinet.
    */
   _.addItem = function(item) {
-    this.items_.push(item);
+    // if we have come items, if the item is corner one and is not a clone,
+    // shift it last
+    if (this.getItemCount() > 0 &&
+      k3d.ds.helpers.isCornerItem(goog.array.peek(this.items_)) &&
+      !k3d.ds.helpers.isClone(goog.array.peek(this.items_))) {
+
+      goog.array.insertBefore(this.items_, item, goog.array.peek(this.items_));
+    } else {
+      this.items_.push(item);
+    }
+  };
+
+  /**
+   * Adds an item as clone (basically item from a preceeding wall)
+   * @param {pstj.ds.ListItem} item The item to clone from the previous wall.
+   * @param {number=} index Optionally where to add the clone (used by clones
+   *   for two row items).
+   */
+  _.addClone = function(item, index) {
+    if (this.getItemCount() > 0 && k3d.ds.helpers.isClone(this.items_[0])) {
+      throw new Error('Cloned item already exists in wall!');
+    }
+    if (!goog.isNumber(index)) index = 0;
+    var newitem = item.clone();
+    newitem.mutate(Struct.CLONE, true);
+    goog.array.insertAt(this.items_, newitem, index);
   };
 
   /**
@@ -213,6 +238,17 @@ goog.scope(function() {
       advancement += width;
     });
     return result;
+  };
+
+
+  /**
+   * Test if the cabinet raw already has corner item.
+   * @return {boolean} True if corner item presents on this raw.
+   */
+  _.hasCornerItem = function() {
+    return goog.array.some(this.items_, function(item) {
+      return k3d.ds.helpers.isCornerItem(item);
+    });
   };
 
   /**

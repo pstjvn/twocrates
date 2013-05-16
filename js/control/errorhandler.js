@@ -39,15 +39,24 @@ goog.scope(function() {
   _.handleError = function(error_index, status_id, message) {
     console.log('Error occured and is handled', error_index, status_id,
       message);
-    if (error_index == Static.SERVER_HTTP_ERROR) {
-      // server error occured
-    } else if (error_index == Static.UNPARSABLE_JSON) {
-      // JSON cannot be parsed....
-    } else if (error_index == Static.STRUCTURED_ERROR) {
-      switch (status_id) {
-        default:
-          console.log(message);
-      }
+    switch (error_index) {
+      case Static.SERVER_HTTP_ERROR:
+        // server error occured
+        break;
+      case Static.UNPARSABLE_JSON:
+        // cannot parse JSON.
+        break;
+      case Static.STRUCTURED_ERROR:
+        // Error that is recognized on the server occured
+        switch (status_id) {
+          default:
+            console.log(message);
+        }
+        break;
+      case Static.RUNTIME:
+        // Error occured by performing client side action that is not allowed.
+        // TODO: show the message to the user...
+        break;
     }
   };
 

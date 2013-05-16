@@ -108,6 +108,15 @@ goog.scope(function() {
   };
 
   /**
+   * Helper function, used a lot when working with clones.
+   * @param {k3d.ds.Wall} wall The wall to find next wall of.
+   * @return {k3d.ds.Wall}
+   */
+  _.getNextWall = function(wall) {
+    return this.getWall(this.getWallIndex(wall) + 1);
+  };
+
+  /**
    * Checks if a wall with this index exists in the project.
    * @param {number} index The index to look up.
    * @return {boolean} True if such wall exists.

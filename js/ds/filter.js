@@ -19,6 +19,7 @@ goog.scope(function() {
    * @private
    */
   _.isAttachedToWall_ = false;
+
   /**
    * Global flag set per wall. If this is the last wall no corner items should be alloed on it.
    * @private
@@ -103,7 +104,7 @@ goog.scope(function() {
         case 'filter2':
           //bottom regular, can happen anywhere
           if (cat != 2) return true;
-          if (width > bottom) return truel
+          if (width > bottom) return true;
           return false;
         case 'filter3':
           // top corner, can happen only on attacched wall and if the wall is

@@ -18,6 +18,7 @@ goog.require('k3d.control.Price');
 goog.require('k3d.ds.ItemPool');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.ds.filter');
+goog.require('k3d.ds.strings');
 goog.require('k3d.ui.Filler');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
@@ -373,7 +374,7 @@ goog.scope(function() {
     e.stopPropagation();
     this.movedChild_ = this.drawsheet.getMovedChild();
     // Cloned items should not be moved
-    if (k3d.ds.helpers.isClone(this.movedChild_)) {
+    if (k3d.ds.helpers.isClone(this.movedChild_.getModel())) {
       return [];
     } else {
       if (goog.array.contains(this.topchildren_, this.movedChild_)) {
@@ -489,16 +490,51 @@ goog.scope(function() {
       // If we are in 'add mode' do not track anything, just add the item to the
       // matching wall.
       if (this.isInAddMode_) {
+        // remove the mode because we can exit before the end when error occurs.
+        this.isInAddMode_ = false;
+        // Hide the selector.
         k3d.component.PopOver.getInstance().setVisible(false);
+
+        // Start logic for item addition.
         var category = item.getProp(Struct.CATEGORY);
-        // TODO: rework this to account for corner items.
         switch (category) {
           case k3d.ds.definitions.Category.TOP:
-          case k3d.ds.definitions.Category.TOP_CORNER:
             this.currentWall.getRow(true).addItem(item.clone());
+
             break;
-          case k3d.ds.definitions.Category.BOTTOM:
+
+          case k3d.ds.definitions.Category.TOP_CORNER:
+            // Check if we already have a corner item on the top row
+            if (this.currentWall.getRow(true).hasCornerItem()) {
+              k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
+                k3d.ds.definitions.Static.RUNTIME, 0,
+                k3d.ds.strings.cornerItemAlreadyExists);
+              return;
+            }
+            // last wall should have been handled in the filters already so skip
+            // that.
+
+            // Now it seems legit to add the item.
+            this.data.getWall(this.data.getWallIndex(
+              this.currentWall) + 1).getRow(true).addClone(item.clone());
+            this.currentWall.getRow(true).addItem(item.clone());
+
+            break;
+
           case k3d.ds.definitions.Category.BOTTOM_CORNER:
+            if (this.currentWall.getRow(false).hasCornerItem()) {
+              k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
+                k3d.ds.definitions.Static.RUNTIME, 0,
+                k3d.ds.strings.cornerItemAlreadyExists);
+              return;
+            }
+            this.data.getWall(this.data.getWallIndex(this.currentWall) + 1)
+              .getRow(false).addClone(item.clone());
+            this.currentWall.getRow(false).addItem(item.clone());
+
+            break;
+
+          case k3d.ds.definitions.Category.BOTTOM:
             this.currentWall.getRow(false).addItem(item.clone());
             break;
           default: console.log('Not yet supported', category);
@@ -527,7 +563,34 @@ goog.scope(function() {
         k3d.component.PopOver.getInstance().setVisible(true);
       }
     }
-    this.isInAddMode_ = false;
+  };
+
+  _.cleanClones = function(item) {
+    if (k3d.ds.helpers.isCornerItem(item)) {
+      // if it is a corner item chances are it has its clone, but just in case
+      // make sure it itself is not a clone.
+      if (k3d.ds.helpers.isClone(item)) {
+        throw new Error(
+          'Clone items should not be passed to this cleaning method');
+      }
+
+      // we need to find the cloned item to remove it... fist - if the original
+      // item is corner item we could be pretty sure the cloned item is with
+      // index = 0 if the original item is not corner item then its clone is in
+      // the same wall and we need to look it up. problem is if we have two two
+      // row items with one regular floor item between them, we cannot really
+      // know which cloned item we need unless we make index search by twp-row
+      // clones and match the indexes.
+
+      // the row that has the clone in case the original is corner item.
+      var row = this.data.getNextWall(this.currentWall).getRow(
+        k3d.ds.helpers.isUpperRowItem(item));
+      var cloneitem = row.getItemByIndex(0);
+      row.removeItem(cloneitem);
+      goog.dispose(cloneitem);
+    } else {
+      throw new Error('This is not yet handled');
+    }
   };
 
   /**
@@ -537,6 +600,9 @@ goog.scope(function() {
    */
   _.handleItemViewAction = function(e) {
     var target = /** @type {!pstj.ui.Button} */ (e.target);
+    var top;
+    var siblingrow;
+    var toDispose;
     if (target.getActionName() == Actions.CLOSE) {
 
       // CLOSE (ACTIVATE CHANGES)
@@ -545,8 +611,27 @@ goog.scope(function() {
 
       k3d.component.PopOver.getInstance().setVisible(false);
 
+      // If we change the item
       if (newcab.getId() != this.editedChild_.getId()) {
         this.currentWall.replaceItem(this.editedChild_, newcab);
+        // if it is corner item get the first index in the next wall and replace
+        // it and dispose of it
+        if (k3d.ds.helpers.isCornerItem(this.editedChild_)) {
+          // which sibling row to alter.
+          top = k3d.ds.helpers.isUpperRowItem(this.editedChild_);
+          // sibling wall
+          siblingrow = this.data.getNextWall(this.currentWall).getRow(top);
+          toDispose = siblingrow.getItemByIndex(0);
+          siblingrow.removeItem(toDispose);
+          siblingrow.addClone(newcab, 0);
+          goog.dispose(toDispose);
+        }
+
+        // if it is two row item get the relevant current wall dummy and repace
+        // it.
+        //
+        // what todo with two row corner?
+
         goog.dispose(this.editedChild_);
         this.editedChild_ = null;
         this.clearDrawing();
@@ -560,6 +645,16 @@ goog.scope(function() {
 
       k3d.component.PopOver.getInstance().setVisible(false);
       this.currentWall.removeItem(this.editedChild_);
+      if (k3d.ds.helpers.isCornerItem(this.editedChild_)) {
+        // which sibling row to alter.
+        top = k3d.ds.helpers.isUpperRowItem(this.editedChild_);
+        // sibling wall
+        siblingrow = this.data.getNextWall(this.currentWall).getRow(top);
+        toDispose = siblingrow.getItemByIndex(0);
+        siblingrow.removeItem(toDispose);
+        goog.dispose(toDispose);
+      }
+
       goog.dispose(this.editedChild_);
       this.clearDrawing();
       this.visualizeItems();
@@ -640,6 +735,9 @@ goog.scope(function() {
     // Tell the filter factory if we want items that are attached to wall.
     k3d.ds.filter.setAttachedToWall(
       !!this.currentWall.getProp(Struct.ATTACHED));
+    k3d.ds.filter.setIsLastWall(
+      !this.data.hasWallWithIndex(this.data.getWallIndex(
+        this.currentWall) + 1));
 
     // clear the drawing
     this.clearDrawing();

@@ -201,7 +201,9 @@ goog.scope(function() {
       -(this.moveCache_[0] - this.moveCache_[2]),
       -(this.moveCache_[1] - this.moveCache_[3]), undefined,
       this.activatedScaleProperty);
-    k3d.component.PubSub.publish(k3d.component.PubSubTopic);
+    if (this.isMoveEnabled()) {
+      k3d.component.PubSub.publish(k3d.component.PubSubTopic);
+    }
     return false;
   };
 

@@ -1,5 +1,6 @@
 goog.provide('k3d.component.ItemView');
 
+goog.require('k3d.ds.helpers');
 goog.require('k3d.template');
 goog.require('pstj.ng.Template');
 goog.require('pstj.ui.Button');
@@ -84,7 +85,8 @@ goog.scope(function() {
     goog.base(this, 'setModel', model);
     goog.asserts.assertInstanceof(this.getModel(), pstj.ds.ListItem,
       'The model should be a list item');
-    var enable = !this.getModel().getProp(k3d.ds.definitions.Struct.CLONE);
+    var enable = !k3d.ds.helpers.isClone(model);
+    console.log('model is a clone', model, enable);
     this.delete_.setEnabled(enable);
     this.changeSize_.setEnabled(enable);
     this.changeModel_.setEnabled(enable);
