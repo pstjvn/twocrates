@@ -75,6 +75,12 @@ k3d.component.Item = function(opt_template) {
    * @type {Array.<number>}
    */
   this.moveCache_ = [0.0, 0.0, 0.0, 0.0];
+  /**
+   * We need to apply the scale each time we change the tranformation.
+   * @type {string}
+   * @protected
+   */
+  this.activatedScaleProperty = '';
 };
 goog.inherits(k3d.component.Item, pstj.ui.MoveTouch);
 
@@ -90,13 +96,6 @@ goog.scope(function() {
 
   var _ = k3d.component.Item.prototype;
   var css = pstj.lab.style.css;
-
-  /**
-   * We need to apply the scale each time we change the tranformation.
-   * @type {string}
-   * @const
-   */
-  _.activatedScaleProperty = 'scale(1.1)';
 
   /**
    * @override
@@ -150,6 +149,8 @@ goog.scope(function() {
   _.handlePress = function(e) {
     this.moveCache_[0] = e.x;
     this.moveCache_[1] = e.y;
+    this.moveCache_[2] = this.moveCache_[0];
+    this.moveCache_[3] = this.moveCache_[1];
   };
 
   /**
@@ -160,7 +161,9 @@ goog.scope(function() {
    */
   _.handleLongPress = function(e) {
     //goog.base(this, 'handleLongPress', e);
+    this.update();
     this.setMoveEnabled(true);
+    this.activatedScaleProperty = 'scale(1.1)';
     goog.dom.classlist.add(this.getElement(),
       goog.getCssName('sheet-item-moving'));
   };
@@ -173,9 +176,9 @@ goog.scope(function() {
   _.handleMove = function(e) {
     if (this.isMoveEnabled()) {
       e.stopPropagation();
+      this.update();
       this.moveCache_[2] = e.x;
       this.moveCache_[3] = e.y;
-      this.update();
     }
   };
 
@@ -184,7 +187,12 @@ goog.scope(function() {
     goog.base(this, 'handleRelease', e);
     goog.dom.classlist.remove(this.getElement(),
       goog.getCssName('sheet-item-moving'));
-    css.setTranslation(this.getElement(), 0, 0);
+    this.update();
+    this.activatedScaleProperty = '';
+    this.moveCache_[0] = 0;
+    this.moveCache_[1] = 0;
+    this.moveCache_[2] = 0;
+    this.moveCache_[3] = 0;
   };
 
   /** @inheritDoc */
