@@ -71,7 +71,7 @@ goog.scope(function() {
             break;
 
           // User is unkown, we cannot save
-          case 18:
+          case 20:
             this.noticeDialog_.setText(k3d.ds.strings.assignwithoutloggin);
 
             k3d.component.PopOver.getInstance().addChild(
