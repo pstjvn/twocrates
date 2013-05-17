@@ -23,9 +23,15 @@
 {template .header}
   <div class="{css header}">
     {foreach $link in $links}
-      <div class="{css goog-inline-block} {css header-link}">
-        <a href="{$link.link}">{$link.text |noAutoescape}</a>
-      </div>
+      {if isLast($link)}
+        <div style="float:right" class="{css goog-inline-block} {css header-link}">
+          <a href="{$link.link}">{$link.text |noAutoescape}</a>
+        </div>
+      {else}
+        <div class="{css goog-inline-block} {css header-link}">
+          <a href="{$link.link}">{$link.text |noAutoescape}</a>
+        </div>
+      {/if}
     {/foreach}
   </div>
 {/template}
