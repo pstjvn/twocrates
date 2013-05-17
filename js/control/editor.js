@@ -257,9 +257,7 @@ goog.scope(function() {
       function(items) {
         this.selectBox.setModel(items);
         this.selectBox.render();
-        console.log(items);
         k3d.ds.filter.preFilter(items);
-
       }, this));
 
     k3d.control.Loader.getInstance().getFinishes().addCallback(goog.bind(
@@ -376,7 +374,7 @@ goog.scope(function() {
     this.movedChild_ = this.drawsheet.getMovedChild();
     // Cloned items should not be moved
     if (k3d.ds.helpers.isClone(this.movedChild_.getModel())) {
-      return [];
+      this.stopPoints = [10000];
     } else {
       if (goog.array.contains(this.topchildren_, this.movedChild_)) {
         this.movedChildsRow_ = this.topchildren_;
@@ -877,7 +875,6 @@ goog.scope(function() {
       'child'), el));
 
     this.frame.addChild(this.drawsheet);
-
   };
 
   /**
