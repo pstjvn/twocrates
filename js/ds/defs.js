@@ -31,7 +31,16 @@ k3d.ds.definitions.Path = {
   LOAD_ITEMS: goog.asserts.assertString(pstj.configure.getRuntimeValue(
     'LOAD_ITEMS', '/getItems', k3d.ds.definitions.PathsPrefix)),
   LOAD_HANDLES: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'LOAD_HANDLES', '/getHandles', k3d.ds.definitions.PathsPrefix))
+    'LOAD_HANDLES', '/getHandles', k3d.ds.definitions.PathsPrefix)),
+  ASSIGN_KITCHEN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'ASSIGN_KITCHEN', '/assignKitchen', k3d.ds.definitions.PathsPrefix)),
+  LOGIN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'LOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
+  PROJECTS: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'PROJECTS', 'Pages/projects', k3d.ds.definitions.PathsPrefix)),
+  NO_SUCH_PROJECT_REDIRECT: goog.asserts.assertString(
+    pstj.configure.getRuntimeValue('NO_SUCH_PROJECT_REDIRECT',
+      '/tocrates/Pages/selectKitchenType', k3d.ds.definitions.PathsPrefix))
 };
 
 /**

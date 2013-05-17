@@ -238,3 +238,44 @@
     </div>
   </div>
 {/template}
+
+
+/**
+ * The notice
+ */
+{template .notice}
+  <div class="{css k3d-note}">
+    <div class="{css k3d-note-wrapper}">
+      <div class="{css k3d-note-text}"></div>
+      <div class="{css k3d-note-buttons}">
+        <div style="float:right" class="{css pstj-button} {css action-trigger}">{msg desc="Button label: OK"}OK{/msg}</div>
+      </div>
+    </div>
+  </div>
+{/template}
+
+/**
+ * Save when user iss now known.
+ * @param login_link
+ */
+{template .savewhenuserunknown}
+  <p>{msg desc="notice"}Saving a project requires that you are logged in user. Click the ling bellow to log-in or register.{/msg}</p>
+  <p><a href="{$login_link}">{msg desc="Login link text"}Log in{/msg}</a></p>
+{/template}
+
+/**
+ *
+ */
+{template .alreadysaved}
+  <p>{msg desc="notice when already saved"}The project is already saved with your account, you do not need to manually save as all changes are saved automatically.{/msg}</p>
+{/template}
+
+/**
+ * @param projects_link
+ */
+{template .nomoresaves}
+  <p>{msg desc="notice when user already has reached the limit of saved project"}The maximum limit of saved projects has been reached and this project could not be saved.{/msg}</p>
+  <p>{msg desc="second part of notice"}To be able to save a new project, you need to delete one of the previously saved ones.{/msg}</p>
+  <p>{msg desc="third part of notice"}You can delete projects from{/msg}{sp}
+  <a href="{$projects_link}">{msg desc="link pointer"}here{/msg}.</a><p>
+{/template}

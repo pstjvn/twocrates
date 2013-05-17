@@ -22,6 +22,7 @@ goog.require('pstj.control.Base');
 k3d.control.Main = function() {
   goog.base(this);
   this.delayLoad_ = new goog.async.Delay(this.postLoad, 200, this);
+  this.projectid_ = 0;
   this.initialize();
 
 };
@@ -34,6 +35,7 @@ goog.scope(function() {
   /** @inheritDoc */
   _.initialize = function() {
 
+    k3d.control.ErrorHandler.getInstance().setParentControlInstance(this);
     // first start loading data from server as this tends to be the slowest
     // process.
     k3d.control.Loader.getInstance().start(goog.bind(
@@ -55,7 +57,6 @@ goog.scope(function() {
     goog.dom.getElementByClass(goog.getCssName('header')).style.height =
       k3d.ds.definitions.headerHeight + 'px';
 
-    k3d.control.ErrorHandler.getInstance().setParentControlInstance(this);
     k3d.control.Buttons.getInstance().setParentControlInstance(this);
     k3d.control.Editor.getInstance().setParentControlInstance(this);
     k3d.control.Editor.getInstance().install(/** @type {!Element} */ (
@@ -66,6 +67,8 @@ goog.scope(function() {
 
         goog.asserts.assertInstanceof(kitchen, k3d.ds.KitchenProject,
           'Should have been a kitchen');
+
+        this.projectid_ = kitchen.getId();
 
         // tell the price calculator about the data model.
         k3d.control.Price.getInstance().loadData(kitchen);
@@ -99,7 +102,7 @@ goog.scope(function() {
           k3d.control.Editor.getInstance().showSelectHandles();
           break;
         case 'save':
-          console.log('Save prodecure');
+          //k3d.control.Loader.getInstance().assignProject(this.projectid_);
           break;
       }
     }

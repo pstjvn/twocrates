@@ -1,6 +1,11 @@
 goog.provide('k3d.control.ErrorHandler');
 
+goog.require('goog.events');
+goog.require('goog.ui.Component.EventType');
+goog.require('k3d.component.Notice');
+goog.require('k3d.component.PopOver');
 goog.require('k3d.ds.definitions');
+goog.require('k3d.ds.strings');
 goog.require('k3d.mb');
 goog.require('pstj.control.Base');
 
@@ -12,6 +17,11 @@ goog.require('pstj.control.Base');
  */
 k3d.control.ErrorHandler = function() {
   goog.base(this);
+  this.noticeDialog_ = new k3d.component.Notice();
+  goog.events.listen(this.noticeDialog_, goog.ui.Component.EventType.ACTION,
+    function() {
+      k3d.component.PopOver.getInstance().setVisible(false);
+    });
   this.initialize();
 };
 goog.inherits(k3d.control.ErrorHandler, pstj.control.Base);
@@ -47,10 +57,43 @@ goog.scope(function() {
         // cannot parse JSON.
         break;
       case Static.STRUCTURED_ERROR:
+
         // Error that is recognized on the server occured
         switch (status_id) {
+
+          // There is no project with this id, redirect to creating a new
+          // project.
+          case 6:
+
+            window.location.href = k3d.ds
+              .definitions.Path.NO_SUCH_PROJECT_REDIRECT;
+
+            break;
+
+          // User is unkown, we cannot save
+          case 18:
+            this.noticeDialog_.setText(k3d.ds.strings.assignwithoutloggin);
+
+            k3d.component.PopOver.getInstance().addChild(
+              this.noticeDialog_, true);
+
+            k3d.component.PopOver.getInstance().setVisible(true);
+
+            break;
+
+          // User already has 5 projects saved
+          case 13:
+            this.noticeDialog_.setText(k3d.ds.strings.nomoresaves);
+
+            k3d.component.PopOver.getInstance().addChild(
+              this.noticeDialog_, true);
+
+            k3d.component.PopOver.getInstance().setVisible(true);
+
+            break;
+
           default:
-            console.log(message);
+            //console.log(message);
         }
         break;
       case Static.RUNTIME:

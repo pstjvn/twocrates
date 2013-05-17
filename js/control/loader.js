@@ -471,12 +471,26 @@ goog.scope(function() {
     }
     if (data[Struct.STATUS] != 0) {
       this.lastKnownServerError_ = data[Struct.STATUS];
-      mb.Bus.publish(mb.Topic.ERROR, Static.STRUCTURED_ERROR, Struct.STATUS,
-        Struct.ERROR_MESSAGE);
-      throw new Error('Status of result was not OK');
+      mb.Bus.publish(mb.Topic.ERROR, Static.STRUCTURED_ERROR,
+        data[Struct.STATUS], data[Struct.ERROR_MESSAGE]);
+      //throw new Error('Status of result was not OK');
     }
     goog.asserts.assertObject(data);
     return data;
+  };
+
+  /**
+   * Attempt to assign the project to a user on the backend.
+   */
+  _.assignProject = function(project_id) {
+    goog.net.XhrIo.send(Path.ASSIGN_KITCHEN + '?' + 'id=' + project_id,
+      goog.bind(function(e) {
+      try {
+        var result = this.checkForErrors(e);
+      } catch (err) {
+        return;
+      }
+    }, this));
   };
 
   /**

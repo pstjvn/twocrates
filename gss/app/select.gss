@@ -1,8 +1,17 @@
-.pstj-widget-select {
+.pstj-widget-select, .k3d-note {
   margin: auto;
   padding: DIALOG_PADDING;
   border: DIALOG_BORDER;
   background: DIALOG_BACKGROUND;
+}
+
+.k3d-note {
+  width: 600px;
+}
+
+.k3d-note-buttons {
+  height: 30px;
+  padding-right: 10px;
 }
 
 .pstj-widget-select .filters-group {

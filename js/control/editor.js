@@ -89,6 +89,7 @@ k3d.control.Editor = function() {
    */
   this.selectBox = new k3d.component.Select(undefined,
     k3d.component.SelectItemTemplate.getInstance());
+  this.selectBox.setEmptyListText(k3d.ds.strings.noItemsSuitFilter);
   /**
    * The selection box for items.
    * @type {pstj.widget.Select}
