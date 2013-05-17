@@ -238,8 +238,15 @@ goog.scope(function() {
         item.getProp(goog.array.contains(k3d.ds.definitions.CORNER_CATEGORIES,
           item.getProp(Struct.CATEGORY)) ? Struct.WIDTH2 : Struct.WIDTH));
 
-      result.push(advancement + (width / 2));
+      // If the item is a clone, we should not move it, put negative number
+      if (k3d.ds.helpers.isClone(item)) {
+        -result.push(-10000);
+      } else if (!k3d.ds.helpers.isCornerItem(item)) {
+        result.push(advancement + (width / 2));
+      }
+
       advancement += width;
+
     });
     return result;
   };
