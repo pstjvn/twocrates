@@ -170,6 +170,8 @@ k3d.control.Loader = function() {
    * @private
    */
   this.onPreloadComplete_ = null;
+
+  this.getPreviewObject_ = null;
 };
 goog.inherits(k3d.control.Loader, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Loader);
@@ -489,6 +491,25 @@ goog.scope(function() {
         var result = this.checkForErrors(e);
       } catch (err) {
         return;
+      }
+    }, this));
+  };
+
+  /**
+   * Gteer for the preview of the kitchen project.
+   */
+  _.getPreview = function(callback) {
+    if (!goog.isNull(this.getPreviewObject_)) {
+      this.getPreviewObject_.abort();
+    }
+    goog.net.XhrIo.send(Path.GENERATE_PREVIEW, goog.bind(function(e) {
+      try {
+        var result = this.checkForErrors(e);
+      } catch (err) {
+        return;
+      }
+      if (this.hasData(result)) {
+        callback(result[Struct.DATA]);
       }
     }, this));
   };

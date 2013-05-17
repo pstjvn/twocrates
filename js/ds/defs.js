@@ -40,7 +40,10 @@ k3d.ds.definitions.Path = {
     'PROJECTS', 'Pages/projects', k3d.ds.definitions.PathsPrefix)),
   NO_SUCH_PROJECT_REDIRECT: goog.asserts.assertString(
     pstj.configure.getRuntimeValue('NO_SUCH_PROJECT_REDIRECT',
-      '/tocrates/Pages/selectKitchenType', k3d.ds.definitions.PathsPrefix))
+      '/tocrates/Pages/selectKitchenType', k3d.ds.definitions.PathsPrefix)),
+  GENERATE_PREVIEW: goog.asserts.assertString(
+    pstj.configure.getRuntimeValue('GENERATE_PREVIEW',
+      '/tocrates/generatePreview', k3d.ds.definitions.PathsPrefix))
 };
 
 /**
@@ -108,7 +111,8 @@ k3d.ds.definitions.Struct = {
   // The finish id in the kitchen project.
   FINISH: 'finish_id',
   // The handles id in the kitchen project.
-  HANDLE: 'handle_id'
+  HANDLE: 'handle_id',
+  IMAGE: 'image'
 };
 
 /**

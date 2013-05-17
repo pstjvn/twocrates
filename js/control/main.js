@@ -21,8 +21,36 @@ goog.require('pstj.control.Base');
  */
 k3d.control.Main = function() {
   goog.base(this);
-  this.delayLoad_ = new goog.async.Delay(this.postLoad, 200, this);
+  /**
+   * Reference the project id currently edited for easier access.
+   * @type {number}
+   * @private
+   */
   this.projectid_ = 0;
+
+  this.delayLoad_ = new goog.async.Delay(this.postLoad, 200, this);
+
+  this.getImageDelay_ = new goog.async.Delay(function() {
+    k3d.control.Loader.getInstance().getPreview(this.previewCallback_);
+  }, 500, this);
+
+  /**
+   * Reference the preview window, it will update when we save
+   * @type {k3d.component.Preview}
+   * @private
+   */
+  this.preview_ = null;
+
+  /**
+   * This function should be the callback of the getPrview call.
+   * @type {function(Object): undefined}
+   * @private
+   */
+  this.previewCallback_ = goog.bind(function(obj) {
+    this.preview_.setModel(obj);
+  }, this);
+
+  // Start the damn thing
   this.initialize();
 
 };
@@ -80,6 +108,11 @@ goog.scope(function() {
         // }, 1000);
       }, this)
     );
+
+    this.preview_ = new k3d.component.Preview(undefined,
+      'public/assets/bgb.jpg');
+
+    this.preview_.render(document.body);
   };
 
   /** @inheritDoc */
@@ -115,9 +148,11 @@ goog.scope(function() {
   _.postLoad = function() {
 
     // Setup the action to take when the data record changes.
-    k3d.control.Editor.getInstance().setDataChangeHandler(function(kitchen) {
-      k3d.control.Loader.getInstance().saveKitchen(kitchen);
-    });
+    k3d.control.Editor.getInstance().setDataChangeHandler(goog.bind(
+      function(kitchen) {
+        k3d.control.Loader.getInstance().saveKitchen(kitchen);
+        this.getImageDelay_.start();
+      }, this));
 
     //Notify the editor when all images have been loaded, including ones on post
     //load.

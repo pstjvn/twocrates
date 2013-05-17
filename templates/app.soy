@@ -285,3 +285,16 @@
   <p>{msg desc="third part of notice"}You can delete projects from{/msg}{sp}
   <a href="{$projects_link}">{msg desc="link pointer"}here{/msg}.</a><p>
 {/template}
+
+/**
+ * The template for the preview window.
+ * @param src
+ */
+{template .preview}
+  <div class="{css k3d-preview}">
+    <div class="{css k3d-preview-toggler}"></div>
+    <div class="{css k3d-preview-container}">
+      <img src="{$src}" class="{css k3d-preview-image}" />
+    </div>
+  </div>
+{/template}
