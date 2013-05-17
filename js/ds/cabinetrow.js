@@ -240,7 +240,7 @@ goog.scope(function() {
 
       // If the item is a clone, we should not move it, put negative number
       if (k3d.ds.helpers.isClone(item)) {
-        -result.push(-10000);
+        result.push(-10000);
       } else if (!k3d.ds.helpers.isCornerItem(item)) {
         result.push(advancement + (width / 2));
       }
