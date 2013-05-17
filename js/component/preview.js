@@ -66,10 +66,9 @@ goog.scope(function() {
   /** @inheritDoc */
   _.enterDocument = function() {
     goog.base(this, 'enterDocument');
-    this.getHandler().listen(this.getEls('k3d-preview-toggler'),
-      goog.events.EventType.CLICK, function(e) {
+    this.getHandler().listen(this.getEls(goog.getCssName(
+      'k3d-preview-toggler')), goog.events.EventType.CLICK, function(e) {
         e.stopPropagation();
-        console.log('Switching class');
         goog.dom.classlist.toggle(this.getElement(), goog.getCssName('on'));
     }, undefined, this);
   }
