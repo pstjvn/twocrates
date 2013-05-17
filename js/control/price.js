@@ -1,8 +1,11 @@
 goog.provide('k3d.control.Price');
 
 goog.require('goog.asserts');
+goog.require('goog.async.Delay');
 goog.require('k3d.component.PriceLabelTemplate');
 goog.require('k3d.ds.definitions');
+goog.require('k3d.ds.CabinetRow');
+goog.require('k3d.ds.helpers');
 goog.require('pstj.control.Base');
 goog.require('pstj.ng.Template');
 
@@ -44,6 +47,9 @@ goog.scope(function() {
 
   /**
    * Calculates the price of the whole kitchen based on its current structure.
+   * TODO: offset kickboard
+   * TODO: offset benchtop?
+   * TODO: get prices from stogae.
    * @private
    * @return {number}
    */
@@ -53,16 +59,34 @@ goog.scope(function() {
     var wallindex = 0;
     var wall = null;
     var row = null;
+    var handles_price = 0;
+    var finish_price = 0;
+    var kickboard_price = 0;
+    var benchtop_price = 0;
+    // combine the price for all items
+    // until there is a wall
     while (this.data.hasWallWithIndex(wallindex)) {
       wall = this.data.getWall(wallindex);
-      row = wall.getRow(true);
-      row.forEach(function(item) {
-        price = price + goog.asserts.assertNumber(item.getProp(Struct.PRICE));
-      });
-      row = wall.getRow(false);
-      row.forEach(function(item) {
-        price = price + goog.asserts.assertNumber(item.getProp(Struct.PRICE));
-      });
+      //gather the top and bottom rows
+      goog.array.forEach([wall.getRow(true), wall.getRow(false)],
+        function(row, index) {
+          goog.asserts.assertInstanceof(row, k3d.ds.CabinetRow,
+            'Expected cabinet row here');
+          // for each item in a row.
+          row.forEach(function(item) {
+            if (k3d.ds.helpers.isClone(item)) return;
+            price += goog.asserts.assertNumber(item.getProp(Struct.PRICE));
+            price += (item.getProp(Struct.HANDLES) * handles_price);
+          });
+          // if it is the botom row calculate the benchtop
+          if (index > 0) {
+            price += (row.getWidth() / 1000) * benchtop_price;
+            price += (row.getWidth() / 1000) * kickboard_price;
+          }
+
+          price += (row.getWidth() / 1000) * finish_price;
+        }
+      );
       wallindex++;
     }
     return price;
