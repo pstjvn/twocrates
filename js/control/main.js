@@ -4,6 +4,7 @@ goog.require('goog.asserts');
 goog.require('goog.async.DeferredList');
 goog.require('goog.async.Delay');
 goog.require('goog.dom');
+goog.require('k3d.component.Preview');
 goog.require('k3d.control.Buttons');
 goog.require('k3d.control.Editor');
 goog.require('k3d.control.ErrorHandler');
@@ -135,7 +136,7 @@ goog.scope(function() {
           k3d.control.Editor.getInstance().showSelectHandles();
           break;
         case 'save':
-          //k3d.control.Loader.getInstance().assignProject(this.projectid_);
+          k3d.control.Loader.getInstance().assignProject(this.projectid_);
           break;
       }
     }
