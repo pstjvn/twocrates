@@ -485,8 +485,8 @@ goog.scope(function() {
    * Attempt to assign the project to a user on the backend.
    */
   _.assignProject = function(project_id) {
-    goog.net.XhrIo.send(Path.ASSIGN_KITCHEN + '?' + 'id=' + project_id,
-      goog.bind(function(e) {
+    goog.net.XhrIo.send(Path.ASSIGN_KITCHEN + '?kitchen_project_id=' +
+      project_id, goog.bind(function(e) {
       try {
         var result = this.checkForErrors(e);
       } catch (err) {
