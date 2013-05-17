@@ -240,7 +240,10 @@ goog.scope(function() {
       this.currentWall.getProp(Struct.WIDTH) - this.currentWall.getRow(
         true).getWidth(),
       this.currentWall.getProp(Struct.WIDTH) - this.currentWall.getRow(
-        false).getWidth());
+        false).getWidth(),
+      this.currentWall.getRow(true).hasOriginalCornerItem(),
+      this.currentWall.getRow(false).hasOriginalCornerItem()
+      );
 
     k3d.component.PopOver.getInstance().addChild(
       this.selectBox, true);

@@ -88,9 +88,14 @@ goog.scope(function() {
   /**
    * Generates a filter by names.
    * @param {string} filterName The filter name.
+   * @param {number} top The available space at the top row.
+   * @param {number} bottom The available space at the bottom row.
+   * @param {boolean} ctop True if the top row should not accept corner item.
+   * @param {boolean} cbottom True if the bottom row should not accept
+   *   addition of corner item.
    * @return {function(pstj.ds.ListItem): boolean} The filter to use.
    */
-  _.createNamedFilter = function(filterName, top, bottom) {
+  _.createNamedFilter = function(filterName, top, bottom, ctop, cbottom) {
     return function(item) {
       var cat = item.getProp(Struct.CATEGORY);
       var width = item.getProp(Struct.WIDTH);
@@ -109,6 +114,7 @@ goog.scope(function() {
         case 'filter3':
           // top corner, can happen only on attacched wall and if the wall is
           // NOT the last one.
+          if (ctop) return true;
           if (!_.isAttachedToWall_) return true;
           if (_.isLastWall_) return true;
           if (cat != 3) return true;
@@ -116,6 +122,7 @@ goog.scope(function() {
           return false;
         case 'filter4':
           // Bottom corner can happen on any wall if it is not the last one
+          if (cbottom) return true;
           if (_.isLastWall_) return true;
           if (cat != 4) return true;
           if (width > bottom) return true;

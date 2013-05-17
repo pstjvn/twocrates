@@ -263,6 +263,18 @@ goog.scope(function() {
   };
 
   /**
+   * Check if there is an item that is corner items and that it is original
+   *   (i.e no more corner items should be added to the row.)
+   * @return {boolean}
+   */
+  _.hasOriginalCornerItem = function() {
+    return goog.array.some(this.items_, function(item) {
+      return k3d.ds.helpers.isCornerItem(
+        item) && !k3d.ds.helpers.isClone(item);
+     });
+  };
+
+  /**
    * Provides the strinfigy method for JSON convertion to allow easier
    *   serialization.
    * @override

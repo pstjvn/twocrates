@@ -46,7 +46,8 @@ k3d.component.Select = function(opt_template, opt_item_template) {
     k3d.component.FiltersTemplate.getInstance());
   this.updateFiltersInternal_ = new goog.async.Delay(function() {
     this.setFilter(k3d.ds.filter.createNamedFilter(this.getCheckedFilter(),
-      this.topSpace_, this.bottomSpace_));
+      this.topSpace_, this.bottomSpace_, this.hasCornerTop_,
+      this.hasCornerBottom_));
   }, 10, this);
 };
 goog.inherits(k3d.component.Select, pstj.widget.Select);
@@ -61,15 +62,25 @@ goog.scope(function() {
    * @param {number=} top If we want to show the filter buttons we would
    *   provide the available widths.
    * @param {number=} bottom Available width at the bottom row.
+   * @param {boolean=} top_has_corner True if the top row has already an
+   *   active corner.
+   * @param {boolean=} bottom_has_corner True if the bottom row already has
+   *   corner item.
    */
-  _.setFiltersVisible = function(visible, top, bottom) {
+  _.setFiltersVisible = function(visible, top, bottom, top_has_corner,
+    bottom_has_corner) {
+
     if (visible) {
       goog.dom.classlist.add(this.getElement(), goog.getCssName(
         'filters-visible'));
+
       this.setAvailableSpaces(goog.asserts.assertNumber(top),
-        goog.asserts.assertNumber(bottom));
+        goog.asserts.assertNumber(bottom), !!top_has_corner,
+        !!bottom_has_corner);
+
       this.setFilter(k3d.ds.filter.createNamedFilter(this.getCheckedFilter(),
-        this.topSpace_, this.bottomSpace_));
+        this.topSpace_, this.bottomSpace_, this.hasCornerTop_,
+        this.hasCornerBottom_));
 
     } else {
       goog.dom.classlist.remove(this.getElement(), goog.getCssName(
@@ -81,10 +92,16 @@ goog.scope(function() {
    * Sets the spaces available on both top and bottom row.
    * @param {number} top The width available in the top row
    * @param {number} bottom The width available in the bottom row.
+   * @param {boolean} corner_top True if the top row has a corner item and
+   *   should not allow another one.
+   * @param {boolean} corner_bottom True if the bottom row shoul not allow
+   *   another coner item.
    */
-  _.setAvailableSpaces = function(top, bottom) {
+  _.setAvailableSpaces = function(top, bottom, corner_top, corner_bottom) {
     this.topSpace_ = top;
-    this.bottomSpace_ = bottom
+    this.bottomSpace_ = bottom;
+    this.hasCornerTop_ = corner_top;
+    this.hasCornerBottom_ = corner_bottom;
   };
 
   /** @inheritDoc */
