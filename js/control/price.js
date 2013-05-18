@@ -39,9 +39,14 @@ goog.scope(function() {
   /**
    * Loads the data of the kitchen.
    * @param {k3d.ds.KitchenProject} kitchen The kitchen project data record.
+   * @param {pstj.ds.List} finishes The finishes data list.
+   * @param {pstj.ds.List} handles The hadles data list.
    */
-  _.loadData = function(kitchen) {
+  _.loadData = function(kitchen, finishes, handles) {
+    console.log(arguments);
     this.data = kitchen;
+    this.handles = handles;
+    this.finishes = finishes;
     this.update();
   };
 
@@ -59,10 +64,8 @@ goog.scope(function() {
     var wallindex = 0;
     var wall = null;
     var row = null;
-    var handles_price = 0;
-    var finish_price = 0;
-    var kickboard_price = 0;
-    var benchtop_price = 0;
+    var kickboard_price = goog.global['KICKBOARD_PRICE'];
+    var benchtop_price = goog.global['BENCHTOP_PRICE'];
     // combine the price for all items
     // until there is a wall
     while (this.data.hasWallWithIndex(wallindex)) {
@@ -76,17 +79,28 @@ goog.scope(function() {
           row.forEach(function(item) {
             if (k3d.ds.helpers.isClone(item)) return;
             price += goog.asserts.assertNumber(item.getProp(Struct.PRICE));
-            price += (item.getProp(Struct.HANDLES) * handles_price);
-          });
+            //console.log('After price', price);
+            price += (item.getProp(Struct.HANDLES) * this.handles.getById(
+              this.data.getProp(Struct.HANDLE)).getProp(Struct.PRICE));
+
+          }, this);
+          //console.log('aftert handles', price);
           // if it is the botom row calculate the benchtop
           if (index > 0) {
             price += (row.getWidth() / 1000) * benchtop_price;
-            price += (row.getWidth() / 1000) * kickboard_price;
+            //console.log('After benchtop', price, row.getWidth(), benchtop_price);
+
+            price += ((row.getWidth() + ((this.data.hasWallWithIndex(wallindex+1)) ?
+              50 : 0)) / 1000) * kickboard_price;
+            // console.log('Aftert kickboard', price, row.getWidth(), kickboard_price);
           }
 
-          price += (row.getWidth() / 1000) * finish_price;
-        }
-      );
+          price += (row.getWidth() / 1000) * this.finishes.getById(
+            this.data.getProp(Struct.FINISH)).getProp(Struct.PRICE);
+          // console.log('After finishes', price, this.finishes.getById(
+          //   this.data.getProp(Struct.FINISH)).getProp(Struct.PRICE));
+        }, this);
+        // console.log('total per wall', price);
       wallindex++;
     }
     return price;

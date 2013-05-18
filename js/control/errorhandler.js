@@ -64,6 +64,7 @@ goog.scope(function() {
           // There is no project with this id, redirect to creating a new
           // project.
           case 6:
+          case 21:
 
             window.location.href = k3d.ds
               .definitions.Path.NO_SUCH_PROJECT_REDIRECT;

@@ -83,6 +83,10 @@
           <span class="{css item-view-details-label}">{msg desc="Price"}Price{/msg}:{sp}</span>
           <span class="{css item-view-details-value}" data-model="price" data-filter='price(2)|append({sp}{msg desc="Currency sign"}AU{/msg})'></span>
       </div>
+      <div class="{css item-view-details}">
+          <span class="{css item-view-details-label}">{msg desc="Price"}Handles{/msg}:{sp}</span>
+          <span class="{css item-view-details-value}" data-model="required_handles"></span>
+      </div>
     </div>
     <div class="{css item-view-controls}">
       <div class="{css pstj-button}" data-action="delete">{msg desc="Button label: delete"}Delete{/msg}</div>
@@ -263,10 +267,12 @@
 /**
  * Save when user iss now known.
  * @param login_link
+ * @param register_link
  */
 {template .savewhenuserunknown}
   <p>{msg desc="notice"}Saving a project requires that you are logged-in user. Click the link bellow to log-in or register.{/msg}</p>
-  <p><a href="{$login_link}">{msg desc="Login link text"}Log in{/msg}</a></p>
+  <p><a href="{$login_link}">{msg desc="Login link text"}Log in{/msg}</a>{msg desc="or"}{sp}or{sp}{/msg}
+  <a href="{$register_link}">{msg desc="Register link text"}register{/msg}</p>
 {/template}
 
 /**

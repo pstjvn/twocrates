@@ -91,6 +91,8 @@ goog.scope(function() {
     k3d.control.Editor.getInstance().install(/** @type {!Element} */ (
       document.body));
 
+
+
     k3d.control.Loader.getInstance().getKitchen().addCallback(goog.bind(
       function(kitchen) {
 
@@ -99,8 +101,6 @@ goog.scope(function() {
 
         this.projectid_ = kitchen.getId();
 
-        // tell the price calculator about the data model.
-        k3d.control.Price.getInstance().loadData(kitchen);
         k3d.control.Editor.getInstance().loadData(kitchen);
         this.delayLoad_.start();
         // kitchen.setDescription('New descritpion for project 3');
@@ -163,8 +163,16 @@ goog.scope(function() {
 
       });
 
-    k3d.control.Loader.getInstance().getItems();
-    k3d.control.Loader.getInstance().getFinishes();
-    k3d.control.Loader.getInstance().getHandles();
+    goog.async.DeferredList.gatherResults([
+      k3d.control.Loader.getInstance().getKitchen(),
+      k3d.control.Loader.getInstance().getItems(),
+      k3d.control.Loader.getInstance().getFinishes(),
+      k3d.control.Loader.getInstance().getHandles()
+    ]).addCallback(function(list) {
+      var kitchen = /** @type {k3d.ds.KitchenProject} */(list[0]);
+      var finishes = /** @type {pstj.ds.List} */(list[2]);
+      var handles = /** @type {pstj.ds.List} */(list[3]);
+      k3d.control.Price.getInstance().loadData(kitchen, finishes, handles);
+    });
   };
 });

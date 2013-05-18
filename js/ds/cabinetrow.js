@@ -179,8 +179,10 @@ goog.scope(function() {
    */
   _.replaceItem = function(item, newitem) {
     var index = goog.array.indexOf(this.items_, item);
+    // console.log(this.items_);
     if (index != -1) {
       this.items_[index] = newitem;
+      // console.log(this.items_);
     } else {
       throw new Error('Trying to replace item that does not exists');
     }

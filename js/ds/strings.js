@@ -12,7 +12,8 @@ goog.scope(function() {
   _.noItemsSuitFilter = 'No item from this category can be added to to the current configuration of your project';
 
   _.assignwithoutloggin = k3d.template.savewhenuserunknown({
-    login_link: k3d.ds.definitions.Path.LOGIN
+    login_link: k3d.ds.definitions.Path.LOGIN,
+    register_link: k3d.ds.definitions.Path.REGISTER
   });
 
   _.alreadysaved = k3d.template.alreadysaved({});

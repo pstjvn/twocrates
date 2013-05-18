@@ -43,7 +43,10 @@ k3d.ds.definitions.Path = {
       '/tocrates/Pages/selectKitchenType', k3d.ds.definitions.PathsPrefix)),
   GENERATE_PREVIEW: goog.asserts.assertString(
     pstj.configure.getRuntimeValue('GENERATE_PREVIEW',
-      '/tocrates/generatePreview', k3d.ds.definitions.PathsPrefix))
+      '/tocrates/generatePreview', k3d.ds.definitions.PathsPrefix)),
+  REGISTER: goog.asserts.assertString(
+    pstj.configure.getRuntimeValue('REGISTER',
+      '/tocrates/Pages/signIn', k3d.ds.definitions.PathsPrefix))
 };
 
 /**
