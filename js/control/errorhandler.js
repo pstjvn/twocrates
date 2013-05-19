@@ -93,6 +93,16 @@ goog.scope(function() {
 
             break;
 
+          // Project is once already saved
+          case 19:
+            this.noticeDialog_.setText(k3d.ds.strings.alreadysaved);
+
+            k3d.component.PopOver.getInstance().addChild(
+              this.noticeDialog_, true);
+
+            k3d.component.PopOver.getInstance().setVisible(true);
+            break;
+
           default:
             //console.log(message);
         }
