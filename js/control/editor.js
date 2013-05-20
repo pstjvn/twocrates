@@ -234,6 +234,9 @@ goog.scope(function() {
     this.initialize();
   };
 
+  /**
+   * Triggers add mode.
+   */
   _.addNewItem = function() {
     this.isInAddMode_ = true;
     this.selectBox.setFiltersVisible(true,
@@ -275,12 +278,13 @@ goog.scope(function() {
         this.selectHandles.render();
       }, this));
 
-    this.getHandler().listen(this.selectBox, [goog.ui.Component.EventType.SELECT,
+    this.getHandler().listen(this.selectBox, [
+      goog.ui.Component.EventType.SELECT,
       goog.ui.Component.EventType.CLOSE], this.handleItemSelectEvent)
     .listen(this.selectFinish, goog.ui.Component.EventType.SELECT,
       this.handleFinishSelection_)
     .listen(this.selectHandles, goog.ui.Component.EventType.SELECT,
-      this.handleHandleSelection_)
+      this.handleHandleSelection_);
   };
 
   /** @inheritDoc */
@@ -375,20 +379,26 @@ goog.scope(function() {
   _.provideStopPoints_ = function(e) {
     e.stopPropagation();
     this.movedChild_ = this.drawsheet.getMovedChild();
+
     // Cloned items should not be moved
-    if (k3d.ds.helpers.isClone(this.movedChild_.getModel())) {
-      this.stopPoints = [10000];
-    } else {
-      if (goog.array.contains(this.topchildren_, this.movedChild_)) {
-        this.movedChildsRow_ = this.topchildren_;
-        this.stopPoints = this.currentWall.getStopPoints(true);
-      } else if (goog.array.contains(this.bottomchildren_, this.movedChild_)) {
-        this.movedChildsRow_ = this.bottomchildren_;
-        this.stopPoints = this.currentWall.getStopPoints(false);
+    if (goog.array.contains(this.topchildren_, this.movedChild_)) {
+      this.movedChildsRow_ = this.topchildren_;
+      if (k3d.ds.helpers.isClone(this.movedChild_.getModel())) {
+        this.stopPoints = [10000];
       } else {
-        throw new Error('Cannot determine the row of the moved child');
+        this.stopPoints = this.currentWall.getStopPoints(true);
       }
+    } else if (goog.array.contains(this.bottomchildren_, this.movedChild_)) {
+      this.movedChildsRow_ = this.bottomchildren_;
+      if (k3d.ds.helpers.isClone(this.movedChild_.getModel())) {
+        this.stopPoints = [10000];
+      } else {
+        this.stopPoints = this.currentWall.getStopPoints(false);
+      }
+    } else {
+      throw new Error('Cannot determine the row of the moved child');
     }
+
   };
 
   /**
@@ -567,6 +577,10 @@ goog.scope(function() {
     }
   };
 
+  /**
+   * Method to clean the clones of the item.
+   * @param {pstj.ds.ListItem} item The item who's clones we should clean up.
+   */
   _.cleanClones = function(item) {
     if (k3d.ds.helpers.isCornerItem(item)) {
       // if it is a corner item chances are it has its clone, but just in case

@@ -138,7 +138,7 @@ goog.scope(function() {
    *   cabinet.
    */
   _.addItem = function(item) {
-    // if we have come items, if the item is corner one and is not a clone,
+    // if we have some items, if the item is corner one and is not a clone,
     // shift it last
     if (this.getItemCount() > 0 &&
       k3d.ds.helpers.isCornerItem(
@@ -260,7 +260,7 @@ goog.scope(function() {
    */
   _.hasCornerItem = function() {
     return goog.array.some(this.items_, function(item) {
-      return k3d.ds.helpers.isCornerItem(item);
+      return k3d.ds.helpers.isCornerItem(item) && !k3d.ds.helpers.isClone(item);
     });
   };
 
