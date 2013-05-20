@@ -3,8 +3,8 @@ goog.provide('k3d.control.Price');
 goog.require('goog.asserts');
 goog.require('goog.async.Delay');
 goog.require('k3d.component.PriceLabelTemplate');
-goog.require('k3d.ds.definitions');
 goog.require('k3d.ds.CabinetRow');
+goog.require('k3d.ds.definitions');
 goog.require('k3d.ds.helpers');
 goog.require('pstj.control.Base');
 goog.require('pstj.ng.Template');
@@ -88,11 +88,10 @@ goog.scope(function() {
           // if it is the botom row calculate the benchtop
           if (index > 0) {
             price += (row.getWidth() / 1000) * benchtop_price;
-            //console.log('After benchtop', price, row.getWidth(), benchtop_price);
-
-            price += ((row.getWidth() + ((this.data.hasWallWithIndex(wallindex+1)) ?
-              50 : 0)) / 1000) * kickboard_price;
-            // console.log('Aftert kickboard', price, row.getWidth(), kickboard_price);
+            if (row.getWall() > 0) {
+              price += ((row.getWidth() + ((this.data.hasWallWithIndex(
+                wallindex + 1)) ? 50 : 0)) / 1000) * kickboard_price;
+            }
           }
 
           price += (row.getWidth() / 1000) * this.finishes.getById(
