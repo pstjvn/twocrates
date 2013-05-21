@@ -88,7 +88,7 @@ goog.scope(function() {
           // if it is the botom row calculate the benchtop
           if (index > 0) {
             price += (row.getWidth() / 1000) * benchtop_price;
-            if (row.getWall() > 0) {
+            if (row.getWidth() > 0) {
               price += ((row.getWidth() + ((this.data.hasWallWithIndex(
                 wallindex + 1)) ? 50 : 0)) / 1000) * kickboard_price;
             }
