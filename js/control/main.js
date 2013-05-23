@@ -32,7 +32,8 @@ k3d.control.Main = function() {
   this.delayLoad_ = new goog.async.Delay(this.postLoad, 200, this);
 
   this.getImageDelay_ = new goog.async.Delay(function() {
-    k3d.control.Loader.getInstance().getPreview(this.previewCallback_);
+    k3d.control.Loader.getInstance().getPreview(this.projectid_,
+      this.previewCallback_);
   }, 500, this);
 
   /**

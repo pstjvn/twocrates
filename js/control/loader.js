@@ -497,12 +497,15 @@ goog.scope(function() {
 
   /**
    * Gteer for the preview of the kitchen project.
+   * @param {number} id The prject id to preview.
+   * @parma {function(Object): undefined} callback The callback to use with
+   *   the result.
    */
-  _.getPreview = function(callback) {
+  _.getPreview = function(id, callback) {
     if (!goog.isNull(this.getPreviewObject_)) {
       this.getPreviewObject_.abort();
     }
-    goog.net.XhrIo.send(Path.GENERATE_PREVIEW, goog.bind(function(e) {
+    goog.net.XhrIo.send(Path.GENERATE_PREVIEW + '/' + id, goog.bind(function(e) {
       try {
         var result = this.checkForErrors(e);
       } catch (err) {
