@@ -18,6 +18,11 @@
   display: none;
 }
 
+.filters-group .pstj-button {
+  font-size: 14px;
+  padding: 5px 3px;
+}
+
 .pstj-widget-select.filters-visible .filters-group {
   display: block;
 }
