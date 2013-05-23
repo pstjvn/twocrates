@@ -164,10 +164,17 @@ k3d.control.Editor = function() {
 
   /**
    * Keep reference to item that was last edited.
-   * @type {pstj.ds.ListItem}
+   * @type {k3d.ds.Item}
    * @private
    */
   this.editedChild_ = null;
+
+  /**
+   * The offsers coming from two row items.
+   * @type {Array.<{start: number, width: number}>}
+   * @private
+   */
+  this.currentWallTwos_ = [];
 
   /**
    * The delayed reaction to a sheet resize. This is delayed to avoid unneeded
@@ -207,7 +214,7 @@ goog.scope(function() {
    * @type {number}
    * @protected
    */
-  _.widthVisualOffset = 300;
+  _.widthVisualOffset = 0;
 
   /**
    * The default height at which to mount the upper row cabinets. Taken from
@@ -534,21 +541,27 @@ goog.scope(function() {
             break;
 
           case k3d.ds.definitions.Category.BOTTOM_CORNER:
+
             if (this.currentWall.getRow(false).hasCornerItem()) {
               k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
                 k3d.ds.definitions.Static.RUNTIME, 0,
                 k3d.ds.strings.cornerItemAlreadyExists);
               return;
             }
+            this.currentWall.getRow(false).addItem(item.clone());
             this.data.getWall(this.data.getWallIndex(this.currentWall) + 1)
               .getRow(false).addClone(item.clone());
-            this.currentWall.getRow(false).addItem(item.clone());
 
             break;
 
           case k3d.ds.definitions.Category.BOTTOM:
             this.currentWall.getRow(false).addItem(item.clone());
             break;
+
+          case k3d.ds.definitions.Category.TWO_ROW:
+            this.currentWall.getRow(false).addItem(item.clone());
+            break;
+
           default: console.log('Not yet supported', category);
         }
         this.clearDrawing();
@@ -623,7 +636,8 @@ goog.scope(function() {
 
       // CLOSE (ACTIVATE CHANGES)
 
-      var newcab = k3d.component.ItemView.getInstance().getModel();
+      var newcab = goog.asserts.assertInstanceof(
+        k3d.component.ItemView.getInstance().getModel(), k3d.ds.Item);
 
       k3d.component.PopOver.getInstance().setVisible(false);
 
@@ -786,7 +800,7 @@ goog.scope(function() {
     if (e.target == this.drawsheet) return;
     // assume one of the items was activated
     var target = /** @type {k3d.component.Item} */ (e.target);
-    var model = target.getModel();
+    var model = goog.asserts.assertInstanceof(target.getModel(), k3d.ds.Item);
 
     this.editedChild_ = model;
     // open dialog for change.
@@ -817,12 +831,13 @@ goog.scope(function() {
    * @protected
    */
   _.visualizeItems = function() {
-    // top row
+    goog.array.clear(this.currentWallTwos_);
+    // start with bottom
+    this.currentWall.getRow(false).forEach(function(item, idx) {
+      this.addItem(item, idx, false);
+    }, this);
     this.currentWall.getRow(true).forEach(function(item, idx) {
       this.addItem(item, idx, true);
-    }, this);
-    this.currentWall.getRow().forEach(function(item, idx) {
-      this.addItem(item, idx, false);
     }, this);
   };
 
@@ -854,6 +869,63 @@ goog.scope(function() {
     // millimeters.
     var xoffset = this.currentWall.getRow(
       is_upper_row).getXOffsetByIndex(idx) + this.widthVisualOffset;
+
+
+    // ==========================================
+    // Handle two row items.
+    // ==========================================
+    //
+    var forcedoffset = xoffset;
+    var botomrowoffset;
+
+    if (is_upper_row) {
+
+      if (this.currentWallTwos_.length != 0) {
+        // try and move the position increasing xoffset intil the widths do not
+        // intersect
+
+        for (var i = 0; i < this.currentWallTwos_.length; i++) {
+
+          botomrowoffset = this.currentWallTwos_[i];
+
+          if (forcedoffset > botomrowoffset.start &&
+            forcedoffset >= botomrowoffset.start + botomrowoffset.width) {
+
+            // the bottom row two stories cabinet is before our initial insertion
+            // point, skip check
+            continue;
+          }
+
+          // if the two ranges intersec, move the start point to the end of the
+          // bottom item and try with the next bottom item.
+          if (Math.max((forcedoffset), botomrowoffset.start) <
+            Math.min((forcedoffset + item.getProp(Struct.WIDTH)),
+              botomrowoffset.start + botomrowoffset.width)) {
+            // the two widths intersect
+            // move the forced point to the point where the tall item ends.
+            forcedoffset = botomrowoffset.start + botomrowoffset.width;
+            continue;
+          } else {
+            // we found a place to put the cabinet, use it!
+            break;
+          }
+        }
+      }
+      item.setVisualOffset(forcedoffset - xoffset);
+      xoffset = forcedoffset;
+    } else {
+      if (k3d.ds.helpers.isTwoRows(item)) {
+        this.currentWallTwos_.push({
+          start: xoffset,
+          width: item.getProp(Struct.WIDTH)
+        });
+      }
+    }
+
+    // ==============================
+    // END HANDLE TWO ROW ITEMS
+    // ==============================
+
     var xoffsetperc = pstj.math.utils.getPercentFromValue(xoffset, this.width);
 
     var yoffsetperc;

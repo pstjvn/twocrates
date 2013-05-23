@@ -39,4 +39,10 @@ goog.scope(function() {
     return false;
   };
 
+  _.isTwoRows = function(item) {
+    var category = item.getProp(k3d.ds.definitions.Struct.CATEGORY);
+    if (category == 5 || category == 6) return true;
+    return false;
+  }
+
 });

@@ -3,6 +3,7 @@ goog.provide('k3d.ds.CabinetRow');
 goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.events.EventTarget');
+goog.require('k3d.ds.Item');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.ds.helpers');
 goog.require('pstj.ds.ListItem');
@@ -24,12 +25,12 @@ k3d.ds.CabinetRow = function(items) {
   /**
    * The list of items on this row. Rows do not have notion of their blonging
    *   and rows can contains more than one copy of an item.
-   * @type {Array.<pstj.ds.ListItem>}
+   * @type {Array.<k3d.ds.Item>}
    * @private
    */
   this.items_ = [];
   goog.array.forEach(items, function(record) {
-    this.addItem(new pstj.ds.ListItem(record));
+    this.addItem(new k3d.ds.Item(record));
   }, this);
 };
 goog.inherits(k3d.ds.CabinetRow, goog.events.EventTarget);
@@ -42,7 +43,7 @@ goog.scope(function() {
   /**
    * Getter for the numbered items.
    * @param {number} index The index of the item to get.
-   * @return {pstj.ds.ListItem}
+   * @return {k3d.ds.Item}
    */
   _.getItemByIndex = function(index) {
     return this.items_[index] || null;
@@ -127,7 +128,8 @@ goog.scope(function() {
       }
       // FIXME: Make sure the cabinets with two walls are considered.
       xoffset += goog.asserts.assertNumber(
-        this.items_[i].getProp(Struct.WIDTH));
+        this.items_[i].getProp(
+          Struct.WIDTH)) + this.items_[i].getVisualOffset();
     }
     return xoffset;
   };
@@ -143,10 +145,10 @@ goog.scope(function() {
     if (this.getItemCount() > 0 &&
       k3d.ds.helpers.isCornerItem(
         goog.asserts.assertInstanceof(
-          goog.array.peek(this.items_), pstj.ds.ListItem)) &&
+          goog.array.peek(this.items_), k3d.ds.Item)) &&
       !k3d.ds.helpers.isClone(
         goog.asserts.assertInstanceof(
-          goog.array.peek(this.items_), pstj.ds.ListItem))) {
+          goog.array.peek(this.items_), k3d.ds.Item))) {
 
       goog.array.insertBefore(this.items_, item, goog.array.peek(this.items_));
     } else {
@@ -173,9 +175,8 @@ goog.scope(function() {
   /**
    * Replaces an item on the cabinet row with a new one, no checks are
    *   performed.
-   * @param {pstj.ds.ListItem} item The item to replace.
-   * @param {pstj.ds.ListItem} newitem The item that will replace the original
-   *   one.
+   * @param {k3d.ds.Item} item The item to replace.
+   * @param {k3d.ds.Item} newitem The item that will replace the original one.
    */
   _.replaceItem = function(item, newitem) {
     var index = goog.array.indexOf(this.items_, item);
@@ -247,7 +248,7 @@ goog.scope(function() {
         result.push(advancement + (width / 2));
       }
 
-      advancement += width;
+      advancement += (width + item.getVisualOffset());
 
     });
     return result;

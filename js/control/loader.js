@@ -8,6 +8,7 @@ goog.require('goog.async.DeferredList');
 goog.require('goog.dom');
 goog.require('goog.json.NativeJsonProcessor');
 goog.require('goog.net.XhrIo');
+goog.require('k3d.ds.ItemList');
 goog.require('k3d.ds.KitchenProject');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.mb');
@@ -346,7 +347,7 @@ goog.scope(function() {
         }
 
         if (this.hasData(result)) {
-          this.itemsDef_.callback(new pstj.ds.List(result[Struct.DATA]));
+          this.itemsDef_.callback(new k3d.ds.ItemList(result[Struct.DATA]));
         } else {
           this.itemsDef_.errback(null);
         }
@@ -483,6 +484,8 @@ goog.scope(function() {
 
   /**
    * Attempt to assign the project to a user on the backend.
+   * @param {number} project_id The id of the project to assign to the current
+   *   user.
    */
   _.assignProject = function(project_id) {
     goog.net.XhrIo.send(Path.ASSIGN_KITCHEN + '?kitchen_project_id=' +
@@ -498,14 +501,16 @@ goog.scope(function() {
   /**
    * Gteer for the preview of the kitchen project.
    * @param {number} id The prject id to preview.
-   * @parma {function(Object): undefined} callback The callback to use with
+   * @param {function(Object): undefined} callback The callback to use with
    *   the result.
    */
   _.getPreview = function(id, callback) {
     if (!goog.isNull(this.getPreviewObject_)) {
       this.getPreviewObject_.abort();
     }
-    goog.net.XhrIo.send(Path.GENERATE_PREVIEW + '/' + id, goog.bind(function(e) {
+    goog.net.XhrIo.send(Path.GENERATE_PREVIEW + '/' + id,
+      goog.bind(function(e) {
+
       try {
         var result = this.checkForErrors(e);
       } catch (err) {
