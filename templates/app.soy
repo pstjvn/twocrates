@@ -271,9 +271,13 @@
  * @param register_link
  */
 {template .savewhenuserunknown}
-  <p>{msg desc="notice"}Saving a project requires that you are logged-in user. Click the link bellow to log-in or register.{/msg}</p>
-  <p><a href="{$login_link}">{msg desc="Login link text"}Log in{/msg}</a>{msg desc="or"}{sp}or{sp}{/msg}
-  <a href="{$register_link}">{msg desc="Register link text"}register{/msg}</p>
+  <div style="text-align: center">
+    <p style="font-weight:bold;">{msg desc="notice"}To save your design, we need to know who it belongs to.{/msg}</p>
+    <p>{msg desc="note"}Would you like to save it with your Facebook account?{/msg}</p>
+    <p><a class="{css fb-link}" href="{$login_link}"><span class="{css fb-button}"></span></a></p>
+    <p>{msg desc="note"}or create a new account on 2Crates.com{/msg}</p>
+    <a href="{$register_link}">{msg desc="Register link text"}Register{/msg}</p>
+  </div>
 {/template}
 
 /**

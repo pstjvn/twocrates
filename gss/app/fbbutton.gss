@@ -1,0 +1,11 @@
+.fb-button {
+  background-image: url('../assets/fblogin.png');
+  width: 251px;
+  height: 48px;
+  display: block;
+}
+.fb-link {
+  display: inline-block;
+  width: 251px;
+  height: 48px;
+}

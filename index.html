@@ -17,6 +17,7 @@
 					ASSIGN_KITCHEN: '/tocrates/Kitchens/saveForUser',
 					LOGIN: '/tocrates/Pages/login',
 					REGISTER: '/tocrates/Pages/signIn',
+					FBLOGIN: '/login',
 					PROJECTS: '/tocrates/Projects', // NOT CONFIRMED
 					NO_SUCH_PROJECT_REDIRECT: '/tocrates/Pages/selectKitchenType',
 					GENERATE_PREVIEW: '/tocrates/generatePreview'
@@ -42,10 +43,7 @@
 				// Change this depending on if the user is logged in or not at the time of the loading.
 				{text: "<b>Login | Register<b>", link: 'http://demos.158.bg/tocrates/Pages/login'}
 			];
-// wall cabinets
-// floor cabinets
-// tall cabinets
-// corner cabinets
+
 			ASSETS_PREFIX = '';
 			BENCHTOP_PRICE = 10000;
 			KICKBOARD_PRICE = 5000;
@@ -60,12 +58,13 @@
 				'public/assets/save.png',
 				'public/assets/add.png',
 				'public/assets/label.png',
-				'public/assets/bgb.jpg'
+				'public/assets/bgb.jpg',
+				'public/assets/fblogin.png'
 			];
 		</script>
 	</head>
 	<body>
-<!--
+
 		<div id="progress" class="pstj-widget-progress">
 		  <div class="pstj-widget-progress-text">Loading application </div>
 		  <div class="pstj-widget-progress-container">
@@ -78,8 +77,8 @@
 		<script src="../pstj/deps.js"></script>
 		<script src="build/deps.js"></script>
 		<script>goog.require('app');</script>
- -->
 
+<!--
 		<div id="progress" class="h-A-B">
 		  <div class="h-A-B-C">Loading application</div>
 		  <div class="h-A-B-s">
@@ -88,6 +87,6 @@
 		</div>
 
 		<script src="build/app.build.js"></script>
-
+ -->
 	</body>
 </html>

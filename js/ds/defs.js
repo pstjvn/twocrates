@@ -36,6 +36,8 @@ k3d.ds.definitions.Path = {
     'ASSIGN_KITCHEN', '/assignKitchen', k3d.ds.definitions.PathsPrefix)),
   LOGIN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
     'LOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
+  FBLOGIN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
+    'FBLOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
   PROJECTS: goog.asserts.assertString(pstj.configure.getRuntimeValue(
     'PROJECTS', 'Pages/projects', k3d.ds.definitions.PathsPrefix)),
   NO_SUCH_PROJECT_REDIRECT: goog.asserts.assertString(
