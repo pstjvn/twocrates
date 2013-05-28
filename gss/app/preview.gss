@@ -1,6 +1,6 @@
 .k3d-preview {
-  width: 144px;
-  height: 124px;
+  width: 280px;
+  height: 121px;
   position: absolute;
   top: 50px;
   left: 5px;
@@ -8,15 +8,15 @@
   -webkit-transition: -webkit-transform 200ms linear;
   /** @alternate */
   transition: transform 200ms linear;
-  -webkit-transform: translate(-120px, 0);
+  -webkit-transform: translate(-255px, 0);
   /* @alternate */
-  -moz-transform: translate(-120px, 0);
+  -moz-transform: translate(-255px, 0);
   /* @alternate */
-  -o-transform: translate(-120px, 0);
+  -o-transform: translate(-255px, 0);
   /* @alternate */
-  -ms-transform: translate(-120px, 0);
+  -ms-transform: translate(-255px, 0);
   /* @alternate */
-  transform: translate(-120px, 0);
+  transform: translate(-255px, 0);
 }
 
 
@@ -36,21 +36,21 @@
   position: absolute;
   right: 0;
   width: 20px;
-  height: 120px;
+  height: 117px;
   background-image: url(../assets/label.png);
 }
 
 .k3d-preview-container {
   position: absolute;
-  width: 120px;
-  height: 120px;
+  width: 256px;
+  height: 117px;
   right: 20px;
   background-color: blue;
 }
 
 .k3d-preview-image {
-  min-width: 120px;
-  min-height: 120px;
-  max-width: 120px;
-  max-height: 120px;
+  min-width: 256px;
+  min-height: 117px;
+  max-width: 256px;
+  max-height: 117px;
 }
