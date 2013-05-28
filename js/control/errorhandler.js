@@ -47,14 +47,16 @@ goog.scope(function() {
    * @protected
    */
   _.handleError = function(error_index, status_id, message) {
-    console.log('Error occured and is handled', error_index, status_id,
-      message);
     switch (error_index) {
       case Static.SERVER_HTTP_ERROR:
-        // server error occured
+        if (goog.DEBUG) {
+          console.log('HTTP error occured');
+        }
         break;
       case Static.UNPARSABLE_JSON:
-        // cannot parse JSON.
+        if (goog.DEBUG) {
+          console.log('Cannot parse JSON')
+        }
         break;
       case Static.STRUCTURED_ERROR:
 
@@ -104,15 +106,26 @@ goog.scope(function() {
             break;
 
           default:
-            //console.log(message);
+            if (goog.DEBUG) {
+              console.log('Data structure error:', status_id, message);
+            }
         }
         break;
       case Static.RUNTIME:
-        // Error occured by performing client side action that is not allowed.
-        // TODO: show the message to the user...
+        switch (status_id) {
+          case k3d.ds.definitions.RuntimeError.OVERFLOW:
+            this.noticeDialog_.setText(k3d.ds.strings.overflowInNextWall);
+            k3d.component.PopOver.getInstance().addChild(this.noticeDialog_,
+              true);
+            k3d.component.PopOver.getInstance().setVisible(true);
+            break;
+          default:
+            if (goog.DEBUG) {
+              console.log('Runtime error:', status_id, message);
+            }
+
+        }
         break;
     }
   };
-
 });
-

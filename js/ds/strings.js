@@ -22,5 +22,7 @@ goog.scope(function() {
     projects_link: k3d.ds.definitions.Path.PROJECTS
   });
 
+  _.overflowInNextWall = 'The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.';
+
 });
 
