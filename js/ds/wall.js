@@ -99,6 +99,23 @@ goog.scope(function() {
   };
 
   /**
+   * Checks the cabinet for overflows. This might happen then on wall N a
+   *   corner item is added and on wall N+1 the row already has items and thus
+   *   the corner item duplicaterd on wall N+1 pushesh the cabinets outside of
+   *   the wall restrains.
+   * @return {boolean} True if the cabinets overflow the wall size.
+   */
+  _.hasOverflow = function() {
+    var width = this.getProp(Struct.WIDTH);
+    if (this.getRow(true).getWidth() > width ||
+      this.getRow(false).getWidth() > width) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  /**
    * Returns the row an item belongs to if found.
    * @param {k3d.ds.Item} item The item to look for.
    * @return {k3d.ds.CabinetRow} The row the item is in or null.

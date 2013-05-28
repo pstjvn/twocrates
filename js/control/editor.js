@@ -19,6 +19,7 @@ goog.require('k3d.ds.ItemPool');
 goog.require('k3d.ds.definitions');
 goog.require('k3d.ds.filter');
 goog.require('k3d.ds.strings');
+goog.require('k3d.mb');
 goog.require('k3d.ui.Filler');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
@@ -184,6 +185,16 @@ k3d.control.Editor = function() {
    */
   this.handleSheetResizeDelayed_ = new goog.async.Delay(this.handleSheetResize,
     500, this);
+
+  /**
+   * Bound and delayed function for chekcing for overflows when adding corner
+   *   items.
+   * @type {goog.async.Delay}
+   * @private
+   */
+  this.checkOverflowDelay_ = new goog.async.Delay(
+    this.checkAdjacentWallOverflowCase, 50, this);
+
   this.registerDisposable(this.handleSheetResizeDelayed_);
 };
 goog.inherits(k3d.control.Editor, pstj.control.Base);
@@ -537,7 +548,7 @@ goog.scope(function() {
             this.data.getWall(this.data.getWallIndex(
               this.currentWall) + 1).getRow(true).addClone(item.clone());
             this.currentWall.getRow(true).addItem(item.clone());
-
+            this.checkOverflowDelay_.start();
             break;
 
           case k3d.ds.definitions.Category.BOTTOM_CORNER:
@@ -552,6 +563,7 @@ goog.scope(function() {
             this.data.getWall(this.data.getWallIndex(this.currentWall) + 1)
               .getRow(false).addClone(item.clone());
 
+            this.checkOverflowDelay_.start();
             break;
 
           case k3d.ds.definitions.Category.BOTTOM:
@@ -562,7 +574,11 @@ goog.scope(function() {
             this.currentWall.getRow(false).addItem(item.clone());
             break;
 
-          default: console.log('Not yet supported', category);
+          default:
+            k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
+              k3d.ds.definitions.Static.RUNTIME,
+              k3d.ds.definitions.RuntimeError.UNSUPPORTEDCABINETTYPE,
+              category);
         }
         this.clearDrawing();
         this.visualizeItems();
@@ -587,6 +603,17 @@ goog.scope(function() {
           k3d.component.ItemView.getInstance(), true);
         k3d.component.PopOver.getInstance().setVisible(true);
       }
+    }
+  };
+
+  /**
+   * Performs check on the adjacent wall after a new corner items is added.
+   * @protected
+   */
+  _.checkAdjacentWallOverflowCase = function() {
+    if (this.data.getNextWall(this.currentWall).hasOverflow()) {
+      k3d.mb.Bus.publish(k3d.mb.Topic.ERROR, k3d.ds.definitions.Static.RUNTIME,
+        k3d.ds.definitions.RuntimeError.OVERFLOW);
     }
   };
 
@@ -891,8 +918,8 @@ goog.scope(function() {
           if (forcedoffset > botomrowoffset.start &&
             forcedoffset >= botomrowoffset.start + botomrowoffset.width) {
 
-            // the bottom row two stories cabinet is before our initial insertion
-            // point, skip check
+            // the bottom row two stories cabinet is before our initial
+            // insertion point, skip check
             continue;
           }
 
