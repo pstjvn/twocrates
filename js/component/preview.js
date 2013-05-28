@@ -87,7 +87,6 @@ goog.scope(function() {
    * @param {Event} e The event.
    */
   _.handleLoadComplete = function(e) {
-    console.log('Image was loadeed, show it');
     this.previewElement.src = this.getModel()[Struct.IMAGE];
   };
 

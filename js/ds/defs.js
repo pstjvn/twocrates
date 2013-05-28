@@ -152,3 +152,12 @@ k3d.ds.definitions.Static = {
   RUNTIME: 3,
   NO_DATA: 4
 };
+
+/**
+ * List of runtime errors that happen outside of server interaction.
+ * @enum {number}
+ */
+k3d.ds.definitions.RuntimeError = {
+  OVERFLOW: 1,
+  UNSUPPORTEDCABINETTYPE: 2
+};

@@ -516,9 +516,9 @@ goog.scope(function() {
       } catch (err) {
         return;
       }
-      if (this.hasData(result)) {
-        callback(result[Struct.DATA]);
-      }
+      // The JSON is constructed on different system and does not match our so
+      // we should skip the check on data consistency.
+      callback(result);
     }, this));
   };
 
