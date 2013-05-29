@@ -574,6 +574,10 @@ goog.scope(function() {
             this.currentWall.getRow(false).addItem(item.clone());
             break;
 
+          case k3d.ds.definitions.Category.OTHER:
+            this.currentWall.getRow(false).addItem(item.clone());
+            break;
+
           default:
             k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
               k3d.ds.definitions.Static.RUNTIME,

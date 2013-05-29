@@ -131,6 +131,10 @@ goog.scope(function() {
           if (cat != 5) return true;
           if (width > bottom) return true;
           return false;
+        case 'filter6':
+          if (cat != 7) return true;
+          if (width > bottom) return true;
+          return false;
         default: return true;
       }
     };
