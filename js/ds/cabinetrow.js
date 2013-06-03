@@ -245,10 +245,11 @@ goog.scope(function() {
       if (k3d.ds.helpers.isClone(item)) {
         result.push(-10000);
       } else if (!k3d.ds.helpers.isCornerItem(item)) {
+        advancement += item.getVisualOffset();
         result.push(advancement + (width / 2));
       }
 
-      advancement += (width + item.getVisualOffset());
+      advancement += width;
 
     });
     return result;
