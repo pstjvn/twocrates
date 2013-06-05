@@ -81,7 +81,7 @@
       </div>
       <div class="{css item-view-details}">
           <span class="{css item-view-details-label}">{msg desc="Price"}Price{/msg}:{sp}</span>
-          <span class="{css item-view-details-value}" data-model="price" data-filter='price(2)|append({sp}{msg desc="Currency sign"}AU{/msg})'></span>
+          <span class="{css item-view-details-value}" data-model="price" data-filter='price(0)|append({sp}{msg desc="Currency sign"}AUD{/msg})|prepend($ )'></span>
       </div>
       <div class="{css item-view-details}">
           <span class="{css item-view-details-label}">{msg desc="Price"}Handles{/msg}:{sp}</span>
@@ -210,7 +210,7 @@
         <img src="{$thumbnail}" class="{css pstj-list-item-thumbnail}" />
       </div>
       <div class="{css pstj-list-item-name}">{$name}
-      <br>{msg desc="Price stating string"}Price: {$price} AU{/msg}</div>
+      <br>{msg desc="Price stating string"}Price: $ {$price} AUD{/msg}</div>
     </div>
   </div>
 {/template}
@@ -220,9 +220,10 @@
  */
 {template .pricelabel}
   <div class="{css price-label}">
-    <span class="{css price-label-text}">{msg desc="Price"}Price{/msg}:{sp}</span>
-    <span class="{css price-label-value}" data-model="price" data-filter="price(2)"></span>
-    <span class="{css price-label-currency}">{sp}{msg desc="currency abbreviation"}AU{/msg}</span>
+    <span class="{css price-label-text}">{msg desc="Price"}Price:{/msg}{sp}</span>
+    <span>${sp}</span>
+    <span class="{css price-label-value}" data-model="price" data-filter="price(0)|money()"></span>
+    <span class="{css price-label-currency}">{sp}{msg desc="currency abbreviation"}AUD{/msg}</span>
   </div>
 {/template}
 

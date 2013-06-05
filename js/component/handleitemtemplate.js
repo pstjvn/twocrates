@@ -35,7 +35,7 @@ goog.scope(function() {
       name: component.getModel().getProp(Struct.DESCRIPTION) + ' (' +
         component.getModel().getProp(Struct.DIMENTIONS) + ')',
       price: pstj.ng.filters.makePrice(goog.asserts.assertNumber(
-        component.getModel().getProp(Struct.PRICE)), '2'),
+        component.getModel().getProp(Struct.PRICE)), '0'),
       thumbnail: component.getModel().getProp(Struct.PICTURE)
     };
   };
