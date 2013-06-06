@@ -138,6 +138,9 @@ goog.scope(function() {
             this.projectid_.toString()]);
         }
       }
+      k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
+        k3d.ds.definitions.Static.STRUCTURED_ERROR, 1001,
+        goog.global['QUOTE_NOT_SUPPORTED']);
     }, undefined, this);
   };
 

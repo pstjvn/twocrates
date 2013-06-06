@@ -54,7 +54,7 @@ goog.scope(function() {
 
   /**
    * Sets the content text.
-   * @param {string} text The content text to display.
+   * @param {string|undefined} text The content text to display.
    */
   _.setText = function(text) {
     if (goog.isNull(this.getElement())) {

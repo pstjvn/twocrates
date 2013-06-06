@@ -105,6 +105,13 @@ goog.scope(function() {
             k3d.component.PopOver.getInstance().setVisible(true);
             break;
 
+          case 1001:
+            this.noticeDialog_.setText(message);
+            k3d.component.PopOver.getInstance().addChild(
+              this.noticeDialog_, true);
+            k3d.component.PopOver.getInstance().setVisible(true);
+            break;
+
           default:
             if (goog.DEBUG) {
               console.log('Data structure error:', status_id, message);
