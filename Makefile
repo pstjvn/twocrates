@@ -36,6 +36,8 @@ APPDIR=$(shell basename `pwd`)
 # The default name space to build. Could be modified on the command line.
 NS=app
 
+OUTFILE=/dev/null
+
 # The directory name to use as a build target directory. All compiled
 # JavaScript, CSS and dependency files will be stored there. The directory is
 # considered dirty and is ignored by Git.
@@ -224,6 +226,7 @@ compile: cssbuild tpl deps
 	-f --js=build/cssmap-build.js \
 	-o compiled \
 	-f --define='goog.LOCALE="$(LOCALE)"' \
+	-f --define='goog.DEBUG=$(DEBUG)' \
 	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS).build.js
 	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS).build.js`
@@ -300,10 +303,11 @@ check:
 	--root=$(TEMPLATES_PATH) \
 	--root=$(LIBRARY_PATH) \
 	-f --js=build/deps.js \
+	-f --define='goog.DEBUG=$(DEBUG)' \
 	-f --flagfile=options/compile.ini \
 	-o compiled \
 	-c $(COMPILER_JAR) \
-	--output_file=/dev/null
+	--output_file=$(OUTFILE)
 
 
 #### Calls specific to library development (i.e. no application code) #####
