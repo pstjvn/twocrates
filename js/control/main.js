@@ -4,6 +4,8 @@ goog.require('goog.asserts');
 goog.require('goog.async.DeferredList');
 goog.require('goog.async.Delay');
 goog.require('goog.dom');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
 goog.require('k3d.component.Preview');
 goog.require('k3d.control.Buttons');
 goog.require('k3d.control.Editor');
@@ -115,6 +117,49 @@ goog.scope(function() {
       'public/assets/bgb.jpg');
 
     this.preview_.render(document.body);
+    this.ga_();
+  };
+
+  /**
+   * Attach analytics.
+   * @private
+   */
+  _.ga_ = function() {
+    var link = document.querySelector('a[href="gagq"]');
+    var isAlreadyCounted_ = false;
+    if (goog.isNull(link)) return;
+    goog.events.listen(link, goog.events.EventType.CLICK, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!isAlreadyCounted_) {
+        isAlreadyCounted_ = true;
+        if (goog.isDefAndNotNull(goog.global['_gaq'])) {
+          goog.global['_gaq'].push(['_trackEvent', 'Get Quote',
+            this.projectid_.toString()]);
+        }
+      }
+    }, undefined, this);
+  };
+
+  /**
+   * makes sure buttons are active only when action is possible.
+   * @private
+   */
+  _.pnc_ = function() {
+    var res = k3d.control.Editor.getInstance().isFirstOrLast();
+    if (res == 3) {
+      k3d.control.Buttons.getInstance().enable(0, true);
+      k3d.control.Buttons.getInstance().enable(5, true);
+    } else if (res == 2) {
+      k3d.control.Buttons.getInstance().enable(0, true);
+      k3d.control.Buttons.getInstance().enable(5, false);
+    } else if (res == 1) {
+      k3d.control.Buttons.getInstance().enable(0, false);
+      k3d.control.Buttons.getInstance().enable(5, true);
+    } else if (res == 0) {
+      k3d.control.Buttons.getInstance().enable(0, false);
+      k3d.control.Buttons.getInstance().enable(5, false);
+    }
   };
 
   /** @inheritDoc */
@@ -123,9 +168,11 @@ goog.scope(function() {
       switch (action) {
         case 'previous':
           k3d.control.Editor.getInstance().loadSiblingWall(false);
+          this.pnc_();
           break;
         case 'next':
           k3d.control.Editor.getInstance().loadSiblingWall(true);
+          this.pnc_();
           break;
         case 'add':
           k3d.control.Editor.getInstance().addNewItem();
@@ -161,7 +208,6 @@ goog.scope(function() {
     k3d.control.Loader.getInstance().getAllImagesLoadedDeferred().addCallback(
       function() {
         k3d.control.Editor.getInstance().onLoadComplete();
-
       });
 
     goog.async.DeferredList.gatherResults([
@@ -175,5 +221,6 @@ goog.scope(function() {
       var handles = /** @type {pstj.ds.List} */(list[3]);
       k3d.control.Price.getInstance().loadData(kitchen, finishes, handles);
     });
+    this.pnc_();
   };
 });

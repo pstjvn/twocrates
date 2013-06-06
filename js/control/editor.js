@@ -783,6 +783,22 @@ goog.scope(function() {
   };
 
   /**
+   * Checks if there is next / prev wall
+   * 0 - no wall
+   * 1 - wall forward
+   * 2 - wall backward
+   * 3 - both walls
+   * @return {number}
+   */
+  _.isFirstOrLast = function() {
+    var result = 0;
+    var index = this.data.getWallIndex(this.currentWall);
+    if (this.data.hasWallWithIndex(index - 1)) result += 2;
+    if (this.data.hasWallWithIndex(index + 1)) result += 1;
+    return result;
+  };
+
+  /**
    * Loads a wall by its index
    * @param {number} index The wall number (index).
    */

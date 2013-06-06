@@ -23,3 +23,7 @@
 .design-tool-control-button-active {
   background-color: rgba(0,0,0,0.5);
 }
+
+.design-tool-control-button-disabled img {
+  opacity: 0.4;
+}

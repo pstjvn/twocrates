@@ -53,4 +53,14 @@ goog.scope(function() {
     var target = /** @type {!pstj.ui.Button} */ (e.target);
     this.notify(null, goog.asserts.assertString(target.getActionName()));
   };
+
+  /**
+   * Enables/disables the corresponding button.
+   * @param {number} index The number of button to toggle.
+   * @param {boolean} enable True to enable the button, false to disable.
+   */
+  _.enable = function(index, enable) {
+    this.buttonsComponent_.getChildAt(index).setEnabled(enable);
+  };
+
 });
