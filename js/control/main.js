@@ -225,5 +225,6 @@ goog.scope(function() {
       k3d.control.Price.getInstance().loadData(kitchen, finishes, handles);
     });
     this.pnc_();
+    this.getImageDelay_.start();
   };
 });
