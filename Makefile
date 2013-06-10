@@ -37,7 +37,7 @@ APPDIR=$(shell basename `pwd`)
 NS=app
 
 OUTFILE=/dev/null
-
+DEBUG=true
 # The directory name to use as a build target directory. All compiled
 # JavaScript, CSS and dependency files will be stored there. The directory is
 # considered dirty and is ignored by Git.
