@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="bg">
+    <body>
+      <trans-unit id="45739481977493163" datatype="html" approved="yes">
+        <source>Size</source> <target state="translated">Размер</target> <note priority="1" from="description">Label for property: Size</note>
+      </trans-unit>
+      <trans-unit id="282651756433692881" datatype="html" approved="yes">
+        <source>Select handles model</source> <target state="translated">Избор на модел дръжки</target> <note priority="1" from="description">Button tooltip: Select handles model</note>
+      </trans-unit>
+      <trans-unit id="684138979221399699" datatype="html" approved="yes">
+        <source>Next wall</source> <target state="translated">Следваща стена</target> <note priority="1" from="description">Button tooltip: Next kitchen wall</note>
+      </trans-unit>
+      <trans-unit id="1320824107426276525" datatype="html" approved="yes">
+        <source>Handles</source> <target state="translated">Дръжки</target> <note priority="1" from="description">Label for peroperty</note>
+      </trans-unit>
+      <trans-unit id="1322057416480884578" datatype="html" approved="yes">
+        <source>Previous wall</source> <target state="translated">Предишна стена</target> <note priority="1" from="description">Button tooltip: Previous kitchen wall</note>
+      </trans-unit>
+      <trans-unit id="1407560924967345762" datatype="html" approved="yes">
+        <source>Page</source> <target state="translated">Страница</target> <note priority="1" from="description">The word page in the page N of number of X pages</note>
+      </trans-unit>
+      <trans-unit id="1504534226091689270" datatype="html" approved="yes">
+        <source>Save project</source> <target state="translated">Запзване на проект</target> <note priority="1" from="description">Button tooltip: Save project</note>
+      </trans-unit>
+      <trans-unit id="2018922024247045709" datatype="html" approved="yes">
+        <source>Width</source> <target state="translated">Ширина</target> <note priority="1" from="description">Label for property</note>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html" approved="yes">
+        <source>Cancel</source> <target state="translated">Отказ</target> <note priority="1" from="description">Cancel</note>
+      </trans-unit>
+      <trans-unit id="2160195252594102717" datatype="html" approved="yes">
+        <source>Price:</source> <target state="translated">Цена:</target> <note priority="1" from="description">Property label: Price</note>
+      </trans-unit>
+      <trans-unit id="2612795843054751224" datatype="html" approved="yes">
+        <source>AUD</source> <target state="translated">лева</target> <note priority="1" from="description">Currency sign</note>
+      </trans-unit>
+      <trans-unit id="2807800733729323332" datatype="html" approved="yes">
+        <source>Yes</source> <target state="translated">Да</target> <note priority="1" from="description">Inline property string: Yes</note>
+      </trans-unit>
+      <trans-unit id="3033623772164647792" datatype="html" approved="yes">
+        <source>Height</source> <target state="translated">Височина</target> <note priority="1" from="description">Label for property</note>
+      </trans-unit>
+      <trans-unit id="3415025923960280466" datatype="html" approved="yes">
+        <source><x id="START_PARAGRAPH_1"/>To save your design, we need to know who it belongs to.<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH_2"/>Would you like to save it with your Facebook account?<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH_2"/><x id="START_LINK_1"/><x id="START_SPAN"/><x id="END_SPAN"/><x id="END_LINK"/><x id="END_PARAGRAPH"/><x id="START_PARAGRAPH_2"/>or create a new account on 2Crates.com<x id="END_PARAGRAPH"/><x id="START_LINK_2"/>Register<x id="END_LINK"/><x id="END_PARAGRAPH"/></source> <target state="translated"><x id="START_PARAGRAPH_1"/>За да запазим проекта трябва да сте регистриран потребител.<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH_2"/>Може да се идентифицирате с вашия Фесйбук акаунт<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH_2"/><x id="START_LINK_1"/><x id="START_SPAN"/><x id="END_SPAN"/><x id="END_LINK"/><x id="END_PARAGRAPH"/><x id="START_PARAGRAPH_2"/>или да създадете нов акаунт на kuhnya.eu<x id="END_PARAGRAPH"/><x id="START_LINK_2"/>Регистрация<x id="END_LINK"/><x id="END_PARAGRAPH"/></target> <note priority="1" from="description">Dialog text for users not logged in</note>
+      </trans-unit>
+      <trans-unit id="3417781606255954910" datatype="html" approved="yes">
+        <source>Change model</source> <target state="translated">Смяна на модел</target> <note priority="1" from="description">Button label: change model</note>
+      </trans-unit>
+      <trans-unit id="3542042671420335679" datatype="html" approved="yes">
+        <source>No</source> <target state="translated">Не</target> <note priority="1" from="description">Inline property string: No</note>
+      </trans-unit>
+      <trans-unit id="3797570084942068182" datatype="html" approved="yes">
+        <source>Select</source> <target state="translated">Избор</target> <note priority="1" from="description">Select</note>
+      </trans-unit>
+      <trans-unit id="4083687559095837631" datatype="html" approved="yes">
+        <source>Change width</source> <target state="translated">Смяна на ширина</target> <note priority="1" from="description">Button label: change width</note>
+      </trans-unit>
+      <trans-unit id="4303380968092399832" datatype="html" approved="yes">
+        <source>Price: $ <x id="PRICE"/> AUD</source> <target state="translated">Цена: <x id="PRICE"/> лева</target> <note priority="1" from="description">Inline property: Price, value, currency</note>
+      </trans-unit>
+      <trans-unit id="4748458202730714069" datatype="html" approved="yes">
+        <source>The project is already saved with your account, you do not need to manually save as all changes are saved automatically.</source> <target state="translated">Проектът е вече запазен във вашия профил, промените в такива проекти се запазват автоматично след всяка промяна.</target> <note priority="1" from="description">notice when already saved</note>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html" approved="yes">
+        <source>Description</source> <target state="translated">Описание</target> <note priority="1" from="description">Label for property: Description</note>
+      </trans-unit>
+      <trans-unit id="5881876145178332550" datatype="html">
+        <source>of</source> <target></target> <note priority="1" from="description">the word of in page N of X pages</note>
+      </trans-unit>
+      <trans-unit id="6082162517232426194" datatype="html" approved="yes">
+        <source>Add cabinet</source> <target state="translated">Добави шкаф</target> <note priority="1" from="description">Button tooltip: Add cabinet</note>
+      </trans-unit>
+      <trans-unit id="6548380270343901651" datatype="html" approved="yes">
+        <source>Wall mounted</source> <target state="translated">Опрян о стена</target> <note priority="1" from="description">Label for peroprty: Wall mounted</note>
+      </trans-unit>
+      <trans-unit id="6851918720379061210" datatype="html" approved="yes">
+        <source><x id="START_DIV_1"/>Upper row<x id="END_DIV"/><x id="START_DIV_2"/>Floor row<x id="END_DIV"/><x id="START_DIV_3"/>Upper row corner<x id="END_DIV"/><x id="START_DIV_4"/>Floor row corner<x id="END_DIV"/><x id="START_DIV_5"/>Tall items<x id="END_DIV"/><x id="START_DIV_6"/>Other<x id="END_DIV"/></source> <target state="translated"><x id="START_DIV_1"/>Горни<x id="END_DIV"/><x id="START_DIV_2"/>Долни<x id="END_DIV"/><x id="START_DIV_3"/>Горни ъглови<x id="END_DIV"/><x id="START_DIV_4"/>Долни ъглови<x id="END_DIV"/><x id="START_DIV_5"/>Високи<x id="END_DIV"/><x id="START_DIV_6"/>Други<x id="END_DIV"/></target> <note priority="1" from="description">Category labels on buttons</note>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html" approved="yes">
+        <source>Delete</source> <target state="translated">Изтрий</target> <note priority="1" from="description">Button label: delete</note>
+      </trans-unit>
+      <trans-unit id="7558413604919060916" datatype="html" approved="yes">
+        <source>Select item</source> <target state="translated">Избор на обект</target> <note priority="1" from="description">Select item</note>
+      </trans-unit>
+      <trans-unit id="8272681425277855406" datatype="html" approved="yes">
+        <source><x id="START_PARAGRAPH"/>The maximum limit of saved projects has been reached and this project could not be saved.<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH"/>To be able to save a new project, you need to delete one of the previously saved ones.<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH"/>You can delete projects from <x id="START_LINK"/>here.<x id="END_LINK"/><x id="START_PARAGRAPH"/></source> <target state="translated"><x id="START_PARAGRAPH"/>Достигнали сте максималния допустим брой на запазени проекти в профила си и този проект не може да бъде запазен.<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH"/>За да можете да запазите нов проект е необходимо да изтриете един от вече запазените.<x id="END_PARAGRAPH"/><x id="START_PARAGRAPH"/>Можете да изтриете проект от <x id="START_LINK"/>тук.<x id="END_LINK"/><x id="START_PARAGRAPH"/></target> <note priority="1" from="description">Dialog text: user has no more save slots for projects</note>
+      </trans-unit>
+      <trans-unit id="8720977247725652816" datatype="html" approved="yes">
+        <source>Ok</source> <target state="translated">Добре</target> <note priority="1" from="description">Button label: ok/close/dismiss</note>
+      </trans-unit>
+      <trans-unit id="8894377483833272091" datatype="html" approved="yes">
+        <source>Price</source> <target state="translated">Цена</target> <note priority="1" from="description">Label for peroperty</note>
+      </trans-unit>
+      <trans-unit id="8998179362936748717" datatype="html" approved="yes">
+        <source>OK</source> <target state="translated">Добре</target> <note priority="1" from="description">Button label: OK</note>
+      </trans-unit>
+      <trans-unit id="9214420558484871101" datatype="html" approved="yes">
+        <source>Select finishes</source> <target state="translated">Избор на политура</target> <note priority="1" from="description">Button tooltip: Select finishes</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
