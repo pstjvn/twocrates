@@ -72,19 +72,19 @@
         <span class="{css item-view-details-value} {css item-view-details-description}" data-model="description"></span>
       </div>
       <div class="{css item-view-details}">
-        <span class="{css item-view-details-label}">{msg desc="Width"}Width{/msg}:{sp}</span>
+        <span class="{css item-view-details-label}">{msg desc="Label for property"}Width{/msg}:{sp}</span>
         <span class="{css item-view-details-value}" data-model="width" data-filter="append( mm)"></span>
       </div>
       <div class="{css item-view-details}">
-          <span class="{css item-view-details-label}">{msg desc="Height"}Height{/msg}:{sp}</span>
+          <span class="{css item-view-details-label}">{msg desc="Label for property"}Height{/msg}:{sp}</span>
           <span class="{css item-view-details-value}" data-model="height" data-filter="append( mm)"></span>
       </div>
       <div class="{css item-view-details}">
-          <span class="{css item-view-details-label}">{msg desc="Price"}Price{/msg}:{sp}</span>
+          <span class="{css item-view-details-label}">{msg desc="Label for peroperty"}Price{/msg}:{sp}</span>
           <span class="{css item-view-details-value}" data-model="price" data-filter='price(0)|append({sp}{msg desc="Currency sign"}AUD{/msg})|prepend($ )'></span>
       </div>
       <div class="{css item-view-details}">
-          <span class="{css item-view-details-label}">{msg desc="Price"}Handles{/msg}:{sp}</span>
+          <span class="{css item-view-details-label}">{msg desc="Label for peroperty"}Handles{/msg}:{sp}</span>
           <span class="{css item-view-details-value}" data-model="required_handles"></span>
       </div>
     </div>
@@ -103,32 +103,32 @@
  */
 {template .controls}
   <div class="{css design-tool-controls} {css d-table}">
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="previous" title="{msg desc="Tooltip: previous"}previous{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="previous" title="{msg desc="Button tooltip: Previous kitchen wall"}Previous wall{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="{$prefix}public/assets/left.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="add" title="{msg desc="Tooltip: Add"}Add{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="add" title="{msg desc="Button tooltip: Add cabinet"}Add cabinet{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="{$prefix}public/assets/add.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-finish" title="{msg desc="Tooltip: Finishes"}Finishes{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-finish" title="{msg desc="Button tooltip: Select finishes"}Select finishes{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="{$prefix}public/assets/shine.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-handles" title="{msg desc="Tooltip: Handles"}Handles{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="select-handles" title="{msg desc="Button tooltip: Select handles model"}Select handles model{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="{$prefix}public/assets/knob.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="save" title="{msg desc="Tooltip: Save"}Save{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="save" title="{msg desc="Button tooltip: Save project"}Save project{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="{$prefix}public/assets/save.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
     </div>
-    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="next" title="{msg desc="Tooltip: next"}next{/msg}">
+    <div class="{css design-tool-control-button} {css d-table-cell}" data-action="next" title="{msg desc="Button tooltip: Next kitchen wall"}Next wall{/msg}">
       <div class="{css d-table} {css margin-auto}">
         <img width="60" height="40" src="{$prefix}public/assets/right.png" class="{css d-table-cell} {css design-tool-controls-button-image}" />
       </div>
@@ -142,12 +142,14 @@
  */
 {template .filters}
   <div class="{css item-view-controls} {css filters-group}">
-    <div class="{css pstj-button}" data-action="filter1">{msg desc="Button label: Upper row"}Upper row{/msg}</div>
-    <div class="{css pstj-button}" data-action="filter2">{msg desc="Button label: Floor row"}Floor row{/msg}</div>
-    <div class="{css pstj-button}" data-action="filter3">{msg desc="Button label: Upper row corner"}Upper row corner{/msg}</div>
-    <div class="{css pstj-button}" data-action="filter4">{msg desc="Button label: Floor row corner"}Floor row corner{/msg}</div>
-    <div class="{css pstj-button}" data-action="filter5">{msg desc="Button label: Tall"}Tall items{/msg}</div>
-    <div class="{css pstj-button}" data-action="filter6">{msg desc="Button label: Other"}Other{/msg}</div>
+    {msg desc="Category labels on buttons"}
+      <div class="{css pstj-button}" data-action="filter1">Upper row</div>
+      <div class="{css pstj-button}" data-action="filter2">Floor row</div>
+      <div class="{css pstj-button}" data-action="filter3">Upper row corner</div>
+      <div class="{css pstj-button}" data-action="filter4">Floor row corner</div>
+      <div class="{css pstj-button}" data-action="filter5">Tall items</div>
+      <div class="{css pstj-button}" data-action="filter6">Other</div>
+    {/msg}
   </div>
 {/template}
 
@@ -166,14 +168,14 @@
       </div>
       <div class="{css pstj-list-item-name}">
       {if $desc != ''}
-        {msg desc="Description label"}Description{/msg}:{sp}{$desc}<br>
+        {msg desc="Label for property: Description"}Description{/msg}:{sp}{$desc}<br>
       {/if}
-      {msg desc="Size label"}Size{/msg}:{sp}{$size}<br>
-      {msg desc="Mounted label"}Wall mounted{/msg}:{sp}
+      {msg desc="Label for property: Size"}Size{/msg}:{sp}{$size}<br>
+      {msg desc="Label for peroprty: Wall mounted"}Wall mounted{/msg}:{sp}
       {if $wallmounted == true}
-        {msg desc="Yes"}Yes{/msg}
+        {msg desc="Inline property string: Yes"}Yes{/msg}
       {else}
-        {msg desc="No"}No{/msg}
+        {msg desc="Inline property string: No"}No{/msg}
       {/if}
       </div>
     </div>
@@ -210,7 +212,7 @@
         <img src="{$thumbnail}" class="{css pstj-list-item-thumbnail}" />
       </div>
       <div class="{css pstj-list-item-name}">{$name}
-      <br>{msg desc="Price stating string"}Price: $ {$price} AUD{/msg}</div>
+      <br>{msg desc="Inline property: Price, value, currency"}Price: $ {$price} AUD{/msg}</div>
     </div>
   </div>
 {/template}
@@ -220,10 +222,10 @@
  */
 {template .pricelabel}
   <div class="{css price-label}">
-    <span class="{css price-label-text}">{msg desc="Price"}Price:{/msg}{sp}</span>
+    <span class="{css price-label-text}">{msg desc="Property label: Price"}Price:{/msg}{sp}</span>
     <span>${sp}</span>
     <span class="{css price-label-value}" data-model="price" data-filter="price(0)|money()"></span>
-    <span class="{css price-label-currency}">{sp}{msg desc="currency abbreviation"}AUD{/msg}</span>
+    <span class="{css price-label-currency}">{sp}{msg desc="Inline currency abbreviation"}AUD{/msg}</span>
   </div>
 {/template}
 
@@ -274,11 +276,17 @@
  */
 {template .savewhenuserunknown}
   <div style="text-align: center">
-    <p style="font-weight:bold;">{msg desc="notice"}To save your design, we need to know who it belongs to.{/msg}</p>
-    <p>{msg desc="note"}Would you like to save it with your Facebook account?{/msg}</p>
-    <p><a class="{css fb-link}" href="{$login_link}"><span class="{css fb-button}"></span></a></p>
-    <p>{msg desc="note"}or create a new account on 2Crates.com{/msg}</p>
-    <a href="{$register_link}">{msg desc="Register link text"}Register{/msg}</p>
+    {msg desc="Dialog text for users not logged in"}
+      <p style="font-weight:bold;">To save your design, we need to know who it belongs to.</p>
+      <p>Would you like to save it with your Facebook account?</p>
+      <p>
+        <a class="{css fb-link}" href="{$login_link}">
+          <span class="{css fb-button}"></span>
+        </a>
+      </p>
+      <p>or create a new account on 2Crates.com</p>
+      <a href="{$register_link}">Register</p>
+    {/msg}
   </div>
 {/template}
 
@@ -293,10 +301,11 @@
  * @param projects_link
  */
 {template .nomoresaves}
-  <p>{msg desc="notice when user already has reached the limit of saved project"}The maximum limit of saved projects has been reached and this project could not be saved.{/msg}</p>
-  <p>{msg desc="second part of notice"}To be able to save a new project, you need to delete one of the previously saved ones.{/msg}</p>
-  <p>{msg desc="third part of notice"}You can delete projects from{/msg}{sp}
-  <a href="{$projects_link}">{msg desc="link pointer"}here{/msg}.</a><p>
+  {msg desc="Dialog text: user has no more save slots for projects"}
+    <p>The maximum limit of saved projects has been reached and this project could not be saved.</p>
+    <p>To be able to save a new project, you need to delete one of the previously saved ones.</p>
+    <p>You can delete projects from{sp}<a href="{$projects_link}">here.</a><p>
+  {/msg}
 {/template}
 
 /**
