@@ -228,7 +228,7 @@ compile: cssbuild tpl deps
 	-f --define='goog.LOCALE="$(LOCALE)"' \
 	-f --define='goog.DEBUG=$(DEBUG)' \
 	-c $(COMPILER_JAR) \
-	--output_file=$(BUILDDIR)/$(NS).build.js
+	--output_file=$(BUILDDIR)/$(NS)-$(LOCALE).js
 	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS).build.js`
 
 size:
