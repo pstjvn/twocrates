@@ -83,8 +83,12 @@ goog.scope(function() {
   };
 
   /**
-   * Handles the ready state of image loading.
-   * @param {Event} e The event.
+   * Handles the ready state of image loading. At this stage we are certain
+   *   that the image is completely loaded and that the src of the image still
+   *   points to the loaded url (event bubble). We can get the src url
+   *   directly from the image tag as to avoid caching the value of the cache
+   *   buster.
+   * @param {Event} e The load event from the image tag.
    */
   _.handleLoadComplete = function(e) {
     this.previewElement.src = this.img_.src;
