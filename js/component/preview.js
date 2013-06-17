@@ -79,7 +79,7 @@ goog.scope(function() {
    * @protected
    */
   _.loadImage = function(src) {
-    this.img_.src = src;
+    this.img_.src = src + '?' + goog.now();
   };
 
   /**
@@ -87,7 +87,7 @@ goog.scope(function() {
    * @param {Event} e The event.
    */
   _.handleLoadComplete = function(e) {
-    this.previewElement.src = this.getModel()[Struct.IMAGE];
+    this.previewElement.src = this.img_.src;
   };
 
 });
