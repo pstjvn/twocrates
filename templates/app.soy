@@ -80,8 +80,11 @@
           <span class="{css item-view-details-value}" data-model="height" data-filter="append( mm)"></span>
       </div>
       <div class="{css item-view-details}">
-          <span class="{css item-view-details-label}">{msg desc="Label for peroperty"}Price{/msg}:{sp}</span>
-          <span class="{css item-view-details-value}" data-model="price" data-filter='price(0)|append({sp}{msg desc="Currency sign"}AUD{/msg})|prepend($ )'></span>
+        {msg desc="Label and valuue for price"}
+          <span class="{css item-view-details-label}">Price:{sp}${sp}</span>
+          <span class="{css item-view-details-value}" data-model="price" data-filter='price(0)'></span>
+          <span class="{css item-view-details-value}">{sp}AUD</span>
+        {/msg}
       </div>
       <div class="{css item-view-details}">
           <span class="{css item-view-details-label}">{msg desc="Label for peroperty"}Handles{/msg}:{sp}</span>
@@ -142,14 +145,24 @@
  */
 {template .filters}
   <div class="{css item-view-controls} {css filters-group}">
-    {msg desc="Category labels on buttons"}
-      <div class="{css pstj-button}" data-action="filter1">Upper row</div>
-      <div class="{css pstj-button}" data-action="filter2">Floor row</div>
-      <div class="{css pstj-button}" data-action="filter3">Upper row corner</div>
-      <div class="{css pstj-button}" data-action="filter4">Floor row corner</div>
-      <div class="{css pstj-button}" data-action="filter5">Tall items</div>
-      <div class="{css pstj-button}" data-action="filter6">Other</div>
-    {/msg}
+    <div class="{css pstj-button}" data-action="filter1">
+      {msg desc="Category labels on buttons"}Upper row{/msg}
+    </div>
+    <div class="{css pstj-button}" data-action="filter2">
+      {msg desc="Category labels on buttons"}Floor row{/msg}
+    </div>
+    <div class="{css pstj-button}" data-action="filter3">
+      {msg desc="Category labels on buttons"}Upper row corner{/msg}
+    </div>
+    <div class="{css pstj-button}" data-action="filter4">
+      {msg desc="Category labels on buttons"}Floor row corner{/msg}
+    </div>
+    <div class="{css pstj-button}" data-action="filter5">
+      {msg desc="Category labels on buttons"}Tall items{/msg}
+    </div>
+    <div class="{css pstj-button}" data-action="filter6">
+      {msg desc="Category labels on buttons"}Other{/msg}
+    </div>
   </div>
 {/template}
 
@@ -222,10 +235,11 @@
  */
 {template .pricelabel}
   <div class="{css price-label}">
-    <span class="{css price-label-text}">{msg desc="Property label: Price"}Price:{/msg}{sp}</span>
-    <span>${sp}</span>
-    <span class="{css price-label-value}" data-model="price" data-filter="price(0)|money()"></span>
-    <span class="{css price-label-currency}">{sp}{msg desc="Inline currency abbreviation"}AUD{/msg}</span>
+    {msg desc="Priceing label on page top right"}
+      <span class="{css price-label-text}">Price:{sp}${sp}</span>
+      <span class="{css price-label-value}" data-model="price" data-filter="price(0)|money()"></span>
+      <span class="{css price-label-currency}">{sp}AUD</span>
+    {/msg}
   </div>
 {/template}
 
@@ -276,15 +290,13 @@
  */
 {template .savewhenuserunknown}
   <div style="text-align: center">
-    {msg desc="Dialog text for users not logged in"}
-      <p style="font-weight:bold;">To save your design, we need to know who it belongs to.</p>
-      <p>Would you like to save it with your Facebook account?</p>
-      <p>
-        <a class="{css fb-link}" href="{$login_link}"><span class="{css fb-button}"></span></a>
-      </p>
-      <p>or create a new account on 2Crates.com</p>
-      <a href="{$register_link}">Register</a></p>
-    {/msg}
+    <p style="font-weight:bold;">{msg desc="Dialog text"}To save your design, we need to know who it belongs to.{/msg}</p>
+    <p>{msg desc="Dialog text"}Would you like to save it with your Facebook account?{/msg}</p>
+    <p>
+      <a class="{css fb-link}" href="{$login_link}"><span class="{css fb-button}"></span></a>
+    </p>
+    <p>{msg desc="Dialog text"}or create a new account on 2Crates.com{/msg}</p>
+    <a href="{$register_link}">{msg desc="Dialog text"}Register{/msg}</a></p>
   </div>
 {/template}
 
@@ -299,11 +311,9 @@
  * @param projects_link
  */
 {template .nomoresaves}
-  {msg desc="Dialog text: user has no more save slots for projects"}
-    <p>The maximum limit of saved projects has been reached and this project could not be saved.</p>
-    <p>To be able to save a new project, you need to delete one of the previously saved ones.</p>
-    <p>You can delete projects from{sp}<a href="{$projects_link}">here.</a><p>
-  {/msg}
+  <p>{msg desc="Dialog text"}The maximum limit of saved projects has been reached and this project could not be saved.{/msg}</p>
+  <p>{msg desc="Dialog text"}To be able to save a new project, you need to delete one of the previously saved ones.{/msg}</p>
+  <p>{msg desc="Dialog text"}You can delete projects from{sp}<a href="{$projects_link}">here.</a>{/msg}<p>
 {/template}
 
 /**
@@ -312,9 +322,36 @@
  */
 {template .preview}
   <div class="{css k3d-preview}">
-    <div class="{css k3d-preview-toggler}"></div>
+    <div class="{css k3d-preview-toggler}">{msg desc="Button label: Preview rendering"}Preview in 3d{/msg}</div>
     <div class="{css k3d-preview-container}">
       <img src="{$src}" class="{css k3d-preview-image}" />
     </div>
   </div>
+{/template}
+
+/**
+ *
+ */
+{template .conernerItemExistsText}
+  {msg desc="message when corner item cannot be added"}
+    Croner item already exists on this wall, edit it or alternatively delete it.
+  {/msg}
+{/template}
+
+/**
+ *
+ */
+{template .noIemFits}
+  {msg desc="message when item does not match filter"}
+    No item from this category can be added to to the current configuration of your project.
+  {/msg}
+{/template}
+
+/**
+ *
+ */
+{template .itemPushedBack}
+  {msg desc="message when item is pushed outside the restrins on adjacent wall"}
+    The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.
+  {/msg}
 {/template}
