@@ -229,7 +229,7 @@ compile: cssbuild tpl deps
 	-f --define='goog.DEBUG=$(DEBUG)' \
 	-c $(COMPILER_JAR) \
 	--output_file=$(BUILDDIR)/$(NS)-$(LOCALE).js
-	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS).build.js`
+	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS)-$(LOCALE).js`
 
 size:
 	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
@@ -245,10 +245,10 @@ size:
 	-o script \
 	-f --define='goog.LOCALE="$(LOCALE)"' \
 	-c $(COMPILER_JAR) \
-	--output_file=$(BUILDDIR)/$(NS).build.js
-	echo 'Full ' `ls -al $(BUILDDIR)/$(NS).build.js`
+	--output_file=$(BUILDDIR)/$(NS)-$(LOCALE).js
+	echo 'Full ' `ls -al $(BUILDDIR)/$(NS)-$(LOCALE).js`
 	gzip -9 $(BUILDDIR)/$(NS).build.js
-	echo 'GZip ' `ls -al $(BUILDDIR)/$(NS).build.js.gz`
+	echo 'GZip ' `ls -al $(BUILDDIR)/$(NS)-$(LOCALE).js.gz`
 	rm $(BUILDDIR)/$(NS).build.js.gz
 
 

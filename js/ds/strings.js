@@ -7,9 +7,9 @@ goog.scope(function() {
 
   var _ = k3d.ds.strings;
 
-  _.cornerItemAlreadyExists = 'Croner item already exists on this wall, edit it or alternatively delete it';
+  _.cornerItemAlreadyExists = k3d.template.conernerItemExistsText({});
 
-  _.noItemsSuitFilter = 'No item from this category can be added to to the current configuration of your project';
+  _.noItemsSuitFilter = k3d.template.noIemFits({});
 
   _.assignwithoutloggin = k3d.template.savewhenuserunknown({
     login_link: k3d.ds.definitions.Path.FBLOGIN,
@@ -22,7 +22,7 @@ goog.scope(function() {
     projects_link: k3d.ds.definitions.Path.PROJECTS
   });
 
-  _.overflowInNextWall = 'The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.';
+  _.overflowInNextWall = k3d.template.itemPushedBack({});
 
 });
 
