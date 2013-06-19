@@ -506,6 +506,7 @@ goog.scope(function() {
       // prevent the popover from closing.
       e.stopPropagation();
       if (this.isInAddMode_) {
+        this.isInAddMode_ = false;
         k3d.component.PopOver.getInstance().setVisible(false);
       } else {
         k3d.component.PopOver.getInstance().addChild(
