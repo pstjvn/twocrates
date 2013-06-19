@@ -1,9 +1,9 @@
 Next demo:
- ☐ Use cloned items to manage corners and double rows. When an item is corner item always put it on the end of the list and do not allow its movement. Once added, clone it to the adjacent wall. When item is double row add clone of it on the upper row BUT when displaying it account for this and instead of providing the real height use 0 for the DOM presenation.
- ☐ Cloned items should not be calculated in the price.
+ ✔ Use cloned items to manage corners and double rows. When an item is corner item always put it on the end of the list and do not allow its movement. Once added, clone it to the adjacent wall. When item is double row add clone of it on the upper row BUT when displaying it account for this and instead of providing the real height use 0 for the DOM presenation. @done (13-06-19 17:32)
+ ✔ Cloned items should not be calculated in the price. @done (13-06-19 17:31)
  ☐ Cloned items that are not corner items should have height = 0
  ☐ Cloned corner items should have backgroud image reversed in drawing board.
- ☐ Cloned items on bottom row should add to the top one but not overlap, i.e. the user must fix this manually.
+ ✔ Cloned items on bottom row should add to the top one but not overlap, i.e. the user must fix this manually. @done (13-06-19 17:31)
  ☐ Deleting original item should delete the clone too. For this to work in two fold items we need to mark reference to the original item and use the 'onDispose' method. Disposing he original should remove the clone and dispose it as well.
  ☐ Add interface for showing runtime errors to user.
  ✔ Test with single wall - corner items should not be listed. @done (13-05-16 12:50)
@@ -11,7 +11,7 @@ Next demo:
  ✔ Create toggle group widget based on the control group. @done (13-05-15 17:30)
  ✔ Use control group to set filters in selection. @done (13-05-15 17:30)
  ✔ Use project reference and current wall reference to compile filters for selection when adding items. @done (13-05-15 17:30)
- ☐ Make sure the scale factor is correctly set upon first loading (resolve small bug in movement)
+ ✔ Make sure the scale factor is correctly set upon first loading (resolve small bug in movement) @done (13-06-19 17:31)
  ✔ Migrate component code of project to the new templated interface (selector branch) @done (13-05-06 01:59)
  ✔ Finish migration of item component and test. @done (13-05-10 22:29)
  ✔ Algorithm for having both positions as percentage and as pixel offset for the movement to work. @done (13-05-10 22:29)
