@@ -51,7 +51,7 @@
         <source>or create a new account on 2Crates.com</source> <target state="translated">или създайте нов акаунт в kuhnya.eu</target> <note priority="1" from="description">Dialog text</note>
       </trans-unit>
       <trans-unit id="3252154274283408489" datatype="html" approved="yes">
-        <source>Would you like to save it with your Facebook account?</source> <target state="translated">Идентифицирайте се с Вашия Фейсбук акаунт</target> <note priority="1" from="description">Dialog text</note>
+        <source>Would you like to save it with your Facebook account?</source> <target state="translated">Влез ствоя Фейсбук акаунт</target> <note priority="1" from="description">Dialog text</note>
       </trans-unit>
       <trans-unit id="3301086086650990787" datatype="html" approved="yes">
         <source>Register</source> <target state="translated">Регистриране</target> <note priority="1" from="description">Dialog text</note>
