@@ -2,6 +2,9 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="bg">
     <body>
+      <trans-unit id="11956926828612571" datatype="html" approved="yes">
+        <source>You are about the leave the page and your work is not saved.</source> <target state="translated">Напускаш страницата без да е запазена работа ти!</target> <note priority="1" from="description">Dialog text</note>
+      </trans-unit>
       <trans-unit id="45739481977493163" datatype="html" approved="yes">
         <source>Size</source> <target state="translated">Размер</target> <note priority="1" from="description">Label for property: Size</note>
       </trans-unit>
@@ -30,7 +33,7 @@
         <source>Page</source> <target state="translated">Страница</target> <note priority="1" from="description">The word page in the page N of number of X pages</note>
       </trans-unit>
       <trans-unit id="1504534226091689270" datatype="html" approved="yes">
-        <source>Save project</source> <target state="translated">Запазване на проект</target> <note priority="1" from="description">Button tooltip: Save project</note>
+        <source>Save project</source> <target state="translated">Запзване на проект</target> <note priority="1" from="description">Button tooltip: Save project</note>
       </trans-unit>
       <trans-unit id="2018922024247045709" datatype="html" approved="yes">
         <source>Width</source> <target state="translated">Ширина</target> <note priority="1" from="description">Label for property</note>
@@ -39,7 +42,7 @@
         <source>Cancel</source> <target state="translated">Отказ</target> <note priority="1" from="description">Cancel</note>
       </trans-unit>
       <trans-unit id="2399254182614671106" datatype="html" approved="yes">
-        <source>You can delete projects from <x id="START_LINK"/>here.<x id="END_LINK"/></source> <target state="translated">Можете да изтриете проект от <x id="START_LINK"/>тук.<x id="END_LINK"/></target> <note priority="1" from="description">Dialog text</note>
+        <source>You can delete projects from <x id="START_LINK"/>here.<x id="END_LINK"/></source> <target state="translated">Можеш да изтриеш проект от <x id="START_LINK"/>тук.<x id="END_LINK"/></target> <note priority="1" from="description">Dialog text</note>
       </trans-unit>
       <trans-unit id="2807800733729323332" datatype="html" approved="yes">
         <source>Yes</source> <target state="translated">Да</target> <note priority="1" from="description">Inline property string: Yes</note>
@@ -48,10 +51,10 @@
         <source>Height</source> <target state="translated">Височина</target> <note priority="1" from="description">Label for property</note>
       </trans-unit>
       <trans-unit id="3100571185684814832" datatype="html" approved="yes">
-        <source>or create a new account on 2Crates.com</source> <target state="translated">или създайте нов акаунт в kuhnya.eu</target> <note priority="1" from="description">Dialog text</note>
+        <source>or create a new account on 2Crates.com</source> <target state="translated">или създай нов акаунт в kuhnya.eu</target> <note priority="1" from="description">Dialog text</note>
       </trans-unit>
       <trans-unit id="3252154274283408489" datatype="html" approved="yes">
-        <source>Would you like to save it with your Facebook account?</source> <target state="translated">Влез ствоя Фейсбук акаунт</target> <note priority="1" from="description">Dialog text</note>
+        <source>Would you like to save it with your Facebook account?</source> <target state="translated">Влез с твоя Фейсбук акаунт</target> <note priority="1" from="description">Dialog text</note>
       </trans-unit>
       <trans-unit id="3301086086650990787" datatype="html" approved="yes">
         <source>Register</source> <target state="translated">Регистриране</target> <note priority="1" from="description">Dialog text</note>
@@ -75,7 +78,7 @@
         <source>Price: $ <x id="PRICE"/> AUD</source> <target state="translated">Цена: <x id="PRICE"/> лева</target> <note priority="1" from="description">Inline property: Price, value, currency</note>
       </trans-unit>
       <trans-unit id="4748458202730714069" datatype="html" approved="yes">
-        <source>The project is already saved with your account, you do not need to manually save as all changes are saved automatically.</source> <target state="translated">Проектът е вече запазен във вашия профил, промените в такива проекти се запазват автоматично след всяка промяна.</target> <note priority="1" from="description">notice when already saved</note>
+        <source>The project is already saved with your account, you do not need to manually save as all changes are saved automatically.</source> <target state="translated">Проектът е вече запазен в твоя профил, проекти се запазват автоматично след всяка промяна.</target> <note priority="1" from="description">notice when already saved</note>
       </trans-unit>
       <trans-unit id="4902817035128594900" datatype="html" approved="yes">
         <source>Description</source> <target state="translated">Описание</target> <note priority="1" from="description">Label for property: Description</note>
@@ -96,10 +99,10 @@
         <source>Wall mounted</source> <target state="translated">Опрян о стена</target> <note priority="1" from="description">Label for peroprty: Wall mounted</note>
       </trans-unit>
       <trans-unit id="6580473768495721500" datatype="html" approved="yes">
-        <source>Floor row</source> <target state="translated">Долни</target> <note priority="1" from="description">Category labels on buttons</note>
+        <source>Floor row</source> <target state="translated">Долен</target> <note priority="1" from="description">Category labels on buttons</note>
       </trans-unit>
       <trans-unit id="6890506473011373140" datatype="html" approved="yes">
-        <source>The maximum limit of saved projects has been reached and this project could not be saved.</source> <target state="translated">Максималния брой запазени проекти е достигнат за вашия акаунт и този проект не може да бъде запазен.</target> <note priority="1" from="description">Dialog text</note>
+        <source>The maximum limit of saved projects has been reached and this project could not be saved.</source> <target state="translated">Максималния брой запазени проекти е достигнат за твоя акаунт и този проект не може да бъде запазен.</target> <note priority="1" from="description">Dialog text</note>
       </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html" approved="yes">
         <source>Delete</source> <target state="translated">Изтрий</target> <note priority="1" from="description">Button label: delete</note>
@@ -108,13 +111,13 @@
         <source>Select item</source> <target state="translated">Наличен избор</target> <note priority="1" from="description">Select item</note>
       </trans-unit>
       <trans-unit id="7703390047577591963" datatype="html" approved="yes">
-        <source>Croner item already exists on this wall, edit it or alternatively delete it.</source> <target state="translated">Ъглов шкаф вече е добавен към тази стена, може да го промените или да го изтриете и добавите нов.</target> <note priority="1" from="description">message when corner item cannot be added</note>
+        <source>Croner item already exists on this wall, edit it or alternatively delete it.</source> <target state="translated">Ъглов шкаф вече е добавен към тази стена, може да го промениш или да го изтриеш и добавиш нов.</target> <note priority="1" from="description">message when corner item cannot be added</note>
       </trans-unit>
       <trans-unit id="7773480755082288167" datatype="html" approved="yes">
         <source>No item from this category can be added to to the current configuration of your project.</source> <target state="translated">Никой обект от тази категория не може да бъде добавен към сегашната конфигурация на проекта.</target> <note priority="1" from="description">message when item does not match filter</note>
       </trans-unit>
       <trans-unit id="8473844635410023460" datatype="html" approved="yes">
-        <source>The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.</source> <target state="translated">Тъкмо добавение елемент избутва елементите на съседната стена извън зададените ограничения, моля проверете състоянието на съседната стена.</target> <note priority="1" from="description">message when item is pushed outside the restrins on adjacent wall</note>
+        <source>The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.</source> <target state="translated">Тъкмо добавение елемент избутва елементите на съседната стена извън зададените ограничения, моля провери състоянието на съседната стена.</target> <note priority="1" from="description">message when item is pushed outside the restrins on adjacent wall</note>
       </trans-unit>
       <trans-unit id="8580734384847475822" datatype="html" approved="yes">
         <source><x id="START_SPAN_1"/>Price: $ <x id="END_SPAN"/><x id="START_SPAN_2"/><x id="END_SPAN"/><x id="START_SPAN_3"/> AUD<x id="END_SPAN"/></source> <target state="translated"><x id="START_SPAN_1"/>Цена: <x id="END_SPAN"/><x id="START_SPAN_2"/><x id="END_SPAN"/><x id="START_SPAN_3"/> лева<x id="END_SPAN"/></target> <note priority="1" from="description">Label and valuue for price</note>

@@ -117,6 +117,21 @@ goog.scope(function() {
       'public/assets/bgb.jpg');
 
     this.preview_.render(document.body);
+
+    // Setup unload handler if we do not know the user.
+    if (!goog.global['USER_IS_KNOWN']) {
+      goog.events.listen(window, goog.events.EventType.BEFOREUNLOAD, function(e) {
+        setTimeout(function() {
+          k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
+            k3d.ds.definitions.Static.RUNTIME, 1002);
+        }, 300);
+        var confirmationMessage = "Проектът не е запазен!";
+        (e || window.event).returnValue = confirmationMessage;
+        e.preventDefault();
+        return confirmationMessage;
+      }, undefined, this);
+    }
+
     this.ga_();
   };
 
