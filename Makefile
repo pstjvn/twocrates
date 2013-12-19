@@ -69,7 +69,7 @@ TEMPLATES_PATH=../../templates/
 APPS_PATH=apps/
 COMPILER_JAR=../../compiler/compiler.jar
 EXTERNS_PATH=../../externs/
-STYLES_COMPILER_JAR=../../stylesheets/cs.jar
+STYLES_COMPILER_JAR=../../stylesheets/closure-stylesheets.jar
 SOY_COMPILER_JAR=../../templates/SoyToJsSrcCompiler.jar
 MESSAGE_EXTRACTOR_JAR=../../templates/SoyMsgExtractor.jar
 
