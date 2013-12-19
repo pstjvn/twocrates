@@ -891,7 +891,7 @@ goog.scope(function() {
 
   /**
    * Currently undetermined how this will work exactly.
-   * @param {pstj.ds.ListItem} item The data record for a cabinet / furniture.
+   * @param {k3d.ds.Item} item The data record for a cabinet / furniture.
    * @param {number} idx The index of the item in the data record list (It is
    *   possible to use the indexOf from array helpers but this seems faster).
    * @param {boolean} is_upper_row True if the item is coming from the upper
@@ -900,8 +900,7 @@ goog.scope(function() {
   _.addItem = function(item, idx, is_upper_row) {
 
     // The original width and height (millimeters).
-    var w = goog.asserts.assertNumber(item.getProp(Struct.WIDTH),
-      'Width should be number');
+    var w = item.getWidth();
     // On Items that are on the floor there is the kickboard (130 mm) and the
     // becnhtop (50mm); Height is equal to the item's height + the kickboard
     // (130mm) + the bench top (50mm)
@@ -947,7 +946,7 @@ goog.scope(function() {
           // if the two ranges intersec, move the start point to the end of the
           // bottom item and try with the next bottom item.
           if (Math.max((forcedoffset), botomrowoffset.start) <
-            Math.min((forcedoffset + item.getProp(Struct.WIDTH)),
+            Math.min((forcedoffset + item.getWidth()),
               botomrowoffset.start + botomrowoffset.width)) {
             // the two widths intersect
             // move the forced point to the point where the tall item ends.
@@ -965,7 +964,7 @@ goog.scope(function() {
       if (k3d.ds.helpers.isTwoRows(item)) {
         this.currentWallTwos_.push({
           start: xoffset,
-          width: item.getProp(Struct.WIDTH)
+          width: item.getWidth()
         });
       }
     }

@@ -52,15 +52,11 @@ goog.scope(function() {
   /**
    * Returns the width of an item that is to be used in calculations. It takes
    *   into account corner items and on which corner of the row they are.
-   * @param {pstj.ds.ListItem} item The item to obtain the width of.
+   * @param {k3d.ds.Item} item The item to obtain the width of.
    * @return {number} The widht to use in millimeters.
    */
   _.getItemWidth = function(item) {
-    if (k3d.ds.helpers.isCornerItem(item) && this.getIndexByItem(item) == 0) {
-      return goog.asserts.assertNumber(item.getProp(Struct.WIDTH2));
-    } else {
-      return goog.asserts.assertNumber(item.getProp(Struct.WIDTH));
-    }
+    return item.getWidth();
   };
 
   /**
@@ -103,8 +99,8 @@ goog.scope(function() {
 
   /**
    * Executes a function for each item in the list.
-   * @param {function(this: S, pstj.ds.ListItem, number,
-   *   Array.<pstj.ds.ListItem>): ?} fn The function to execute.
+   * @param {function(this: S, k3d.ds.Item, number,
+   *   Array.<k3d.ds.Item>): ?} fn The function to execute.
    * @param {S=} opt_obj The object in which context to execute the function.
    * @template S
    */
@@ -127,9 +123,7 @@ goog.scope(function() {
         return xoffset;
       }
       // FIXME: Make sure the cabinets with two walls are considered.
-      xoffset += goog.asserts.assertNumber(
-        this.items_[i].getProp(
-          Struct.WIDTH)) + this.items_[i].getVisualOffset();
+      xoffset += this.items_[i].getWidth() + this.items_[i].getVisualOffset();
     }
     return xoffset;
   };
