@@ -25,7 +25,7 @@ goog.require('pstj.ds.ListItem');
 k3d.ds.CabinetRow = function(items) {
   goog.base(this);
   /**
-   * The list of items on this row. Rows do not have notion of their blonging
+   * The list of items on this row. Rows do not have notion of their belonging
    *   and rows can contains more than one copy of an item.
    * @type {Array.<k3d.ds.Item>}
    * @private
@@ -57,7 +57,7 @@ _.getItemByIndex = function(index) {
  * Returns the width of an item that is to be used in calculations. It takes
  *   into account corner items and on which corner of the row they are.
  * @param {k3d.ds.Item} item The item to obtain the width of.
- * @return {number} The widht to use in millimeters.
+ * @return {number} The width to use in millimeters.
  */
 _.getItemWidth = function(item) {
   return item.getWidth();
@@ -94,8 +94,8 @@ _.hasItem = function(item) {
 
 
 /**
- * Calculates the used up widht on this row.
- * @return {number} The used up widht in millimeters.
+ * Calculates the used up width on this row.
+ * @return {number} The used up width in millimeters.
  */
 _.getWidth = function() {
   var taken = 0;
@@ -141,7 +141,7 @@ _.getXOffsetByIndex = function(index) {
 
 /**
  * Ads a new item to the list of cabinets on this row.
- * @param {pstj.ds.ListItem} item The raw literal object represeting the
+ * @param {pstj.ds.ListItem} item The raw literal object representing the
  *   cabinet.
  */
 _.addItem = function(item) {
@@ -161,7 +161,7 @@ _.addItem = function(item) {
 
 
 /**
- * Adds an item as clone (basically item from a preceeding wall)
+ * Adds an item as clone (basically item from a preceding wall)
  * @param {pstj.ds.ListItem} item The item to clone from the previous wall.
  * @param {number=} opt_index Optionally where to add the clone (used by clones
  *   for two row items).
@@ -290,7 +290,7 @@ _.hasOriginalCornerItem = function() {
 
 
 /**
- * Provides the strinfigy method for JSON convertion to allow easier
+ * Provides the stringify method for JSON conversion to allow easier
  *   serialization.
  * @override
  */
