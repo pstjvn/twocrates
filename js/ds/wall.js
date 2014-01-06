@@ -64,14 +64,25 @@ _.getRow = function(opt_top) {
 
 
 /**
+ * Getter for the width of the wall.
+ * @return {number} The wall width (all available space) in millimeters.
+ */
+_.getWidth = function() {
+  return goog.asserts.assertNumber(this.getProp(Struct.WIDTH));
+};
+
+
+/**
  * Abstracts and hides the manner of determining the available space for
  * new items on a particular row on this wall.
  * @param {boolean} top If true the returned available space will be for the
  * top row on the wall, else it will be for the bottom (floor) row of items.
+ * @return {number} The available width (free space) in millimeters.
  */
 _.getAvailableWidth = function(top) {
   if (top) {
-
+    return this.getWidth() - this.top_.getWidth() -
+        this.bottom_.getTallItemsWidth();
   } else {
     return this.getWidth() - this.bottom_.getWidth();
   }

@@ -258,13 +258,10 @@ goog.scope(function() {
   _.addNewItem = function() {
     this.isInAddMode_ = true;
     this.selectBox.setFiltersVisible(true,
-      this.currentWall.getProp(Struct.WIDTH) - this.currentWall.getRow(
-        true).getWidth(),
-      this.currentWall.getProp(Struct.WIDTH) - this.currentWall.getRow(
-        false).getWidth(),
-      this.currentWall.getRow(true).hasOriginalCornerItem(),
-      this.currentWall.getRow(false).hasOriginalCornerItem()
-      );
+        this.currentWall.getAvailableWidth(true),
+        this.currentWall.getAvailableWidth(false),
+        this.currentWall.getRow(true).hasOriginalCornerItem(),
+        this.currentWall.getRow(false).hasOriginalCornerItem());
 
     k3d.component.PopOver.getInstance().addChild(
       this.selectBox, true);

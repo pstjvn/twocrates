@@ -41,6 +41,7 @@ goog.scope(function() {
 
 var _ = k3d.ds.CabinetRow.prototype;
 var Struct = k3d.ds.definitions.Struct;
+var Helpers = k3d.ds.helpers;
 
 
 /**
@@ -90,6 +91,24 @@ _.getIndexByItem = function(item) {
  */
 _.hasItem = function(item) {
   return goog.array.contains(this.items_, item);
+};
+
+
+/**
+ * Specialized getter for the width that tall items take up on the wall. Note
+ * that the returned number is a collected number of millimeters that all tall
+ * items currently positioned on this wall take regardless of their actual
+ * positioning on the wall. On top rows the returned number will always be zero.
+ * @return {number}
+ */
+_.getTallItemsWidth = function() {
+  var width = 0;
+  this.forEach(function(item) {
+    if (Helpers.isTwoRows(item)) {
+      width += item.getWidth();
+    }
+  });
+  return width;
 };
 
 
