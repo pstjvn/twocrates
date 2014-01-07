@@ -30,6 +30,7 @@ goog.require('k3d.ds.filter');
 goog.require('k3d.ds.strings');
 goog.require('k3d.mb');
 goog.require('k3d.ui.Filler');
+goog.require('pstj.configure');
 goog.require('pstj.control.Base');
 goog.require('pstj.ds.List');
 goog.require('pstj.lab.style.css');
@@ -245,7 +246,9 @@ _.widthVisualOffset = 0;
  * @protected
  * @type {number}
  */
-_.heightOfUpperRow = 2070;
+_.heightOfUpperRow = goog.asserts.assertNumber(
+    pstj.configure.getRuntimeValue('TOP_ROW_HEIGHT', 2070,
+    'TWOCRATES.CONFIG'));
 
 
 /**
