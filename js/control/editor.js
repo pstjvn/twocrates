@@ -196,6 +196,15 @@ k3d.control.Editor = function() {
     this.checkAdjacentWallOverflowCase, 50, this);
 
   this.registerDisposable(this.handleSheetResizeDelayed_);
+  /**
+   * Flag: if we should use the price label. If this is true then and only then
+   * the price label will be attached to the view.
+   * @type {boolean}
+   * @private
+   */
+  this.usePriceLabel_ = goog.asserts.assertBoolean(
+      pstj.configure.getRuntimeValue('USE_PRICE_LABEL', false,
+      'TWOCRATES.CONFIG'));
 };
 goog.inherits(k3d.control.Editor, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Editor);
@@ -467,7 +476,9 @@ goog.scope(function() {
    *   Confiturable.
    */
   _.onDataChange = function() {
-    this.recalculatePrice();
+    if (this.usePriceLabel_) {
+      this.recalculatePrice();
+    }
     if (goog.isFunction(this.ondatachangecallback_)) {
       this.ondatachangecallback_(this.data);
     }
