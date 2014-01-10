@@ -376,3 +376,13 @@
     {call .facebookLogin data="all" /}
   </div>
 {/template}
+
+/**
+ * The confirmation message, used when the user is about to leave the page
+ * and his/her work is not yet saved.
+ */
+{template .confirmationMessageOnClose}
+  {msg desc="Confirmation window message when the user is about to leave without saving"}
+    The project has not been saved!
+  {/msg}
+{/template}

@@ -13,6 +13,7 @@ goog.require('k3d.control.ErrorHandler');
 goog.require('k3d.control.Loader');
 goog.require('k3d.control.Price');
 goog.require('k3d.ds.definitions');
+goog.require('k3d.ds.strings');
 goog.require('k3d.mb');
 goog.require('k3d.template');
 goog.require('pstj.control.Base');
@@ -129,7 +130,7 @@ _.onPreloadReady = function() {
         k3d.mb.Bus.publish(k3d.mb.Topic.ERROR,
             k3d.ds.definitions.Static.RUNTIME, 1002);
       }, 300);
-      var confirmationMessage = 'Проектът не е запазен!';
+      var confirmationMessage = k3d.ds.strings.confirmationMessageOnClose;
       (e || window.event).returnValue = confirmationMessage;
       e.preventDefault();
       return confirmationMessage;

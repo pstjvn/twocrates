@@ -28,6 +28,8 @@ goog.scope(function() {
   });
 
   _.overflowInNextWall = k3d.template.itemPushedBack({});
+  
+  _.confirmationMessageOnClose = k3d.template.confirmationMessageOnClose({});
 
 });
 
