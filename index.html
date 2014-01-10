@@ -24,7 +24,11 @@
 				},
 				STRINGS: {
 					PRELOAD_TEXT: 'Loading application'
-				}
+				},
+        CONFIG: {
+          USE_PRICE_LABEL: false,
+          TOP_ROW_HEIGHT: 2070
+        }
 			};
 
 			/* Provide defaults for the widgets */
@@ -48,6 +52,8 @@
 			ASSETS_PREFIX = '';
 			BENCHTOP_PRICE = 10000;
 			KICKBOARD_PRICE = 5000;
+
+			USER_IS_KNOWN = false; // true
 
 			QUOTE_NOT_SUPPORTED = 'Thank you for your interest in the product. Currently this functionality is not available. You will receive notification once ordering your kitchen becomes available.';
 
@@ -91,6 +97,7 @@
 
 		<script src="build/app.build.js"></script>
  -->
+<!--
  	<script type="text/javascript">
  	  var _gaq = _gaq || [];
  	  _gaq.push(['_setAccount', 'UA-41503498-1']);
@@ -102,6 +109,6 @@
  	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
  	  })();
  	</script>
- 	</script>
+-->
 	</body>
 </html>

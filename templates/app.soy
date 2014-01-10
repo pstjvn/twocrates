@@ -291,12 +291,7 @@
 {template .savewhenuserunknown}
   <div style="text-align: center">
     <p style="font-weight:bold;">{msg desc="Dialog text"}To save your design, we need to know who it belongs to.{/msg}</p>
-    <p>{msg desc="Dialog text"}Would you like to save it with your Facebook account?{/msg}</p>
-    <p>
-      <a class="{css fb-link}" href="{$login_link}"><span class="{css fb-button}"></span></a>
-    </p>
-    <p>{msg desc="Dialog text"}or create a new account on 2Crates.com{/msg}</p>
-    <a href="{$register_link}">{msg desc="Dialog text"}Register{/msg}</a></p>
+    {call .facebookLogin data="all" /}
   </div>
 {/template}
 
@@ -353,5 +348,41 @@
 {template .itemPushedBack}
   {msg desc="message when item is pushed outside the restrins on adjacent wall"}
     The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.
+  {/msg}
+{/template}
+
+/**
+ * Facebook login template.
+ * @param login_link
+ * @param register_link
+ */
+{template .facebookLogin}
+  <p>{msg desc="Dialog text"}Would you like to save it with your Facebook account?{/msg}</p>
+  <p>
+    <a class="{css fb-link}" href="{$login_link}"><span class="{css fb-button}"></span></a>
+  </p>
+  <p>{msg desc="Dialog text"}or create a new account on 2Crates.com{/msg}</p>
+  <a href="{$register_link}">{msg desc="Dialog text"}Register{/msg}</a></p>
+{/template}
+
+/**
+ * Provides the template for when the users exiots without having saved his work.
+ * @param login_link
+ * @param register_link
+ */
+{template .willloosework}
+  <div style="text-align: center">
+    <p style="font-weight:bold;">{msg desc="Dialog text"}You are about the leave the page and your work is not saved.{/msg}</p>
+    {call .facebookLogin data="all" /}
+  </div>
+{/template}
+
+/**
+ * The confirmation message, used when the user is about to leave the page
+ * and his/her work is not yet saved.
+ */
+{template .confirmationMessageOnClose}
+  {msg desc="Confirmation window message when the user is about to leave without saving"}
+    The project has not been saved!
   {/msg}
 {/template}

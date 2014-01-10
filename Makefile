@@ -69,7 +69,7 @@ TEMPLATES_PATH=../../templates/
 APPS_PATH=apps/
 COMPILER_JAR=../../compiler/compiler.jar
 EXTERNS_PATH=../../externs/
-STYLES_COMPILER_JAR=../../stylesheets/cs.jar
+STYLES_COMPILER_JAR=../../stylesheets/closure-stylesheets.jar
 SOY_COMPILER_JAR=../../templates/SoyToJsSrcCompiler.jar
 MESSAGE_EXTRACTOR_JAR=../../templates/SoyMsgExtractor.jar
 
@@ -163,7 +163,7 @@ all: css tpl deps
 # This should happen AFTER building the templates as to assure the templates
 # have all the provides needed for the dependencies.
 deps:
-	python $(DEPSWRITER_BIN) \
+	python2.7 $(DEPSWRITER_BIN) \
 	--root_with_prefix="$(TEMPLATES_PATH) ../$(TEMPLATES_PATH)" \
 	--root_with_prefix="js ../../../$(APPS_PATH)$(APPDIR)/js" \
 	--root_with_prefix="$(TEMPLATE_TMP_DIR)/$(LOCALE) ../../../$(APPS_PATH)/$(APPDIR)/$(TEMPLATE_TMP_DIR)/$(LOCALE)/" \
@@ -214,7 +214,7 @@ cssbuild:
 
 ## rm $(BUILDDIR)/cssmap-build.js
 compile: cssbuild tpl deps
-	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
+	python2.7 $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
 	-n $(NS) \
 	--root=js/ \
 	--root=$(TEMPLATE_TMP_DIR)/$(LOCALE)/ \
@@ -232,7 +232,7 @@ compile: cssbuild tpl deps
 	echo 'Size compiled: ' `ls -al $(BUILDDIR)/$(NS)-$(LOCALE).js`
 
 size:
-	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
+	python2.7 $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
 	-n $(NS) \
 	--root=js/ \
 	--root=$(TEMPLATE_TMP_DIR)/$(LOCALE)/ \
@@ -255,7 +255,7 @@ size:
 ######################### Debugging and work flow set ups ######################
 
 debug: cssbuild tpl
-	python $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
+	python2.7 $(LIBRARY_PATH)/closure/bin/build/closurebuilder.py \
 	-n $(NS) \
 	--root=js/ \
 	--root=$(TEMPLATE_TMP_DIR)/$(LOCALE)/ \
@@ -295,7 +295,7 @@ initproject:
 #
 # To use it with application code replace the first root include to js/
 check:
-	python ../../library/closure/bin/build/closurebuilder.py \
+	python2.7 ../../library/closure/bin/build/closurebuilder.py \
 	-n $(NS) \
 	--root=js \
 	--root=$(TEMPLATE_TMP_DIR)/$(LOCALE)/ \
@@ -315,7 +315,7 @@ check:
 # Provides the deps file for the library, should be available to the compiler to
 # provide the types used as parameters but not really required.
 libdeps:
-	python $(DEPSWRITER_BIN) \
+	python2.7 $(DEPSWRITER_BIN) \
 	--root_with_prefix="./ ../../../$(APPS_PATH)$(APPDIR)/" \
 	--output_file="deps.js"
 

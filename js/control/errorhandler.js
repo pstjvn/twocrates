@@ -106,6 +106,7 @@ goog.scope(function() {
             break;
 
           case 1001:
+
             this.noticeDialog_.setText(message);
             k3d.component.PopOver.getInstance().addChild(
               this.noticeDialog_, true);
@@ -126,6 +127,14 @@ goog.scope(function() {
               true);
             k3d.component.PopOver.getInstance().setVisible(true);
             break;
+
+          case 1002:
+            this.noticeDialog_.setText(k3d.ds.strings.willloosework);
+            k3d.component.PopOver.getInstance().addChild(
+              this.noticeDialog_, true);
+            k3d.component.PopOver.getInstance().setVisible(true);
+            break;
+
           default:
             if (goog.DEBUG) {
               console.log('Runtime error:', status_id, message);

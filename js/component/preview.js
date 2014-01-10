@@ -70,7 +70,7 @@ goog.scope(function() {
       'k3d-preview-toggler')), goog.events.EventType.CLICK, function(e) {
         e.stopPropagation();
         goog.dom.classlist.toggle(this.getElement(), goog.getCssName('on'));
-    }, undefined, this);
+    });
   }
 
   /**

@@ -16,6 +16,11 @@ goog.scope(function() {
     register_link: k3d.ds.definitions.Path.REGISTER
   });
 
+  _.willloosework = k3d.template.willloosework({
+    login_link: k3d.ds.definitions.Path.FBLOGIN,
+    register_link: k3d.ds.definitions.Path.REGISTER
+  });
+
   _.alreadysaved = k3d.template.alreadysaved({});
 
   _.nomoresaves = k3d.template.nomoresaves({
@@ -23,6 +28,8 @@ goog.scope(function() {
   });
 
   _.overflowInNextWall = k3d.template.itemPushedBack({});
+  
+  _.confirmationMessageOnClose = k3d.template.confirmationMessageOnClose({});
 
 });
 
