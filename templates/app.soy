@@ -199,12 +199,13 @@
  * Provides the default template for the list item representation.
  * @param color The image to use as thumbnail.
  * @param name The name of the item.
+ * @param picture The image file representing the finish.
  */
 {template .finish}
   <div class="{css pstj-list-item}">
     <div class="{css pstj-list-item-container}">
       <div class="{css pstj-list-item-image-holder}">
-        <div style="background-color:{$color};" class="{css pstj-list-item-thumbnail}"></div>
+        <div style="background-color:{$color};background-image:url({$picture});background-position:center;" class="{css pstj-list-item-thumbnail}"></div>
       </div>
       <div class="{css pstj-list-item-name}">{$name}</div>
     </div>

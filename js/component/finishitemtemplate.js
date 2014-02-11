@@ -30,7 +30,8 @@ goog.scope(function() {
   _.generateTemplateData = function(component) {
     return {
       name: component.getModel().getProp(Struct.DESCRIPTION),
-      color: component.getModel().getProp(Struct.COLOR)
+      color: component.getModel().getProp(Struct.COLOR),
+      picture: component.getModel().getProp(Struct.PICTURE)
     };
   };
 });
