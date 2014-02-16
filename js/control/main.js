@@ -17,6 +17,7 @@ goog.require('k3d.ds.strings');
 goog.require('k3d.mb');
 goog.require('k3d.template');
 goog.require('pstj.control.Base');
+goog.require('pstj.configure');
 
 
 
@@ -246,7 +247,10 @@ _.postLoad = function() {
     var kitchen = /** @type {k3d.ds.KitchenProject} */(list[0]);
     var finishes = /** @type {pstj.ds.List} */(list[2]);
     var handles = /** @type {pstj.ds.List} */(list[3]);
-    k3d.control.Price.getInstance().loadData(kitchen, finishes, handles);
+    if (goog.asserts.assertBoolean(pstj.configure.getRuntimeValue(
+        'USE_PRICE_LABEL', false, 'TWOCRATES.CONFIG'))) {
+      k3d.control.Price.getInstance().loadData(kitchen, finishes, handles);
+    }
   });
   this.pnc_();
   this.getImageDelay_.start();
