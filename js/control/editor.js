@@ -10,6 +10,7 @@
 goog.provide('k3d.control.Editor');
 
 goog.require('goog.asserts');
+goog.require('goog.async.Delay');
 goog.require('goog.dom');
 goog.require('goog.events.EventHandler');
 goog.require('goog.math.Size');
@@ -87,7 +88,7 @@ k3d.control.Editor = function() {
       this.onShiftCabinetEnd_);
   /**
    * The selection box for items.
-   * @type {pstj.widget.Select}
+   * @type {k3d.component.Select}
    */
   this.selectBox = new k3d.component.Select(undefined,
       k3d.component.SelectItemTemplate.getInstance());
@@ -314,11 +315,12 @@ _.onLoadComplete = function() {
 
   this.getHandler().listen(this.selectBox, [
     goog.ui.Component.EventType.SELECT,
-    goog.ui.Component.EventType.CLOSE], this.handleItemSelectEvent)
-  .listen(this.selectFinish, goog.ui.Component.EventType.SELECT,
-      this.handleFinishSelection_)
-  .listen(this.selectHandles, goog.ui.Component.EventType.SELECT,
-      this.handleHandleSelection_);
+    goog.ui.Component.EventType.CLOSE
+  ], this.handleItemSelectEvent)
+      .listen(this.selectFinish, goog.ui.Component.EventType.SELECT,
+          this.handleFinishSelection_)
+      .listen(this.selectHandles, goog.ui.Component.EventType.SELECT,
+          this.handleHandleSelection_);
 };
 
 
@@ -326,18 +328,15 @@ _.onLoadComplete = function() {
 _.initialize = function() {
   goog.base(this, 'initialize');
   this.getHandler()
-
-  .listen(this.drawsheet, goog.ui.Component.EventType.ACTIVATE,
-      this.handleActionEvent)
-
-  .listen(k3d.component.ItemView.getInstance(),
-      goog.ui.Component.EventType.ACTION, this.handleItemViewAction)
-
-  .listen(this.drawsheet, goog.events.EventType.RESIZE,
-      function(e) {
-        e.stopPropagation();
-        this.handleSheetResizeDelayed_.start();
-      });
+      .listen(this.drawsheet, goog.ui.Component.EventType.ACTIVATE,
+          this.handleActionEvent)
+      .listen(k3d.component.ItemView.getInstance(),
+          goog.ui.Component.EventType.ACTION, this.handleItemViewAction)
+      .listen(this.drawsheet, goog.events.EventType.RESIZE,
+          function(e) {
+            e.stopPropagation();
+            this.handleSheetResizeDelayed_.start();
+          });
 
   // Subscribe for position updated on children We need this in order to make
   // the movement of component possible.
@@ -587,7 +586,7 @@ _.handleItemSelectEvent = function(e) {
           }
           this.currentWall.getRow(false).addItem(item.clone());
           this.data.getWall(this.data.getWallIndex(this.currentWall) + 1)
-            .getRow(false).addClone(item.clone());
+              .getRow(false).addClone(item.clone());
 
           this.checkOverflowDelay_.start();
           break;

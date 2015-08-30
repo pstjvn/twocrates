@@ -16,8 +16,8 @@ goog.require('k3d.ds.definitions');
 goog.require('k3d.ds.strings');
 goog.require('k3d.mb');
 goog.require('k3d.template');
-goog.require('pstj.control.Base');
 goog.require('pstj.configure');
+goog.require('pstj.control.Base');
 
 
 
@@ -30,7 +30,7 @@ k3d.control.Main = function() {
   goog.base(this);
   /**
    * Reference the project id currently edited for easier access.
-   * @type {number}
+   * @type {pstj.ds.RecordID}
    * @private
    */
   this.projectid_ = 0;
@@ -88,7 +88,7 @@ _.onPreloadReady = function() {
     links: goog.global['HEADER_LINKS'],
     prefix: goog.global['ASSETS_PREFIX']
   });
-  var el = goog.dom.htmlToDocumentFragment(body);
+  var el = goog.dom.htmlToDocumentFragment(body.getContent());
   document.body.appendChild(el);
 
   // find header and apply size

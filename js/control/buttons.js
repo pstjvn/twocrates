@@ -8,6 +8,8 @@ goog.require('pstj.control.Base');
 goog.require('pstj.ui.CustomButtonRenderer');
 goog.require('pstj.widget.ControlGroup');
 
+
+
 /**
  * Provides the control instance for the buttons on the bottom of the screen.
  * @constructor
@@ -21,46 +23,49 @@ goog.inherits(k3d.control.Buttons, pstj.control.Base);
 goog.addSingletonGetter(k3d.control.Buttons);
 
 goog.scope(function() {
-  var _ = k3d.control.Buttons.prototype;
+var _ = k3d.control.Buttons.prototype;
 
-  /** @inheritDoc */
-  _.initialize = function() {
-    if (!this.isInitialized()) {
-      goog.base(this, 'initialize');
-      // create instance of pstj's control button group and use it, we do not
-      // need special template as we are decorating.
-      this.buttonsComponent_ = new pstj.widget.ControlGroup(null,
+
+/** @inheritDoc */
+_.initialize = function() {
+  if (!this.isInitialized()) {
+    goog.base(this, 'initialize');
+    // create instance of pstj's control button group and use it, we do not
+    // need special template as we are decorating.
+    this.buttonsComponent_ = new pstj.widget.ControlGroup(null,
         goog.asserts.assertInstanceof(
-        goog.ui.ControlRenderer.getCustomRenderer(pstj.ui.CustomButtonRenderer,
-          goog.getCssName('design-tool-control-button')),
-        goog.ui.ButtonRenderer,
-        'The renderer for the buttons must be a button renderer'));
+            goog.ui.ControlRenderer.getCustomRenderer(
+                pstj.ui.CustomButtonRenderer,
+                goog.getCssName('design-tool-control-button')),
+            goog.ui.ButtonRenderer,
+            'The renderer for the buttons must be a button renderer'));
 
-      //this.buttonsComponent_ = new k3d.component.ControlButtons();
-      this.buttonsComponent_.decorate(document.querySelector(
+    //this.buttonsComponent_ = new k3d.component.ControlButtons();
+    this.buttonsComponent_.decorate(document.querySelector(
         '.' + goog.getCssName('design-tool-controls')));
-      this.getHandler().listen(this.buttonsComponent_,
+    this.getHandler().listen(this.buttonsComponent_,
         goog.ui.Component.EventType.ACTION, this.handleAction);
-    }
-  };
+  }
+};
 
-  /**
-   * Handles the action event from the button component.
-   * @param {goog.events.Event} e The ACTION component event.
-   * @protected
-   */
-  _.handleAction = function(e) {
-    var target = /** @type {!pstj.ui.Button} */ (e.target);
-    this.notify(null, goog.asserts.assertString(target.getActionName()));
-  };
 
-  /**
-   * Enables/disables the corresponding button.
-   * @param {number} index The number of button to toggle.
-   * @param {boolean} enable True to enable the button, false to disable.
-   */
-  _.enable = function(index, enable) {
-    this.buttonsComponent_.getChildAt(index).setEnabled(enable);
-  };
+/**
+ * Handles the action event from the button component.
+ * @param {goog.events.Event} e The ACTION component event.
+ * @protected
+ */
+_.handleAction = function(e) {
+  var target = /** @type {!pstj.ui.Button} */ (e.target);
+  this.notify(null, goog.asserts.assertString(target.getActionName()));
+};
 
-});
+
+/**
+ * Enables/disables the corresponding button.
+ * @param {number} index The number of button to toggle.
+ * @param {boolean} enable True to enable the button, false to disable.
+ */
+_.enable = function(index, enable) {
+  this.buttonsComponent_.getChildAt(index).setEnabled(enable);
+};
+});  // goog.scope

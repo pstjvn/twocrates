@@ -1,4 +1,5 @@
 goog.provide('k3d.component.Item');
+goog.provide('k3d.component.ItemTemplate');
 goog.provide('k3d.component.PubSub');
 
 goog.require('goog.asserts');
@@ -52,7 +53,7 @@ goog.addSingletonGetter(k3d.component.ItemTemplate);
 
 /** @inheritDoc */
 k3d.component.ItemTemplate.prototype.getTemplate = function(model) {
-  return k3d.template.item({});
+  return k3d.template.item({}).getContent();
 };
 
 

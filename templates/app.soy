@@ -25,11 +25,11 @@
     {foreach $link in $links}
       {if isLast($link)}
         <div style="float:right" class="{css goog-inline-block} {css header-link}">
-          <a href="{$link.link}">{$link.text |noAutoescape}</a>
+          <a href="{$link.link}">{$link.text}</a>
         </div>
       {else}
         <div class="{css goog-inline-block} {css header-link}">
-          <a href="{$link.link}">{$link.text |noAutoescape}</a>
+          <a href="{$link.link}">{$link.text}</a>
         </div>
       {/if}
     {/foreach}

@@ -2,12 +2,14 @@ goog.provide('k3d.component.PopOver');
 
 goog.require('pstj.ui.PopOverLayer');
 
+
 /**
  * The instance used in the session.
  * @type {pstj.ui.PopOverLayer}
  * @private
  */
 k3d.component.PopOver.instance_ = null;
+
 
 /**
  * Getter for the instance used.

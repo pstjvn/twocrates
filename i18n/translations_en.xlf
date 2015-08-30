@@ -2,35 +2,255 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file original="SoyMsgBundle" datatype="x-soy-msg-bundle" xml:space="preserve" source-language="en" target-language="en">
     <body>
+      <trans-unit id="11956926828612571" datatype="html">
+        <source>You are about the leave the page and your work is not saved.</source>
+        <target/>
+        <note priority="1" from="description">Dialog text</note>
+      </trans-unit>
+      <trans-unit id="21641575311466062" datatype="html">
+        <source>Austria</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="43190493453313100" datatype="html">
+        <source>Botswana</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="45739481977493163" datatype="html">
         <source>Size</source>
         <target/>
         <note priority="1" from="description">Label for property: Size</note>
+      </trans-unit>
+      <trans-unit id="53893825252139188" datatype="html">
+        <source>Jersey</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="67794167649611006" datatype="html">
+        <source>Hungary</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="80663871075536039" datatype="html">
+        <source>Japan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="82119210330567325" datatype="html">
+        <source>Palestinian Territory</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="122696097424415442" datatype="html">
+        <source>Falkland Islands (Malvinas)</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="145429434864573616" datatype="html">
+        <source>Other-Not Shown</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="148204913771018194" datatype="html">
+        <source>Libyan Arab Jamahiriya</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="212820117866187249" datatype="html">
+        <source>India</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="217271016535255817" datatype="html">
         <source>Upper row</source>
         <target/>
         <note priority="1" from="description">Category labels on buttons</note>
       </trans-unit>
+      <trans-unit id="217956830164259077" datatype="html">
+        <source>Nauru</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="282651756433692881" datatype="html">
         <source>Select handles model</source>
         <target/>
         <note priority="1" from="description">Button tooltip: Select handles model</note>
+      </trans-unit>
+      <trans-unit id="284282390173344035" datatype="html">
+        <source>Malaysia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="359421217372792936" datatype="html">
+        <source>St. Vincent And The Grenadines</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="362851695433968241" datatype="html">
+        <source>Iran</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="390665549151723926" datatype="html">
+        <source>Colorado</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="536132288864070221" datatype="html">
+        <source>Turkey</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="545992063382313902" datatype="html">
+        <source>Romania</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="598357484396990573" datatype="html">
+        <source>Aland Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="615066566557540567" datatype="html">
+        <source>Benin</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="621094494471295638" datatype="html">
+        <source>Kazakhstan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="627347266532800587" datatype="html">
+        <source>Turks and Caicos Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="661727793029310940" datatype="html">
+        <source>Somalia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="667379770041603912" datatype="html">
+        <source>There seem to be no available items on the thumbdrive. Please make sure the drive is attached properly and try again.</source>
+        <target/>
+        <note priority="1" from="description">error text</note>
+      </trans-unit>
+      <trans-unit id="680993875033620982" datatype="html">
+        <source>Palau</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="684138979221399699" datatype="html">
         <source>Next wall</source>
         <target/>
         <note priority="1" from="description">Button tooltip: Next kitchen wall</note>
       </trans-unit>
+      <trans-unit id="724957661944599897" datatype="html">
+        <source>Czech Republic</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="780371405648733035" datatype="html">
+        <source>Niger</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="791281889148426458" datatype="html">
+        <source>Faroe Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="797743923912773831" datatype="html">
+        <source>Australia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="844393278802219206" datatype="html">
+        <source>Pennsylvania</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="852177379378387675" datatype="html">
+        <source>Costa Rica</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="956678847762152494" datatype="html">
+        <source>France</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="976142842851961456" datatype="html">
+        <source>Uruguay</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1030476891035559598" datatype="html">
+        <source>Mauritius</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1031090001427437760" datatype="html">
+        <source>Iraq</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="1063566926353527516" datatype="html">
         <source>To be able to save a new project, you need to delete one of the previously saved ones.</source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
       </trans-unit>
+      <trans-unit id="1075324242640516651" datatype="html">
+        <source>Barbados</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1110493288535924572" datatype="html">
+        <source>Serbia and Montenegro</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1112497162590853943" datatype="html">
+        <source>Tokelau</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1150312931168565999" datatype="html">
+        <source>Massachusetts</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
       <trans-unit id="1178700536014623234" datatype="html">
         <source>To save your design, we need to know who it belongs to.</source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
+      </trans-unit>
+      <trans-unit id="1188282719459309656" datatype="html">
+        <source>Colombia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1189791767340618197" datatype="html">
+        <source>Central African Republic</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1209826884150356967" datatype="html">
+        <source>Afghanistan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1217416635228213712" datatype="html">
+        <source>Ghana</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1308416951779533325" datatype="html">
+        <source>Jordan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="1320824107426276525" datatype="html">
         <source>Handles</source>
@@ -42,115 +262,945 @@
         <target/>
         <note priority="1" from="description">Button tooltip: Previous kitchen wall</note>
       </trans-unit>
+      <trans-unit id="1331379005917484978" datatype="html">
+        <source>Slovakia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1336507619051420537" datatype="html">
+        <source>Moldova, Republic of</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1353381156110688148" datatype="html">
+        <source>Solomon Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1368100063883641774" datatype="html">
+        <source>Mongolia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1395993998417849156" datatype="html">
+        <source>Algeria</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="1407560924967345762" datatype="html">
         <source>Page</source>
         <target/>
         <note priority="1" from="description">The word page in the page N of number of X pages</note>
+      </trans-unit>
+      <trans-unit id="1424712818789206941" datatype="html">
+        <source>Zambia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1425156311958935005" datatype="html">
+        <source>Gibraltar</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1452514123394852388" datatype="html">
+        <source>Rhode Island</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1458533018336408911" datatype="html">
+        <source>Nebraska</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1480809512442560666" datatype="html">
+        <source>Arkansas</source>
+        <target/>
+        <note priority="1" from="description">state</note>
       </trans-unit>
       <trans-unit id="1504534226091689270" datatype="html">
         <source>Save project</source>
         <target/>
         <note priority="1" from="description">Button tooltip: Save project</note>
       </trans-unit>
+      <trans-unit id="1562013926672647714" datatype="html">
+        <source>Nicaragua</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1578496123749550538" datatype="html">
+        <source>Chad</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1586028726970845686" datatype="html">
+        <source>Rwanda</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1586762200046703444" datatype="html">
+        <source>Suriname</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1607948888041177087" datatype="html">
+        <source>Montana</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1615539442429353353" datatype="html">
+        <source>New York</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1684303595047907341" datatype="html">
+        <source>California</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1736943888981108041" datatype="html">
+        <source>Monaco</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1771743939061800264" datatype="html">
+        <source>Washington</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1792041010539764255" datatype="html">
+        <source>New Caledonia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1825932113518847029" datatype="html">
+        <source>Portugal</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1826925740451482221" datatype="html">
+        <source>Lesotho</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1902685080273086420" datatype="html">
+        <source>District of Columbia</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1907015897505457162" datatype="html">
+        <source>Andorra</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1925135120990438739" datatype="html">
+        <source>Delaware</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1945455710397155994" datatype="html">
+        <source>Montserrat</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="1986405314539882148" datatype="html">
+        <source>Utah</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="1990528874188560081" datatype="html">
+        <source>Wallis and Futuna</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2012353003398074522" datatype="html">
+        <source>Slovenia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="2018922024247045709" datatype="html">
         <source>Width</source>
         <target/>
         <note priority="1" from="description">Label for property</note>
+      </trans-unit>
+      <trans-unit id="2036677760731944610" datatype="html">
+        <source>Azerbaijan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2040543873210054611" datatype="html">
+        <source>Thailand</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2081005790479585868" datatype="html">
+        <source>Norfolk Island</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2090013391283494370" datatype="html">
+        <source>Papua New Guinea</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2123946206863913146" datatype="html">
+        <source>Saint Kitts and Nevis</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2132839256314048281" datatype="html">
+        <source>Peru</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2141197120629300851" datatype="html">
+        <source>Morocco</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2150029881148712691" datatype="html">
+        <source>Gambia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="2159130950882492111" datatype="html">
         <source>Cancel</source>
         <target/>
         <note priority="1" from="description">Cancel</note>
       </trans-unit>
+      <trans-unit id="2234013645418722908" datatype="html">
+        <source>Antigua and Barbuda</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2245078127040642216" datatype="html">
+        <source>Estonia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2246799843509663005" datatype="html">
+        <source>Guatemala</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2254060102521310645" datatype="html">
+        <source>Tanzania, United Republic of</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2257839169115954108" datatype="html">
+        <source>Zimbabwe</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2288988587742829877" datatype="html">
+        <source>Northern Mariana Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2306835323143183549" datatype="html">
+        <source>Sao Tome and Principe</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2312905197006708918" datatype="html">
+        <source>Nigeria</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2329624899413840617" datatype="html">
+        <source>Vermont</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="2356316679035829946" datatype="html">
+        <source>Poland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="2399254182614671106" datatype="html">
         <source>You can delete projects from <x id="START_LINK"/>here.<x id="END_LINK"/></source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
+      </trans-unit>
+      <trans-unit id="2427223107800831324" datatype="html">
+        <source>Italy</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2444515862101250781" datatype="html">
+        <source>Niue</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2455596870847664546" datatype="html">
+        <source>French Polynesia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2504672715999212143" datatype="html">
+        <source>Cuba</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2575998129003872734" datatype="html">
+        <source>Argentina</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2592002115951925734" datatype="html">
+        <source>Marshall Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2633824972286491960" datatype="html">
+        <source>Djibouti</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2686294869399748405" datatype="html">
+        <source>Alaska</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="2757820189950683014" datatype="html">
+        <source>North Dakota</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="2766960236982030800" datatype="html">
+        <source>Trinidad and Tobago</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2805266561663693158" datatype="html">
+        <source>Minnesota</source>
+        <target/>
+        <note priority="1" from="description">state</note>
       </trans-unit>
       <trans-unit id="2807800733729323332" datatype="html">
         <source>Yes</source>
         <target/>
         <note priority="1" from="description">Inline property string: Yes</note>
       </trans-unit>
+      <trans-unit id="2814748664821337658" datatype="html">
+        <source>Wyoming</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="2831233586816582008" datatype="html">
+        <source>Kentucky</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="2845697602867633165" datatype="html">
+        <source>Haiti</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2851635003262201259" datatype="html">
+        <source>Burkina Faso</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2869766744074512908" datatype="html">
+        <source>Micronesia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="2875990908335702580" datatype="html">
+        <source>Latvia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3012223470297892100" datatype="html">
+        <source>Gabon</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3017414017374645184" datatype="html">
+        <source>Maine</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="3021673558311985385" datatype="html">
+        <source>Anguilla</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3028691365115610369" datatype="html">
+        <source>Bosnia and Herzegovina</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="3033623772164647792" datatype="html">
         <source>Height</source>
         <target/>
         <note priority="1" from="description">Label for property</note>
+      </trans-unit>
+      <trans-unit id="3050899002311904259" datatype="html">
+        <source>Kiribati</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3086562963920355958" datatype="html">
+        <source>Tuvalu</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="3100571185684814832" datatype="html">
         <source>or create a new account on 2Crates.com</source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
       </trans-unit>
+      <trans-unit id="3102823133461101412" datatype="html">
+        <source>Oregon</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
       <trans-unit id="3252154274283408489" datatype="html">
         <source>Would you like to save it with your Facebook account?</source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
+      </trans-unit>
+      <trans-unit id="3280635276421664253" datatype="html">
+        <source>Virgin Islands (US)</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3283792643454119412" datatype="html">
+        <source>Connecticut</source>
+        <target/>
+        <note priority="1" from="description">state</note>
       </trans-unit>
       <trans-unit id="3301086086650990787" datatype="html">
         <source>Register</source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
       </trans-unit>
+      <trans-unit id="3303718492506441789" datatype="html">
+        <source>Guinea</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3315113630985882291" datatype="html">
+        <source>Jamaica</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3400120958419159727" datatype="html">
+        <source>Congo</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3404169924630177375" datatype="html">
+        <source>Bhutan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="3417781606255954910" datatype="html">
         <source>Change model</source>
         <target/>
         <note priority="1" from="description">Button label: change model</note>
+      </trans-unit>
+      <trans-unit id="3468499266673420843" datatype="html">
+        <source>Missouri</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="3476026137175894313" datatype="html">
+        <source>St. Helena</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3486679398271885916" datatype="html">
+        <source>Canada</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="3542042671420335679" datatype="html">
         <source>No</source>
         <target/>
         <note priority="1" from="description">Inline property string: No</note>
       </trans-unit>
+      <trans-unit id="3571391964903695725" datatype="html">
+        <source>Repeat</source>
+        <target/>
+        <note priority="1" from="description">Player playback option</note>
+      </trans-unit>
+      <trans-unit id="3571787957077101820" datatype="html">
+        <source>All (No cam)</source>
+        <target/>
+        <note priority="1" from="description">Player playback option</note>
+      </trans-unit>
+      <trans-unit id="3591085113786124083" datatype="html">
+        <source>New Zealand</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3693473983867412988" datatype="html">
+        <source>Wisconsin</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="3710133024160860873" datatype="html">
+        <source>Sierra Leone</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3741939552178779896" datatype="html">
+        <source>Equatorial Guinea</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3753386582290088847" datatype="html">
+        <source>Ecuador</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3783587393795767345" datatype="html">
+        <source>Netherlands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="3797570084942068182" datatype="html">
         <source>Select</source>
         <target/>
         <note priority="1" from="description">Select</note>
+      </trans-unit>
+      <trans-unit id="3798070165070620146" datatype="html">
+        <source>Guide</source>
+        <target/>
+        <note priority="1" from="description">Guide</note>
+      </trans-unit>
+      <trans-unit id="3831314565285490528" datatype="html">
+        <source>Virginia</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="3847673789207378086" datatype="html">
+        <source>Spain</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3909352943647834263" datatype="html">
+        <source>Brunei Darussalam</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3911861600857028021" datatype="html">
+        <source>Vanuatu</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3917311667237336403" datatype="html">
+        <source>Liechtenstein</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3921381038816272025" datatype="html">
+        <source>Samoa</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3929433717951776596" datatype="html">
+        <source>Netherlands Antilles</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="3975233823881069207" datatype="html">
+        <source>Guyana</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4082876576192670199" datatype="html">
+        <source>Uzbekistan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="4083687559095837631" datatype="html">
         <source>Change width</source>
         <target/>
         <note priority="1" from="description">Button label: change width</note>
       </trans-unit>
+      <trans-unit id="4102304872659643424" datatype="html">
+        <source>Kenya</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4111466936456503227" datatype="html">
+        <source>Bermuda</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4228607998962051207" datatype="html">
+        <source>Florida</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
       <trans-unit id="4248480454126677601" datatype="html">
         <source>Upper row corner</source>
         <target/>
         <note priority="1" from="description">Category labels on buttons</note>
+      </trans-unit>
+      <trans-unit id="4248866292281559106" datatype="html">
+        <source>Iowa</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="4251019598823492681" datatype="html">
+        <source>Grenada</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4251280664350448901" datatype="html">
+        <source>San Marino</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4284688382567695437" datatype="html">
+        <source>Add to queue</source>
+        <target/>
+        <note priority="1" from="description">Epg add label on button</note>
       </trans-unit>
       <trans-unit id="4303380968092399832" datatype="html">
         <source>Price: $ <x id="PRICE"/> AUD</source>
         <target/>
         <note priority="1" from="description">Inline property: Price, value, currency</note>
       </trans-unit>
+      <trans-unit id="4324906842486561563" datatype="html">
+        <source>Tunisia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4346283537747431562" datatype="html">
+        <source>Ukraine</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4392438521753358690" datatype="html">
+        <source>United Arab Emirates</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4409995852433618965" datatype="html">
+        <source>Aruba</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4432846451354662736" datatype="html">
+        <source>Congo, The Democratic Republic</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4451202090740543367" datatype="html">
+        <source>Iceland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4493078792980020324" datatype="html">
+        <source>Bahrain</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4538062849970672142" datatype="html">
+        <source>Arizona</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="4719460798898909432" datatype="html">
+        <source>Dominican Republic</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4719742396933932796" datatype="html">
+        <source>Oman</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="4748458202730714069" datatype="html">
         <source>The project is already saved with your account, you do not need to manually save as all changes are saved automatically.</source>
         <target/>
         <note priority="1" from="description">notice when already saved</note>
+      </trans-unit>
+      <trans-unit id="4764935748877100361" datatype="html">
+        <source>Shuffle all</source>
+        <target/>
+        <note priority="1" from="description">Player playback option</note>
+      </trans-unit>
+      <trans-unit id="4824839499745448810" datatype="html">
+        <source>Repeat all</source>
+        <target/>
+        <note priority="1" from="description">Player playback option</note>
+      </trans-unit>
+      <trans-unit id="4829918648109613779" datatype="html">
+        <source>Reunion</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4830118002486243553" datatype="html">
+        <source>Singapore</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4839589234976267408" datatype="html">
+        <source>Michigan</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="4840690632203238040" datatype="html">
+        <source>Russian Federation</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="4870035495212308796" datatype="html">
+        <source>Virgin Islands (British)</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="4902817035128594900" datatype="html">
         <source>Description</source>
         <target/>
         <note priority="1" from="description">Label for property: Description</note>
       </trans-unit>
+      <trans-unit id="4954443024319387646" datatype="html">
+        <source>Taiwan, Province of China</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5004849258025239958" datatype="html">
+        <source>Armenia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5021963283619484054" datatype="html">
+        <source>South Dakota</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="5032618727171063903" datatype="html">
+        <source>Honduras</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5099084320487592164" datatype="html">
+        <source>Maldives</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5101709372560138730" datatype="html">
+        <source>Nevada</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="5121305715179574366" datatype="html">
+        <source>Puerto Rico</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="5134090110001463731" datatype="html">
+        <source>China</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="5139475845782459759" datatype="html">
         <source>Preview in 3d</source>
         <target/>
         <note priority="1" from="description">Button label: Preview rendering</note>
+      </trans-unit>
+      <trans-unit id="5144971260883559528" datatype="html">
+        <source>Yemen</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5162288429120066886" datatype="html">
+        <source>Paraguay</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5259023098228234423" datatype="html">
+        <source>Mali</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5303154840514040213" datatype="html">
+        <source>Oklahoma</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="5303806780432428245" datatype="html">
+        <source>Indonesia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5330492076151471898" datatype="html">
+        <source>Louisiana</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="5355657315596110768" datatype="html">
+        <source>Lao People's Republic</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5378112888361106499" datatype="html">
+        <source>Ireland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5414293408829797992" datatype="html">
+        <source>Brazil</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5437300236667984915" datatype="html">
+        <source>South Carolina</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="5479903040249546535" datatype="html">
+        <source>France, Metropolitan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5517910262648168251" datatype="html">
+        <source>Tajikistan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5530828807984079663" datatype="html">
+        <source>Bahamas</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5698737171438719386" datatype="html">
+        <source>Namibia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5814468296071715981" datatype="html">
+        <source>Malawi</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5816956679305721210" datatype="html">
+        <source>Myanmar</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5857558127981009083" datatype="html">
+        <source>Nepal</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="5881876145178332550" datatype="html">
         <source>of</source>
         <target/>
         <note priority="1" from="description">the word of in page N of X pages</note>
       </trans-unit>
+      <trans-unit id="5895030245261923484" datatype="html">
+        <source>Senegal</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5913366966339102148" datatype="html">
+        <source>Luxembourg</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5926828147233586606" datatype="html">
+        <source>Sudan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="5964520530683530553" datatype="html">
+        <source>Texas</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
       <trans-unit id="5966088778570713777" datatype="html">
         <source>Tall items</source>
         <target/>
         <note priority="1" from="description">Category labels on buttons</note>
       </trans-unit>
+      <trans-unit id="6014862663057951430" datatype="html">
+        <source>Germany</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="6082162517232426194" datatype="html">
         <source>Add cabinet</source>
         <target/>
         <note priority="1" from="description">Button tooltip: Add cabinet</note>
+      </trans-unit>
+      <trans-unit id="6133495983093212227" datatype="html">
+        <source>United States</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6173123073967909836" datatype="html">
+        <source>Switzerland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6229118554878370786" datatype="html">
+        <source>Kyrgyzstan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6242941829685502770" datatype="html">
+        <source>Burundi</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6260614459544279136" datatype="html">
+        <source>Indiana</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="6268459440891516871" datatype="html">
+        <source>Chile</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6280188391773988152" datatype="html">
+        <source>Alabama</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="6321687538487059592" datatype="html">
+        <source>Norway</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6385636805555176186" datatype="html">
+        <source>Cocos (Keeling) Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6461205178975913145" datatype="html">
+        <source>Mayotte</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6466906594482117584" datatype="html">
+        <source>St. Pierre and Miquelon</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6526114692286037622" datatype="html">
+        <source>The project has not been saved!</source>
+        <target/>
+        <note priority="1" from="description">Confirmation window message when the user is about to leave without saving</note>
+      </trans-unit>
+      <trans-unit id="6539744792166853567" datatype="html">
+        <source>Cape Verde</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6546239914534670998" datatype="html">
+        <source>Lithuania</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="6548380270343901651" datatype="html">
         <source>Wall mounted</source>
@@ -162,40 +1212,425 @@
         <target/>
         <note priority="1" from="description">Category labels on buttons</note>
       </trans-unit>
+      <trans-unit id="6597121833699637826" datatype="html">
+        <source>Belize</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6599402623726656875" datatype="html">
+        <source>Timor-Leste</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6639775332361598247" datatype="html">
+        <source>Kuwait</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6692616518638761038" datatype="html">
+        <source>Bouvet Island</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6724050522405858430" datatype="html">
+        <source>Egypt</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6735707870737458688" datatype="html">
+        <source>Guernsey</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6744772700865814426" datatype="html">
+        <source>Antarctica</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6787546539374733271" datatype="html">
+        <source>Belgium</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6839230987909572003" datatype="html">
+        <source>Croatia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6842720336797727339" datatype="html">
+        <source>Bolivia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6870231548013447811" datatype="html">
+        <source>Ethiopia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="6890506473011373140" datatype="html">
         <source>The maximum limit of saved projects has been reached and this project could not be saved.</source>
         <target/>
         <note priority="1" from="description">Dialog text</note>
+      </trans-unit>
+      <trans-unit id="6899782483332002896" datatype="html">
+        <source>Syrian Arab Republic</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6921324179967413754" datatype="html">
+        <source>French Guiana</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6930151682144775692" datatype="html">
+        <source>Tonga</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="6971759191811698526" datatype="html">
+        <source>Cayman Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7012227002133419149" datatype="html">
+        <source>Togo</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7015687759738910427" datatype="html">
+        <source>Israel</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7017590323423025630" datatype="html">
+        <source>Greece</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html">
         <source>Delete</source>
         <target/>
         <note priority="1" from="description">Button label: delete</note>
       </trans-unit>
+      <trans-unit id="7065118556791646705" datatype="html">
+        <source>Cameroon</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7071696529590455917" datatype="html">
+        <source>Maryland</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7104853853273794929" datatype="html">
+        <source>Greenland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7108948537958128740" datatype="html">
+        <source>Sweden</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7127846603485222320" datatype="html">
+        <source>Cyprus</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7133553227204944356" datatype="html">
+        <source>Georgia</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7211965226704355092" datatype="html">
+        <source>Seychelles</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7232697595921533312" datatype="html">
+        <source>Madagascar</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7303091661854783304" datatype="html">
+        <source>United Kingdom</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7316358832458965912" datatype="html">
+        <source>Unable to load the content, please try again later.</source>
+        <target/>
+        <note priority="1" from="description">error text</note>
+      </trans-unit>
+      <trans-unit id="7355609594533651682" datatype="html">
+        <source>Viet Nam</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7376113350498509892" datatype="html">
+        <source>Mozambique</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7420404507961887363" datatype="html">
+        <source>Mauritania</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7442502921201826082" datatype="html">
+        <source>Liberia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7475322327169488366" datatype="html">
+        <source>Outlying Oceania</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7489009008617420277" datatype="html">
+        <source>Eritrea</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7537920303742481572" datatype="html">
+        <source>New Mexico</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7542940846619074358" datatype="html">
+        <source>Tennessee</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7550805341430576867" datatype="html">
+        <source>Macao</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="7558413604919060916" datatype="html">
         <source>Select item</source>
         <target/>
         <note priority="1" from="description">Select item</note>
+      </trans-unit>
+      <trans-unit id="7586179551119829690" datatype="html">
+        <source>Bangladesh</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7627070236552679953" datatype="html">
+        <source>Uganda</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7676611321967250180" datatype="html">
+        <source>Serbia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7683055358037059005" datatype="html">
+        <source>Pitcairn</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7688915885626198194" datatype="html">
+        <source>Fiji</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="7703390047577591963" datatype="html">
         <source>Croner item already exists on this wall, edit it or alternatively delete it.</source>
         <target/>
         <note priority="1" from="description">message when corner item cannot be added</note>
       </trans-unit>
+      <trans-unit id="7711413606076552385" datatype="html">
+        <source>Kansas</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7721676749480332350" datatype="html">
+        <source>Macedonia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7731013350359057223" datatype="html">
+        <source>Malta</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7766766928661785123" datatype="html">
+        <source>Sri Lanka</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="7773480755082288167" datatype="html">
         <source>No item from this category can be added to to the current configuration of your project.</source>
         <target/>
         <note priority="1" from="description">message when item does not match filter</note>
+      </trans-unit>
+      <trans-unit id="7791127373754886139" datatype="html">
+        <source>Lebanon</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7795719116479404400" datatype="html">
+        <source>Hong Kong</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7803448958935133459" datatype="html">
+        <source>Panama</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7814573200614743943" datatype="html">
+        <source>Angola</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7833044528021545549" datatype="html">
+        <source>Configure playback</source>
+        <target/>
+        <note priority="1" from="description">label</note>
+      </trans-unit>
+      <trans-unit id="7834778050785304801" datatype="html">
+        <source>American Samoa</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7848663861484285422" datatype="html">
+        <source>Cambodia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7892590553414841819" datatype="html">
+        <source>Illinois</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7893693635471733470" datatype="html">
+        <source>Saudi Arabia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7899202177476769426" datatype="html">
+        <source>Vatican City State</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7928109646663853767" datatype="html">
+        <source>West Virginia</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="7939805157542969066" datatype="html">
+        <source>D.P.R. Korea</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7959134621738311157" datatype="html">
+        <source>Saint Lucia</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="7969063643194139319" datatype="html">
+        <source>Denmark</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8003066830412119130" datatype="html">
+        <source>Guam</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8023754491265933942" datatype="html">
+        <source>Cote D'Ivoire</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8039968326438721789" datatype="html">
+        <source>South Africa</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8069749790660307255" datatype="html">
+        <source>New Hampshire</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="8147072510678737075" datatype="html">
+        <source>Mexico</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8273479446468988017" datatype="html">
+        <source>Bulgaria</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8282620512337325099" datatype="html">
+        <source>Albania</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8310342568647317562" datatype="html">
+        <source>Montenegro</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8351664229424095812" datatype="html">
+        <source>Republic of Kosovo</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8420291181849337180" datatype="html">
+        <source>Venezuela</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8462192005150983848" datatype="html">
+        <source>Ohio</source>
+        <target/>
+        <note priority="1" from="description">state</note>
       </trans-unit>
       <trans-unit id="8473844635410023460" datatype="html">
         <source>The cabinet just added pushesh the cabinets on the adjacent wall outside of the allowed size.</source>
         <target/>
         <note priority="1" from="description">message when item is pushed outside the restrins on adjacent wall</note>
       </trans-unit>
+      <trans-unit id="8496313228903628689" datatype="html">
+        <source>El Salvador</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8521991040120836142" datatype="html">
+        <source>Mississippi</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="8535043978777359085" datatype="html">
+        <source>Comoros</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8564202903947049539" datatype="html">
+        <source>Play</source>
+        <target/>
+        <note priority="1" from="description">Player playback option</note>
+      </trans-unit>
       <trans-unit id="8580734384847475822" datatype="html">
         <source><x id="START_SPAN_1"/>Price: $ <x id="END_SPAN"/><x id="START_SPAN_2"/><x id="END_SPAN"/><x id="START_SPAN_3"/> AUD<x id="END_SPAN"/></source>
         <target/>
         <note priority="1" from="description">Label and valuue for price</note>
+      </trans-unit>
+      <trans-unit id="8610790100063528906" datatype="html">
+        <source>Idaho</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="8624069568371048571" datatype="html">
+        <source>Belarus</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
       </trans-unit>
       <trans-unit id="8693603235657020323" datatype="html">
         <source>Other</source>
@@ -207,15 +1642,115 @@
         <target/>
         <note priority="1" from="description">Button label: ok/close/dismiss</note>
       </trans-unit>
+      <trans-unit id="8730463962464508997" datatype="html">
+        <source>Christmas Island</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8767029064378810432" datatype="html">
+        <source>Hawaii</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="8795047040687500838" datatype="html">
+        <source>Error occured</source>
+        <target/>
+        <note priority="1" from="description">label</note>
+      </trans-unit>
+      <trans-unit id="8812557643580169825" datatype="html">
+        <source>Finland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8818655556476681482" datatype="html">
+        <source>Philippines</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8834272865510175302" datatype="html">
+        <source>Cook Islands</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8884008684136621484" datatype="html">
+        <source>Qatar</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8894377483833272091" datatype="html">
+        <source>Price</source>
+        <target/>
+        <note priority="1" from="description">Price label</note>
+      </trans-unit>
+      <trans-unit id="8918809624993966636" datatype="html">
+        <source>Non-US/Other</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
+      <trans-unit id="8944103190235428172" datatype="html">
+        <source>Guadeloupe</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="8992404420292617875" datatype="html">
+        <source>North Carolina</source>
+        <target/>
+        <note priority="1" from="description">state</note>
+      </trans-unit>
       <trans-unit id="8998179362936748717" datatype="html">
         <source>OK</source>
         <target/>
         <note priority="1" from="description">Button label: OK</note>
       </trans-unit>
+      <trans-unit id="9033285898369492375" datatype="html">
+        <source>Swaziland</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9040335146446812211" datatype="html">
+        <source>Korea, Republic of</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9049018620009652707" datatype="html">
+        <source>Martinique</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9084417742815864585" datatype="html">
+        <source>Isle of Man</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
       <trans-unit id="9096456137227861123" datatype="html">
         <source>Floor row corner</source>
         <target/>
         <note priority="1" from="description">Category labels on buttons</note>
+      </trans-unit>
+      <trans-unit id="9115400918128734980" datatype="html">
+        <source>Dominica</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9128896776453808891" datatype="html">
+        <source>Guinea-Bissau</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9141606215802528913" datatype="html">
+        <source>Turkmenistan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9146974172614086551" datatype="html">
+        <source>Pakistan</source>
+        <target/>
+        <note priority="1" from="description">country name</note>
+      </trans-unit>
+      <trans-unit id="9148682404884079016" datatype="html">
+        <source>New Jersey</source>
+        <target/>
+        <note priority="1" from="description">state</note>
       </trans-unit>
       <trans-unit id="9214420558484871101" datatype="html">
         <source>Select finishes</source>

@@ -1,21 +1,25 @@
-goog.provide('k3d.ds.definitions');
-
-goog.require('goog.asserts');
-goog.require('pstj.configure');
-
 /**
  * @fileoverview Provides the system wide configuration options.
  *
  * @author regardingscot@gmail.com (Peter StJ)
  */
 
+goog.provide('k3d.ds.definitions');
+
+goog.require('goog.asserts');
+goog.require('pstj.configure');
+
+
+/** @final {string} */
 k3d.ds.definitions.PathsPrefix = 'TWOCRATES.PATHS';
+
 
 /**
  * The heoght of the header in pixels.
- * @type {number}
+ * @final {number}
  */
 k3d.ds.definitions.headerHeight = 45;
+
 
 /**
  * Provides symbol names for the URL paths used in the app.
@@ -23,33 +27,34 @@ k3d.ds.definitions.headerHeight = 45;
  */
 k3d.ds.definitions.Path = {
   LOAD_KITCHEN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'LOAD_KITCHEN', '/loadKitchen', k3d.ds.definitions.PathsPrefix)),
+      'LOAD_KITCHEN', '/loadKitchen', k3d.ds.definitions.PathsPrefix)),
   SAVE_KITCHEN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'SAVE_KITCHEN', '/saveKitchen', k3d.ds.definitions.PathsPrefix)),
+      'SAVE_KITCHEN', '/saveKitchen', k3d.ds.definitions.PathsPrefix)),
   LOAD_FINISHES: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'LOAD_FINISHES', '/getFinishes', k3d.ds.definitions.PathsPrefix)),
+      'LOAD_FINISHES', '/getFinishes', k3d.ds.definitions.PathsPrefix)),
   LOAD_ITEMS: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'LOAD_ITEMS', '/getItems', k3d.ds.definitions.PathsPrefix)),
+      'LOAD_ITEMS', '/getItems', k3d.ds.definitions.PathsPrefix)),
   LOAD_HANDLES: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'LOAD_HANDLES', '/getHandles', k3d.ds.definitions.PathsPrefix)),
+      'LOAD_HANDLES', '/getHandles', k3d.ds.definitions.PathsPrefix)),
   ASSIGN_KITCHEN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'ASSIGN_KITCHEN', '/assignKitchen', k3d.ds.definitions.PathsPrefix)),
+      'ASSIGN_KITCHEN', '/assignKitchen', k3d.ds.definitions.PathsPrefix)),
   LOGIN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'LOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
+      'LOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
   FBLOGIN: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'FBLOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
+      'FBLOGIN', 'Pages/login', k3d.ds.definitions.PathsPrefix)),
   PROJECTS: goog.asserts.assertString(pstj.configure.getRuntimeValue(
-    'PROJECTS', 'Pages/projects', k3d.ds.definitions.PathsPrefix)),
+      'PROJECTS', 'Pages/projects', k3d.ds.definitions.PathsPrefix)),
   NO_SUCH_PROJECT_REDIRECT: goog.asserts.assertString(
-    pstj.configure.getRuntimeValue('NO_SUCH_PROJECT_REDIRECT',
-      '/tocrates/Pages/selectKitchenType', k3d.ds.definitions.PathsPrefix)),
+      pstj.configure.getRuntimeValue('NO_SUCH_PROJECT_REDIRECT',
+          '/tocrates/Pages/selectKitchenType', k3d.ds.definitions.PathsPrefix)),
   GENERATE_PREVIEW: goog.asserts.assertString(
-    pstj.configure.getRuntimeValue('GENERATE_PREVIEW',
-      '/tocrates/generatePreview', k3d.ds.definitions.PathsPrefix)),
+      pstj.configure.getRuntimeValue('GENERATE_PREVIEW',
+          '/tocrates/generatePreview', k3d.ds.definitions.PathsPrefix)),
   REGISTER: goog.asserts.assertString(
-    pstj.configure.getRuntimeValue('REGISTER',
-      '/tocrates/Pages/signIn', k3d.ds.definitions.PathsPrefix))
+      pstj.configure.getRuntimeValue('REGISTER',
+          '/tocrates/Pages/signIn', k3d.ds.definitions.PathsPrefix))
 };
+
 
 /**
  * Provides the structure names as symbols.
@@ -120,6 +125,7 @@ k3d.ds.definitions.Struct = {
   IMAGE: 'image'
 };
 
+
 /**
  * Provides symbolic names for the categories.
  * @enum {number}
@@ -134,11 +140,13 @@ k3d.ds.definitions.Category = {
   OTHER: 7
 };
 
+
 /**
  * The categories that are basically corner elements
- * @type {Array.<number>}
+ * @type {Array<number>}
  */
 k3d.ds.definitions.CORNER_CATEGORIES = [3, 4, 6];
+
 
 /**
  * THe static string used for errors.
@@ -152,6 +160,7 @@ k3d.ds.definitions.Static = {
   RUNTIME: 3,
   NO_DATA: 4
 };
+
 
 /**
  * List of runtime errors that happen outside of server interaction.
