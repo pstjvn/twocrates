@@ -2,3 +2,5 @@ build/
 tpl/
 help/
 *sublime-*
+.linted
+rtt
