@@ -2,17 +2,17 @@
  * Provides the button style template
  */
 
-@def PSTJ_BUTTON_BORDER_RADIUS 3px;
-@def PSTJ_BUTTON_TEXT_COLOR #3A3A3A;
-@def PSTJ_BUTTON_BASE_COLOR #CACACA;
-@def PSTJ_BUTTON_BASE_HIGHLIGHT red;
-@def PSTJ_BUTTON_DEFAULT_BORDER 1px solid #C1C1BF;
+@PSTJ_BUTTON_BORDER_RADIUS: 3px;
+@PSTJ_BUTTON_TEXT_COLOR: #3A3A3A;
+@PSTJ_BUTTON_BASE_COLOR: #CACACA;
+@PSTJ_BUTTON_BASE_HIGHLIGHT: red;
+@PSTJ_BUTTON_DEFAULT_BORDER: 1px solid #C1C1BF;
 
 
 .pstj-button {
   position: relative;
-  background-color: PSTJ_BUTTON_BASE_COLOR;
-  color: PSTJ_BUTTON_TEXT_COLOR;
+  background-color: @PSTJ_BUTTON_BASE_COLOR;
+  color: @PSTJ_BUTTON_TEXT_COLOR;
   cursor: pointer;
   display: inline-block;
   padding: 5px 11px;
@@ -30,7 +30,7 @@
 }
 
 .pstj-button-active {
-  top: PSTJ_BUTTON_BORDER_RADIUS;
+  top: @PSTJ_BUTTON_BORDER_RADIUS;
 }
 
 .pstj-button-hover {
@@ -46,7 +46,7 @@
 
 /** Setup borders */
 .pstj-button {
-  border: PSTJ_BUTTON_DEFAULT_BORDER;
+  border: @PSTJ_BUTTON_DEFAULT_BORDER;
 }
 
 .pstj-button-group .pstj-button {
@@ -64,7 +64,7 @@
   border-top-left-radius: 8px;
   /** @alternate */
   border-bottom-left-radius: 8px;
-  border-left: PSTJ_BUTTON_DEFAULT_BORDER;
+  border-left: @PSTJ_BUTTON_DEFAULT_BORDER;
 }
 
 .pstj-button-group .pstj-button:last-child {

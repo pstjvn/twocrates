@@ -1,0 +1,400 @@
+@TC_CONTROL_BUTTONS_BG: url('../assets/controls-bg.png');
+
+/**
+ * The header on top of the view, it is persistent and should be on top of
+ *   everything else except the pop-ups.
+ */
+.header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2D3033;
+  color: #fff;
+  z-index: 100;
+}
+
+/**
+ * The main container that holds the scalable view (in code this is executed
+ *   as sheetframe). We want to have smooth transition of this in brwosers, in
+ *   mobile devices this goes unnnoticed in all tested devices.
+ */
+.container {
+  width: 0;
+  height: 0;
+  background-color: #50565F;
+  /*background-image: url('../assets/framesheet-bg.jpg');*/
+  overflow: hidden;
+  /* Provide some effects when scaling? */
+  -webkit-transition: width 0.2s linear, height 0.2s linear;
+  /* @alternate */
+  -ms-transition: width 0.2s linear, height 0.2s linear;
+  /* @alternate */
+  transition: width 0.2s, height 0.2s;
+}
+
+/**
+ * This is the actual 'drawing' sheet (implement in code as touchsheet), it is
+ *   scalable and moveable.
+ *
+ * TODO: rename the class to something more appropriate.
+ */
+.child {
+  background-color: #fff;
+  background-image: url('../assets/light-bg.jpg');
+}
+
+.test {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 7.324545%;
+  height: 8.23434%;
+  background-color: rgb(0,0,255);
+  background-image: url('../assets/wood.jpg');
+}
+
+
+
+.design-tool-controls {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  background: @MAIN_BLUE;
+}
+
+.design-tool-control-button {
+  display: table-cell;
+  border: none;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.design-tool-control-button-active {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.design-tool-control-button-disabled img {
+  opacity: 0.4;
+}
+
+.fb-button {
+  background-image: url('../assets/fblogin.png');
+  width: 251px;
+  height: 48px;
+  display: block;
+}
+.fb-link {
+  display: inline-block;
+  width: 251px;
+  height: 48px;
+}
+
+.header-link a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-link a:hover {
+  text-decoration: underline;
+}
+
+.header-link {
+  height: 45px;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+  line-height: 45px;
+  background-color: #2D3033;
+
+  -webkit-transition: background-color 300ms linear;
+  /* @alternate */
+  -moz-transition: background-color 300ms linear;
+  /* @alternate */
+  -o-transition: background-color 300ms linear;
+  /* @alternate */
+  -ms-transition: background-color 300ms linear;
+  /* @alternate */
+  transition: background-color 300ms linear;
+}
+
+
+.header-link:hover, .header-link:active {
+  background-color: @MAIN_BLUE;
+}
+
+.sheet-item-active {
+
+}
+
+.sheet-item-moving {
+  z-index: 9999;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.child > div {
+  background-size: 100% 100%;
+}
+
+.item-view-wrapper {
+  margin: auto;
+  padding: @DIALOG_PADDING;
+  border: @DIALOG_BORDER;
+  background: @DIALOG_BACKGROUND;
+  width: 600px;
+}
+
+.item-view-image-container {
+  width: 200px;
+}
+
+.item-view-details-coniainer {
+  width: 350px;
+  vertical-align: top;
+  padding: 0 5px 5px 15px;
+}
+
+.item-view-image-centerer {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.item-view-image {
+  max-width: 200px;
+  max-height: 450px;
+}
+
+.item-view-details-description {
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.item-view-details-label {
+  font-weight: bold;
+}
+
+.item-view-controls {
+  margin: 5px;
+  text-align: right;
+}
+
+.pstj-list-item-active .pstj-list-item-container {
+  background-color: @MAIN_BLUE;
+  color: white;
+}
+
+.pstj-list-item-container {
+  border: 1px solid @SECONDARY_GREY;
+  height: 100%;
+  padding: 5px;
+}
+
+.pstj-list-item-thumbnail {
+  width: 88px;
+  height: 88px;
+}
+
+.pstj-list-item-image-holder {
+  float: left;
+  margin-right: 5px;
+  height: 98px;
+  padding: 5px;
+  background-color: @SECONDARY_GREY;
+}
+
+.pstj-list-item-disabled {
+  display: none;
+}
+
+.k3d-preview {
+  width: 280px;
+  height: 121px;
+  position: absolute;
+  top: 50px;
+  left: 5px;
+  border: 2px solid @SECONDARY_GREY;
+  -webkit-transition: -webkit-transform 200ms linear;
+  /** @alternate */
+  transition: transform 200ms linear;
+  -webkit-transform: translate(-255px, 0);
+  /* @alternate */
+  -moz-transform: translate(-255px, 0);
+  /* @alternate */
+  -o-transform: translate(-255px, 0);
+  /* @alternate */
+  -ms-transform: translate(-255px, 0);
+  /* @alternate */
+  transform: translate(-255px, 0);
+}
+
+
+.k3d-preview.on {
+  -webkit-transform: translate(0, 0);
+  /* @alternate */
+  -moz-transform: translate(0, 0);
+  /* @alternate */
+  -o-transform: translate(0, 0);
+  /* @alternate */
+  -ms-transform: translate(0, 0);
+  /* @alternate */
+  transform: translate(0, 0);
+}
+
+.k3d-preview-toggler {
+  position: absolute;
+  right: 0;
+  width: 117px;
+  height: 19px;
+  font-size: 11px;
+  padding-left: 5px;
+  padding-top: 2px;
+  cursor: pointer;
+  background-color: white;
+  -webkit-transform: rotate(-90deg) translate(-49px, 49px);
+  /* @alternate */
+  -moz-transform: rotate(-90deg) translate(-49px, 49px);
+  /* @alternate */
+  -o-transform: rotate(-90deg) translate(-49px, 49px);
+  /* @alternate */
+  -ms-transform: rotate(-90deg) translate(-49px, 49px);
+  /* @alternate */
+  transform: rotate(-90deg) translate(-49px, 49px);
+}
+
+
+.k3d-preview-container {
+  position: absolute;
+  width: 256px;
+  height: 117px;
+  right: 20px;
+  background-color: blue;
+}
+
+.k3d-preview-image {
+  min-width: 256px;
+  min-height: 117px;
+  max-width: 256px;
+  max-height: 117px;
+}
+
+.price-label {
+  position: absolute;
+  top: 48px;
+  right: 3px;
+  background-color: @SECONDARY_GREY;
+  padding: 5px;
+  border: 2px solid @MAIN_BLUE;
+  color: white;
+}
+
+.price-label-text, .price-label-value, .price-label-currency {
+  font-weight: bold;
+}
+
+.pstj-widget-select, .k3d-note {
+  margin: auto;
+  padding: @DIALOG_PADDING;
+  border: @DIALOG_BORDER;
+  background: @DIALOG_BACKGROUND;
+}
+
+.k3d-note {
+  width: 600px;
+}
+
+.k3d-note-buttons {
+  height: 30px;
+  padding-right: 10px;
+}
+
+.pstj-widget-select .filters-group {
+  display: none;
+}
+
+.filters-group .pstj-button {
+  font-size: 14px;
+  padding: 5px 3px;
+}
+
+.pstj-widget-select.filters-visible .filters-group {
+  display: block;
+}
+
+.pstj-widget-select.filters-visible .pstj-widget-select-body {
+  height: 340px;
+}
+
+.pstj-widget-select-body {
+  height: 370px;
+}
+
+.pstj-widget-select-footer {
+  margin: 8px 5% 0 0;
+}
+
+.pstj-widget-select-title {
+  margin-left: 5%;
+}
+
+.pstj-list {
+  -webkit-box-shadow: inset 0 0 2px @MAIN_BLUE;
+  /* @alternate */
+  box-shadow: inset 0 0 2px @MAIN_BLUE;
+}
+
+.pstj-widget-select .item-view-controls {
+  text-align: center;
+}
+
+.pstj-button-selected {
+  background-image: -webkit-linear-gradient(top, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: -moz-linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: -o-linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: -ms-linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+  /* @alternate */
+  background-image: linear-gradient(to bottom, rgba(150,210,242,1) 0%,rgba(234,234,234,1) 49%,rgba(99,185,242,1) 100%);
+
+}
+
+/** This should cover ie10 as well (tested on win7) */
+.transitioning {
+  -webkit-transition: -webkit-transform 90ms linear, width 90ms linear, height 90ms linear;
+  /* @alternate */
+  -moz-transition: -moz-transform 90ms linear, width 90ms linear, height 90ms linear;
+  /* @alternate */
+  -ms-transition: -ms-transform 90ms linear, width 90ms linear, height 90ms linear;
+  /* @alternate */
+  transition: transform 90ms linear, width 90ms linear, height 90ms linear;
+}
+
+
+/**
+ * Setup the style in such a way that when we change the left position of an element
+ */
+.k3d-transition > div {
+  -webkit-transition: -webkit-transform 200ms linear;
+  -moz-transition: -moz-transform 200ms linear;
+  -o-transition: -o-transform 200ms linear;
+  -ms-transition: -ms-transform 200ms linear;
+  transition: transform 200ms linear;
+}
+
+
+.k3d-transition > div.sheet-item-moving {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
