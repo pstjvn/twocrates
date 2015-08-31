@@ -1,6 +1,6 @@
 {
   "status": 0,
-  "kitchen": {
+  "data": {
     "id": "1",
     "type": "L",
     "description": "My test kitchen project",
