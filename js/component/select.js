@@ -116,7 +116,7 @@ _.setFiltersVisible = function(visible, opt_top, opt_bottom, opt_top_has_corner,
 
 /**
  * Sets the spaces available on both top and bottom row.
- * @param {number} top The width available in the top row
+ * @param {number} top The width available in the top row.
  * @param {number} bottom The width available in the bottom row.
  * @param {boolean} corner_top True if the top row has a corner item and
  *   should not allow another one.

@@ -167,9 +167,9 @@ _.createChangeFilter = function(
   return function(item) {
 
     // if item is in the wrong list
-    if (!goog.array.contains(
-        (_.isAttachedToWall_) ? _.attached_ : _.detached_,
-            _.items_.getIndexByItem(item))) {
+    if (!goog.array.contains((_.isAttachedToWall_) ?
+        _.attached_ :
+        _.detached_, _.items_.getIndexByItem(item))) {
       return true;
     }
 
